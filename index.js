@@ -2,10 +2,12 @@ const express = require('express')
 const { MongoClient } = require('mongodb')
 const url = 'mongodb://localhost/library'
 const uuidv4 = require('uuid/v4')
+const path = require('path')
 
 const app = express()
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, 'public')))
 
 MongoClient.connect(url, (err, db) => {
   if (err) {
