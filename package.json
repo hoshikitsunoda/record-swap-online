@@ -7,7 +7,9 @@
     "lint:css": "stylelint ./**/*.css",
     "lint:js": "eslint ./**/*.js",
     "test": "npm run lint",
-    "precommit": "npm test"
+    "precommit": "npm test",
+    "start": "npm index.js",
+    "watch": "nodemon index.js"
   },
   "devDependencies": {
     "eslint": "4.5.0",
@@ -27,6 +29,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
-    "mongodb": "^2.2.31"
+    "mongodb": "^2.2.31",
+    "uuid": "^3.1.0"
   }
 }
