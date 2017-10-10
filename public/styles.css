@@ -5,17 +5,20 @@ font-family: 'Open Sans', sans-serif;
 
 */
 
-body {
+html {
   background-color: #f0f0f0;
+  height: 100%;
 }
 
 .container {
+  position: relative;
   margin: 0 auto;
+  margin-top: 3%;
   width: 50%;
   border: 2px solid #8f8f8f;
   padding: 10px;
   border-radius: 5px;
-  background-color: #d1d1d1;
+  background-color: rgba(209, 209, 209, 0.5);
   opacity: 0.8;
 }
 
@@ -32,7 +35,6 @@ select {
   width: 200px;
   margin: 10px auto;
   padding: 3px;
-  font-family: 'Open Sans', sans-serif;
   border-radius: 5px;
 }
 
