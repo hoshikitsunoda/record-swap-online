@@ -4,3 +4,52 @@ font-family: 'Nova Flat', cursive;
 font-family: 'Open Sans', sans-serif;
 
 */
+
+body {
+  background-color: #f0f0f0;
+}
+
+.container {
+  margin: 0 auto;
+  width: 50%;
+  border: 2px solid #8f8f8f;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #d1d1d1;
+  opacity: 0.8;
+}
+
+.row {
+  margin: 0 auto;
+  width: 50%;
+  padding: 10px;
+  font-family: 'Nova Flat', cursive;
+}
+
+input,
+select {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+  padding: 3px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 5px;
+}
+
+.submit {
+  display: block;
+  width: 10%;
+  margin: 10px auto;
+  padding: 3px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.condition {
+  display: block;
+  background-color: #4caf50;
+  color: white;
+  width: 200px;
+  margin: 10px auto;
+  padding: 6px;
+  font-size: 16px;
+}
