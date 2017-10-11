@@ -14,13 +14,13 @@ const createElement = (tagName, attributes, children) => {
 const renderForm = () => {
   const $form =
     createElement('form', { class: 'container' }, [
-      createElement('div', { class: 'row' }, [ 'Artist:',
+      createElement('div', { class: 'row' }, [ '-Artist-',
         createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
       ]),
-      createElement('div', { class: 'row' }, [ 'Title:',
+      createElement('div', { class: 'row' }, [ '-Title-',
         createElement('input', { type: 'text', class: 'title', id: 'title', name: 'title' }, [])
       ]),
-      createElement('div', { class: 'row' }, [ 'Media Condition:',
+      createElement('div', { class: 'row' }, [ '-Media Condition-',
         createElement('select', { class: 'mediaCondition', id: 'mediaCondition', name: 'mediaCondition' }, [
           createElement('option', { value: 'SS' }, ['SS']),
           createElement('option', { value: 'NM' }, ['NM']),
@@ -33,7 +33,7 @@ const renderForm = () => {
           createElement('option', { value: 'P' }, ['P'])
         ])
       ]),
-      createElement('div', { class: 'row' }, [ 'Cover Condition:',
+      createElement('div', { class: 'row' }, [ '-Cover Condition-',
         createElement('select', { class: 'coverCondition', id: 'coverCondition', name: 'coverCondition' }, [
           createElement('option', { value: 'SS' }, ['SS']),
           createElement('option', { value: 'NM' }, ['NM']),
@@ -46,18 +46,21 @@ const renderForm = () => {
           createElement('option', { value: 'P' }, ['P'])
         ])
       ]),
-      createElement('div', { class: 'row' }, [ 'Format:',
+      createElement('div', { class: 'row' }, [ '-Format-',
         createElement('select', { type: 'text', class: 'format', id: 'format', name: 'format' }, [
           createElement('option', { value: 'LP' }, ['LP']),
           createElement('option', { value: 'EP' }, ['EP']),
           createElement('option', { value: '7"' }, ['7"'])
         ])
       ]),
-      createElement('div', { class: 'row' }, [ 'Year:',
-        createElement('input', { type: 'text', class: 'year', id: 'year', name: 'year' }, [])
-      ]),
-      createElement('div', { class: 'row' }, [ 'Label:',
+      createElement('div', { class: 'row' }, [ '-Label-',
         createElement('input', { type: 'text', class: 'label', id: 'label', name: 'label' }, [])
+      ]),
+      createElement('div', { class: 'row' }, [ '-Price(USD)-',
+        createElement('input', { type: 'text', class: 'price', id: 'price', name: 'price' }, [])
+      ]),
+      createElement('div', { class: 'row' }, [ '-Photos-',
+        createElement('input', { type: 'file', class: 'photo', id: 'photo', name: 'photo', accept: 'image/*' }, [])
       ]),
       createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
     ])
@@ -65,20 +68,9 @@ const renderForm = () => {
   $form.addEventListener('submit', event => {
     event.preventDefault()
     const formData = new FormData(event.target)
-    const data = {
-      artist: formData.get('artist'),
-      title: formData.get('title'),
-      mediaCondition: formData.get('mediaCondition'),
-      coverCondition: formData.get('coverCondition'),
-      format: formData.get('format'),
-      year: formData.get('year'),
-      label: formData.get('label')
-    }
-    const json = JSON.stringify(data)
     fetch('/inventory', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: json
+      body: formData
     })
       .then(res => res.json())
       .then(saved => console.log(saved, 'posted'))
