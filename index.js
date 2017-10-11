@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb')
 const url = 'mongodb://localhost/library'
 const uuidv4 = require('uuid/v4')
 const multer = require('multer')
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/uploads/')
   },
@@ -11,7 +11,7 @@ var storage = multer.diskStorage({
     cb(null, file.originalname.slice(0, -4) + '-' + Date.now() + '.jpg')
   }
 })
-var upload = multer({ storage: storage })
+const upload = multer({ storage: storage })
 const path = require('path')
 
 const app = express()
