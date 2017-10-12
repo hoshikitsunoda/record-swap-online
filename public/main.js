@@ -97,5 +97,27 @@ fetch('/inventory', {
 })
   .then((res) => res.json())
   .then((result) => {
-    console.log(result)
+    const $record = renderRecord(result[2])
+    document.querySelector('.container').append($record)
   })
+
+function renderRecord(record) {
+  const $record = document.createElement('div')
+  const $artist = document.createElement('h3')
+  const $title = document.createElement('h4')
+  const $condition = document.createElement('h4')
+  const $format = document.createElement('h4')
+  const $label = document.createElement('h4')
+  const $price = document.createElement('h4')
+
+  $artist.textContent = record.artist
+  $title.textContent = record.title
+  $condition.textContent = record.mediaCondition + '/' + record.coverCondition
+  $format.textContent = record.format
+  $label.textContent = record.label
+  $price.textContent = record.price + ' USD'
+
+  $record.append($artist, $title, $condition, $format, $label, $price)
+
+  return $record
+}
