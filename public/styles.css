@@ -23,20 +23,56 @@ select {
   text-align: center;
 }
 
+.box1 {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  left: 14px;
+  bottom: -12px;
+  margin-top: -20px;
+  width: 5%;
+  font-family: 'Nova Flat', cursive;
+  font-size: 80px;
+}
+
+.box2 {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  right: -26px;
+  top: -11px;
+  margin-top: -20px;
+  width: 5%;
+  font-family: 'Nova Flat', cursive;
+  font-size: 80px;
+}
+
+.box3 {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  right: -22px;
+  bottom: -18px;
+  margin-top: -20px;
+  width: 5%;
+  font-family: 'Nova Flat', cursive;
+  font-size: 80px;
+}
+
 .container {
   box-sizing: border-box;
   margin: 0 auto;
   margin-top: 30px;
-  width: 85%;
+  width: 75%;
   height: 100%;
   border: 2px solid transparent;
   border-radius: 5px;
   padding: 10px;
-  background-color: rgba(209, 209, 209, 0.2);
+  background-color: rgba(209, 209, 209, 0.05);
   box-shadow:
-    0 15px 5px rgba(0, 0, 0, 0.15),
-    10px 20px 5px rgba(0, 0, 0, 0.05),
-    -10px 20px 5px rgba(0, 0, 0, 0.05);
+    0 15px 5px rgba(0, 0, 0, 0.06),
+    10px 20px 5px rgba(0, 0, 0, 0.02),
+    -10px 20px 5px rgba(0, 0, 0, 0.02);
 }
 
 .row {

@@ -75,7 +75,27 @@ const renderForm = () => {
       .then(res => res.json())
       .then(saved => console.log(saved, 'posted'))
   })
+
+  $form.addEventListener('load', event => {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    fetch('/inventory', {
+      method: 'GET',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(saved => console.log(saved, 'posted'))
+  })
   return $form
 }
 
 document.body.appendChild(renderForm())
+
+fetch('/inventory', {
+  method: 'GET',
+  headers: { 'content-type': 'application/json' }
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result)
+  })
