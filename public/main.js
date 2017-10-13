@@ -10,7 +10,8 @@ const createElement = (tagName, attributes, children) => {
   })
   return $element
 }
-
+/*
+//function to render form(for issue-1)
 const renderForm = () => {
   const $form =
     createElement('form', { class: 'container' }, [
@@ -75,18 +76,6 @@ const renderForm = () => {
       .then(res => res.json())
       .then(saved => console.log(saved, 'posted'))
   })
-
-  $form.addEventListener('load', event => {
-    event.preventDefault()
-    const formData = new FormData(event.target)
-    fetch('/inventory', {
-      method: 'GET',
-      body: formData
-    })
-      .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'))
-  })
-  return $form
 }
 
 document.body.appendChild(renderForm())
@@ -98,8 +87,11 @@ fetch('/inventory', {
   .then((res) => res.json())
   .then((result) => {
     const $record = renderRecord(result[2])
-    document.querySelector('.container').append($record)
+    const $image = showImage(result[2])
+    document.querySelector('.container').append($record, $image)
   })
+
+// function to render record detail. (for issue-5)
 
 function renderRecord(record) {
   const $record = document.createElement('div')
@@ -121,3 +113,42 @@ function renderRecord(record) {
 
   return $record
 }
+*/
+
+const renderPhotos = () => {
+  const $photo =
+    createElement('div', { class: 'container', id: 'listings' }, [])
+  return $photo
+}
+
+document.body.appendChild(renderPhotos())
+
+function showImage(record) {
+  const $box = createElement('div', { class: 'col-1-3' }, [])
+  const $img = document.createElement('img')
+  const $artist = document.createElement('li')
+  const $condition = document.createElement('li')
+  const $price = document.createElement('li')
+
+  $img.src = record.filename
+  $artist.textContent = record.artist + '/' + record.title
+  $condition.textContent = record.mediaCondition + '/' + record.coverCondition
+  $price.textContent = record.price + 'USD'
+
+  $box.appendChild($img)
+  $box.append($artist, $condition, $price)
+  return $box
+}
+
+const $list = document.getElementById('listings')
+
+fetch('/inventory', {
+  method: 'GET',
+  headers: { 'content-type': 'application/json' }
+})
+  .then((res) => res.json())
+  .then((result) => {
+    result.forEach(obj => {
+      $list.appendChild(showImage(obj))
+    })
+  })
