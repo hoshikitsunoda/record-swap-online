@@ -165,3 +165,7 @@ fetch('/inventory', {
       $list.appendChild(showImage(obj))
     })
   })
+
+const $button = document.querySelector('button')
+
+$button.addEventListener('click', () => {})
