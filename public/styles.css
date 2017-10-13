@@ -67,6 +67,30 @@ h4 {
 }
 
 .container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  float: none;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 75%;
+  height: 700px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 10px;
+  overflow: auto;
+  background-color: rgba(209, 209, 209, 0.2);
+  box-shadow:
+    0 15px 5px rgba(0, 0, 0, 0.15),
+    10px 20px 5px rgba(0, 0, 0, 0.05),
+    -10px 20px 5px rgba(0, 0, 0, 0.05);
+}
+
+#form {
+  position: absolute;
+  left: 0;
+  right: 0;
   float: none;
   box-sizing: border-box;
   margin: 0 auto;

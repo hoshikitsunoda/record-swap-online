@@ -11,11 +11,9 @@ const createElement = (tagName, attributes, children) => {
   return $element
 }
 
-/*
-
 const renderForm = () => {
   const $form =
-    createElement('form', { class: 'container' }, [
+    createElement('form', { class: 'container hidden', id: 'form' }, [
       createElement('div', { class: 'row' }, [ '-Artist-',
         createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
       ]),
@@ -81,6 +79,8 @@ const renderForm = () => {
 }
 
 document.body.appendChild(renderForm())
+
+/*
 
 fetch('/inventory', {
   method: 'GET',
@@ -154,6 +154,7 @@ function showImage(record) {
 }
 
 const $list = document.getElementById('listings')
+const $form = document.getElementById('form')
 
 fetch('/inventory', {
   method: 'GET',
@@ -168,4 +169,7 @@ fetch('/inventory', {
 
 const $button = document.querySelector('button')
 
-$button.addEventListener('click', () => {})
+$button.addEventListener('click', () => {
+  $list.classList.toggle('hidden')
+  $form.classList.toggle('hidden')
+})
