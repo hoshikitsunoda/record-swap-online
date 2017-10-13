@@ -27,7 +27,8 @@ img {
   height: 500px;
   box-sizing: border-box;
   position: relative;
-  opacity: 0.65;
+  opacity: 0.75;
+  -webkit-mask-image: -webkit-gradient(linear, left 70%, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
 }
 
 ul,
@@ -41,6 +42,12 @@ li {
   text-align: left;
   font-size: 14px;
   list-style: none;
+  animation: fadein 0.2s ease-in;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .hidden {

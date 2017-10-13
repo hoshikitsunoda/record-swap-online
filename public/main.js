@@ -10,8 +10,9 @@ const createElement = (tagName, attributes, children) => {
   })
   return $element
 }
+
 /*
-//function to render form(for issue-1)
+
 const renderForm = () => {
   const $form =
     createElement('form', { class: 'container' }, [
@@ -76,6 +77,7 @@ const renderForm = () => {
       .then(res => res.json())
       .then(saved => console.log(saved, 'posted'))
   })
+  return $form
 }
 
 document.body.appendChild(renderForm())
@@ -113,8 +115,10 @@ function renderRecord(record) {
 
   return $record
 }
+
 */
 
+// function to show listings
 const renderPhotos = () => {
   const $photo =
     createElement('div', { class: 'container', id: 'listings' }, [])
@@ -136,7 +140,16 @@ function showImage(record) {
   $price.textContent = record.price + 'USD'
 
   $box.appendChild($img)
-  $box.append($artist, $condition, $price)
+  $box.addEventListener('mouseover', () => {
+    $box.appendChild($artist)
+    $box.appendChild($condition)
+    $box.appendChild($price)
+  })
+  $box.addEventListener('mouseleave', () => {
+    $box.removeChild($artist)
+    $box.removeChild($condition)
+    $box.removeChild($price)
+  })
   return $box
 }
 
