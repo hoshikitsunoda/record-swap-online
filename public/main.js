@@ -14,7 +14,7 @@ const createElement = (tagName, attributes, children) => {
 const renderForm = () => {
   const $form =
     createElement('form', { class: 'container hidden', id: 'form' }, [
-      createElement('div', { class: 'row' }, [ '-Artist-',
+      createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Artist-',
         createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
       ]),
       createElement('div', { class: 'row' }, [ '-Title-',
@@ -58,11 +58,19 @@ const renderForm = () => {
       ]),
       createElement('div', { class: 'row' }, [ '-Price(USD)-',
         createElement('input', { type: 'text', class: 'price', id: 'price', name: 'price' }, [])
+      ])
       ]),
-      createElement('div', { class: 'row' }, [ '-Photos-',
+      createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Photos-',
         createElement('input', { type: 'file', class: 'photo', id: 'photo', name: 'photo', accept: 'image/*' }, [])
       ]),
+      createElement('div', { class: 'row' }, ['Your Phone#',
+        createElement('input', { type: 'text', class: 'phone', id: 'phone', name: 'phone' }, [])
+      ]),
+      createElement('div', { class: 'row' }, ['Comment',
+        createElement('textarea', { type: 'text', class: 'comment', rows: '10', cols: '50', id: 'comment', name: 'comment' }, [])
+      ]),
       createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
+      ])
     ])
 
   $form.addEventListener('submit', event => {
@@ -167,9 +175,25 @@ fetch('/inventory', {
     })
   })
 
-const $button = document.querySelector('button')
+const $sell = document.getElementById('sell')
+const $buy = document.getElementById('buy')
 
-$button.addEventListener('click', () => {
+$sell.addEventListener('click', () => {
   $list.classList.toggle('hidden')
   $form.classList.toggle('hidden')
+})
+
+$buy.addEventListener('click', () => {
+  $list.classList.toggle('hidden')
+  $form.classList.toggle('hidden')
+})
+
+$sell.addEventListener('click', () => {
+  $buy.classList.toggle('hidden')
+  $sell.classList.toggle('hidden')
+})
+
+$buy.addEventListener('click', () => {
+  $buy.classList.toggle('hidden')
+  $sell.classList.toggle('hidden')
 })

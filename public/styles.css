@@ -1,10 +1,3 @@
-/*
-
-font-family: 'Nova Flat', cursive;
-font-family: 'Open Sans', sans-serif;
-
-*/
-
 html {
   height: 100%;
   box-shadow:
@@ -20,6 +13,7 @@ select {
   padding: 3px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.5);
+  text-align: center;
 }
 
 img {
@@ -51,7 +45,7 @@ li {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 h3,
@@ -66,6 +60,67 @@ h4 {
   font-size: 14px;
 }
 
+textarea {
+  margin-top: 12px;
+  border-radius: 5px;
+}
+
+.submit {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.blackbox {
+  background-color: black;
+  position: absolute;
+  height: 51px;
+  width: 54px;
+  left: 19px;
+  top: 8px;
+  z-index: 0;
+}
+
+button {
+  box-sizing: border-box;
+  position: absolute;
+  background-color: white;
+  border: 2px solid;
+  left: 18px;
+  height: 51px;
+  width: 55px;
+  z-index: 10;
+}
+
+button:active {
+  border-top: 6px solid;
+  border-left: 6px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+#sell {
+  font: inherit;
+  line-height: 1;
+  font-family: 'Nova Flat', cursive;
+  letter-spacing: 4px;
+  text-align: left;
+  font-size: 14px;
+}
+
+#buy {
+  font: inherit;
+  line-height: 1;
+  font-family: 'Nova Flat', cursive;
+  letter-spacing: 5.5px;
+  text-align: left;
+  font-size: 14px;
+}
+
 .container {
   position: absolute;
   left: 0;
@@ -74,7 +129,7 @@ h4 {
   box-sizing: border-box;
   margin: 0 auto;
   margin-top: 30px;
-  width: 75%;
+  width: 80%;
   height: 700px;
   border: 2px solid transparent;
   border-radius: 5px;
@@ -85,6 +140,7 @@ h4 {
     0 15px 5px rgba(0, 0, 0, 0.15),
     10px 20px 5px rgba(0, 0, 0, 0.05),
     -10px 20px 5px rgba(0, 0, 0, 0.05);
+  animation: fadein 0.6s ease-in;
 }
 
 #form {
@@ -106,6 +162,7 @@ h4 {
     0 15px 5px rgba(0, 0, 0, 0.15),
     10px 20px 5px rgba(0, 0, 0, 0.05),
     -10px 20px 5px rgba(0, 0, 0, 0.05);
+  animation: fadein 0.6s ease-in;
 }
 
 .col-1-3 {
@@ -117,11 +174,21 @@ h4 {
   display: inline;
 }
 
+.col-1-2 {
+  width: 49%;
+  height: 100%;
+  overflow: hidden;
+  margin-left: 2px;
+  float: left;
+  display: inline;
+}
+
 .row {
+  top: 20px;
   box-sizing: content-box;
   margin: 0 auto;
-  width: 40%;
-  padding: 10px;
+  width: 70%;
+  padding: 18px;
   font-family: 'Nova Flat', cursive;
   letter-spacing: 4px;
   text-align: center;
