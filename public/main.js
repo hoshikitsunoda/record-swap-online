@@ -13,8 +13,7 @@ const createElement = (tagName, attributes, children) => {
 
 const renderForm = () => {
   const $form =
-    createElement('form', { class: 'container' }, [
-      createElement('div', { class: 'form hidden', id: 'form' }, [
+      createElement('form', { class: 'form hidden', id: 'form' }, [
         createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Artist-',
           createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
         ]),
@@ -73,7 +72,6 @@ const renderForm = () => {
         createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
         ])
       ])
-    ])
 
   $form.addEventListener('submit', event => {
     event.preventDefault()
@@ -131,22 +129,26 @@ function showImage(record) {
   const $box = createElement('div', { class: 'col-1-3' }, [])
   const $img = document.createElement('img')
   const $artist = document.createElement('li')
+  const $title = document.createElement('li')
   const $condition = document.createElement('li')
   const $price = document.createElement('li')
 
   $img.src = record.filename
-  $artist.textContent = record.artist + '/' + record.title
+  $artist.textContent = record.artist
+  $title.textContent = record.title
   $condition.textContent = record.mediaCondition + '/' + record.coverCondition
   $price.textContent = record.price + 'USD'
 
   $box.appendChild($img)
   $box.addEventListener('mouseover', () => {
     $box.appendChild($artist)
+    $box.appendChild($title)
     $box.appendChild($condition)
     $box.appendChild($price)
   })
   $box.addEventListener('mouseleave', () => {
     $box.removeChild($artist)
+    $box.removeChild($title)
     $box.removeChild($condition)
     $box.removeChild($price)
   })

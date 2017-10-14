@@ -17,18 +17,20 @@ select {
 }
 
 img {
-  width: 500px;
+  width: auto;
   height: 500px;
+  left: 50%;
   box-sizing: border-box;
   position: relative;
   opacity: 0.75;
-  -webkit-mask-image: -webkit-gradient(linear, left 70%, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+  -webkit-mask-image: -webkit-gradient(linear, left 60%, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+  transform: translate(-50%, 0);
 }
 
 ul,
 li {
   position: relative;
-  top: -80px;
+  top: -100px;
   left: 10px;
   margin-bottom: 5px;
   font-family: 'Nova Flat', cursive;
@@ -78,18 +80,20 @@ textarea {
   width: 54px;
   left: 19px;
   top: 8px;
-  z-index: 0;
+  z-index: -1;
 }
 
 button {
   box-sizing: border-box;
   position: absolute;
   background-color: #dfe4e4;
-  border: 2px solid;
+  border-left: 3.5px solid;
+  border-right: 2px solid;
+  border-top: 3.5px solid;
+  border-bottom: 2px solid;
   left: 18px;
   height: 51px;
   width: 55px;
-  z-index: 10;
 }
 
 button:active {
@@ -129,7 +133,7 @@ button:focus {
   float: none;
   box-sizing: border-box;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 25px;
   width: 78%;
   height: 700px;
   border: 10px solid transparent;
@@ -142,17 +146,22 @@ button:focus {
     10px 20px 5px rgba(0, 0, 0, 0.05),
     -10px 20px 5px rgba(0, 0, 0, 0.05);
   animation: fadein 0.6s ease-in;
+  z-index: -1;
 }
 
 .form {
+  position: absolute;
   left: 0;
   right: 0;
   float: none;
   box-sizing: border-box;
   margin: 0 auto;
-  width: 100%;
+  margin-top: 25px;
+  width: 78%;
   height: 700px;
+  border: 10px solid transparent;
   border-radius: 5px;
+  padding: 10px;
   animation: fadein 0.6s ease-in;
 }
 
@@ -164,7 +173,6 @@ button:focus {
   margin: 0 auto;
   width: 100%;
   height: 700px;
-  border-radius: 5px;
   animation: fadein 0.6s ease-in;
 }
 
