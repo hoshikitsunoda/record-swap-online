@@ -81,7 +81,8 @@ const renderForm = () => {
       body: formData
     })
       .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'))
+      .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting.'))
+      .then(window.location.reload(true))
   })
   return $form
 }
@@ -180,6 +181,7 @@ $sell.addEventListener('click', () => {
 })
 
 $buy.addEventListener('click', () => {
+  window.location.reload(true)
   $list.classList.toggle('hidden')
   $form.classList.toggle('hidden')
   $buy.classList.toggle('hidden')
