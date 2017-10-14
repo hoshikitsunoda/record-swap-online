@@ -13,63 +13,65 @@ const createElement = (tagName, attributes, children) => {
 
 const renderForm = () => {
   const $form =
-    createElement('form', { class: 'container hidden', id: 'form' }, [
-      createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Artist-',
-        createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
-      ]),
-      createElement('div', { class: 'row' }, [ '-Title-',
-        createElement('input', { type: 'text', class: 'title', id: 'title', name: 'title' }, [])
-      ]),
-      createElement('div', { class: 'row' }, [ '-Media Condition-',
-        createElement('select', { class: 'mediaCondition', id: 'mediaCondition', name: 'mediaCondition' }, [
-          createElement('option', { value: 'SS' }, ['SS']),
-          createElement('option', { value: 'NM' }, ['NM']),
-          createElement('option', { value: 'VG+' }, ['VG+']),
-          createElement('option', { value: 'VG' }, ['VG']),
-          createElement('option', { value: 'VG-' }, ['VG-']),
-          createElement('option', { value: 'G+' }, ['G+']),
-          createElement('option', { value: 'G' }, ['G']),
-          createElement('option', { value: 'F' }, ['F']),
-          createElement('option', { value: 'P' }, ['P'])
+    createElement('form', { class: 'container' }, [
+      createElement('div', { class: 'form hidden', id: 'form' }, [
+        createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Artist-',
+          createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
+        ]),
+        createElement('div', { class: 'row' }, [ '-Title-',
+          createElement('input', { type: 'text', class: 'title', id: 'title', name: 'title' }, [])
+        ]),
+        createElement('div', { class: 'row' }, [ '-Media Condition-',
+          createElement('select', { class: 'mediaCondition', id: 'mediaCondition', name: 'mediaCondition' }, [
+            createElement('option', { value: 'SS' }, ['SS']),
+            createElement('option', { value: 'NM' }, ['NM']),
+            createElement('option', { value: 'VG+' }, ['VG+']),
+            createElement('option', { value: 'VG' }, ['VG']),
+            createElement('option', { value: 'VG-' }, ['VG-']),
+            createElement('option', { value: 'G+' }, ['G+']),
+            createElement('option', { value: 'G' }, ['G']),
+            createElement('option', { value: 'F' }, ['F']),
+            createElement('option', { value: 'P' }, ['P'])
+          ])
+        ]),
+        createElement('div', { class: 'row' }, [ '-Cover Condition-',
+          createElement('select', { class: 'coverCondition', id: 'coverCondition', name: 'coverCondition' }, [
+            createElement('option', { value: 'SS' }, ['SS']),
+            createElement('option', { value: 'NM' }, ['NM']),
+            createElement('option', { value: 'VG+' }, ['VG+']),
+            createElement('option', { value: 'VG' }, ['VG']),
+            createElement('option', { value: 'VG-' }, ['VG-']),
+            createElement('option', { value: 'G+' }, ['G+']),
+            createElement('option', { value: 'G' }, ['G']),
+            createElement('option', { value: 'F' }, ['F']),
+            createElement('option', { value: 'P' }, ['P'])
+          ])
+        ]),
+        createElement('div', { class: 'row' }, [ '-Format-',
+          createElement('select', { type: 'text', class: 'format', id: 'format', name: 'format' }, [
+            createElement('option', { value: 'LP' }, ['LP']),
+            createElement('option', { value: 'EP' }, ['EP']),
+            createElement('option', { value: '7"' }, ['7"'])
+          ])
+        ]),
+        createElement('div', { class: 'row' }, [ '-Label-',
+          createElement('input', { type: 'text', class: 'label', id: 'label', name: 'label' }, [])
+        ]),
+        createElement('div', { class: 'row' }, [ '-Price(USD)-',
+          createElement('input', { type: 'text', class: 'price', id: 'price', name: 'price' }, [])
         ])
-      ]),
-      createElement('div', { class: 'row' }, [ '-Cover Condition-',
-        createElement('select', { class: 'coverCondition', id: 'coverCondition', name: 'coverCondition' }, [
-          createElement('option', { value: 'SS' }, ['SS']),
-          createElement('option', { value: 'NM' }, ['NM']),
-          createElement('option', { value: 'VG+' }, ['VG+']),
-          createElement('option', { value: 'VG' }, ['VG']),
-          createElement('option', { value: 'VG-' }, ['VG-']),
-          createElement('option', { value: 'G+' }, ['G+']),
-          createElement('option', { value: 'G' }, ['G']),
-          createElement('option', { value: 'F' }, ['F']),
-          createElement('option', { value: 'P' }, ['P'])
+        ]),
+        createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Photos-',
+          createElement('input', { type: 'file', class: 'photo', id: 'photo', name: 'photo', accept: 'image/*' }, [])
+        ]),
+        createElement('div', { class: 'row' }, ['-Your Phone#-',
+          createElement('input', { type: 'text', class: 'phone', id: 'phone', name: 'phone' }, [])
+        ]),
+        createElement('div', { class: 'row' }, ['-Comment-',
+          createElement('textarea', { type: 'text', class: 'comment', rows: '10', cols: '50', id: 'comment', name: 'comment' }, [])
+        ]),
+        createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
         ])
-      ]),
-      createElement('div', { class: 'row' }, [ '-Format-',
-        createElement('select', { type: 'text', class: 'format', id: 'format', name: 'format' }, [
-          createElement('option', { value: 'LP' }, ['LP']),
-          createElement('option', { value: 'EP' }, ['EP']),
-          createElement('option', { value: '7"' }, ['7"'])
-        ])
-      ]),
-      createElement('div', { class: 'row' }, [ '-Label-',
-        createElement('input', { type: 'text', class: 'label', id: 'label', name: 'label' }, [])
-      ]),
-      createElement('div', { class: 'row' }, [ '-Price(USD)-',
-        createElement('input', { type: 'text', class: 'price', id: 'price', name: 'price' }, [])
-      ])
-      ]),
-      createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Photos-',
-        createElement('input', { type: 'file', class: 'photo', id: 'photo', name: 'photo', accept: 'image/*' }, [])
-      ]),
-      createElement('div', { class: 'row' }, ['Your Phone#',
-        createElement('input', { type: 'text', class: 'phone', id: 'phone', name: 'phone' }, [])
-      ]),
-      createElement('div', { class: 'row' }, ['Comment',
-        createElement('textarea', { type: 'text', class: 'comment', rows: '10', cols: '50', id: 'comment', name: 'comment' }, [])
-      ]),
-      createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
       ])
     ])
 
@@ -89,17 +91,6 @@ const renderForm = () => {
 document.body.appendChild(renderForm())
 
 /*
-
-fetch('/inventory', {
-  method: 'GET',
-  headers: { 'content-type': 'application/json' }
-})
-  .then((res) => res.json())
-  .then((result) => {
-    const $record = renderRecord(result[2])
-    const $image = showImage(result[2])
-    document.querySelector('.container').append($record, $image)
-  })
 
 // function to render record detail. (for issue-5)
 
@@ -126,10 +117,11 @@ function renderRecord(record) {
 
 */
 
-// function to show listings
 const renderPhotos = () => {
   const $photo =
-    createElement('div', { class: 'container', id: 'listings' }, [])
+    createElement('div', { class: 'container' }, [
+      createElement('div', { class: 'list', id: 'listings' }, [])
+    ])
   return $photo
 }
 
@@ -181,19 +173,13 @@ const $buy = document.getElementById('buy')
 $sell.addEventListener('click', () => {
   $list.classList.toggle('hidden')
   $form.classList.toggle('hidden')
-})
-
-$buy.addEventListener('click', () => {
-  $list.classList.toggle('hidden')
-  $form.classList.toggle('hidden')
-})
-
-$sell.addEventListener('click', () => {
   $buy.classList.toggle('hidden')
   $sell.classList.toggle('hidden')
 })
 
 $buy.addEventListener('click', () => {
+  $list.classList.toggle('hidden')
+  $form.classList.toggle('hidden')
   $buy.classList.toggle('hidden')
   $sell.classList.toggle('hidden')
 })
