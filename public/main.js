@@ -66,7 +66,7 @@ const renderForm = () => {
         createElement('div', { class: 'row' }, ['-Your Phone#-',
           createElement('input', { type: 'text', class: 'phone', id: 'phone', name: 'phone' }, [])
         ]),
-        createElement('div', { class: 'row' }, ['-Comment-',
+        createElement('div', { class: 'row' }, ['-Condition Comments-',
           createElement('textarea', { type: 'text', class: 'comment', rows: '10', cols: '50', id: 'comment', name: 'comment' }, [])
         ]),
         createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
@@ -164,7 +164,7 @@ fetch('/inventory', {
 })
   .then((res) => res.json())
   .then((result) => {
-    result.forEach(obj => {
+    result.slice().reverse().forEach(obj => {
       $list.appendChild(showImage(obj))
     })
   })
