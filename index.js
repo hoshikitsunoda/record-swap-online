@@ -13,7 +13,10 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 const path = require('path')
+
 const twilio = require('twilio')
+const accountSid = '***'
+const authToken = '***'
 
 const app = express()
 const bodyParser = require('body-parser')
