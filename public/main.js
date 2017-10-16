@@ -116,17 +116,27 @@ function renderRecord(record) {
 
 */
 
-const renderPhotos = () => {
+const listImageBox = () => {
   const $photo =
-    createElement('div', { class: 'container' }, [
+    createElement('div', { class: 'container hidden' }, [
       createElement('div', { class: 'list', id: 'listings' }, [])
     ])
   return $photo
 }
 
-document.body.appendChild(renderPhotos())
+document.body.appendChild(listImageBox())
 
-const renderRecord = (record) => {
+const recordDetail = () => {
+  const $detailBox =
+    createElement('div', { class: 'container' }, [
+      createElement('div', { class: 'list', id: 'detail' }, [])
+    ])
+  return $detailBox
+}
+
+document.body.appendChild(recordDetail())
+
+const renderListings = (record) => {
   const $box = createElement('div', { class: 'col-1-3' }, [])
   const $img = document.createElement('img')
   const $artist = document.createElement('li')
@@ -162,8 +172,32 @@ const renderRecord = (record) => {
   return $box
 }
 
+const renderRecordDetail = (record) => {
+  const $detailBox2 = createElement('div', { class: 'col-1-2' }, [])
+
+  const $artist = document.createElement('li')
+  const $title = document.createElement('li')
+  const $condition = document.createElement('li')
+  const $price = document.createElement('li')
+  const $format = document.createElement('li')
+  const $label = document.createElement('li')
+  const $comment = document.createElement('li')
+
+  $artist.textContent = record.artist
+  $title.textContent = record.title
+  $condition.textContent = record.mediaCondition + '/' + record.coverCondition
+  $price.textContent = record.price + 'USD'
+  $format.textContent = record.format
+  $label.textContent = record.label
+  $comment.textContent = record.comment
+
+  $detailBox2.append($artist, $title, $condition, $price, $format, $label, $comment)
+  return $detailBox2
+}
+
 const $list = document.getElementById('listings')
 const $form = document.getElementById('form')
+const $detail = document.getElementById('detail')
 
 fetch('/inventory', {
   method: 'GET',
@@ -171,9 +205,26 @@ fetch('/inventory', {
 })
   .then((res) => res.json())
   .then((result) => {
-    result.slice().reverse().forEach(obj => {
-      $list.appendChild(renderRecord(obj))
-    })
+    result
+      .slice()
+      .reverse()
+      .forEach(obj => {
+        $list.appendChild(renderListings(obj))
+      })
+  })
+
+fetch('/inventory', {
+  method: 'GET',
+  headers: { 'content-type': 'application/json' }
+})
+  .then((res) => res.json())
+  .then((result) => {
+    result
+      .slice()
+      .reverse()
+      .forEach(obj => {
+        $detail.appendChild(renderRecordDetail(obj))
+      })
   })
 
 const $sell = document.getElementById('sell')
