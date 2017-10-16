@@ -56,3 +56,9 @@ MongoClient.connect(url, (err, db) => {
   })
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
+
+const client = new twilio(accountSid, authToken)
+
+client.messages.create({
+
+}).then((message) => console.log(message.sid))
