@@ -61,4 +61,5 @@ const client = new twilio(accountSid, authToken)
 
 client.messages.create({
   body: 'Thank you for submitting ' + req.body.artist + '/' + req.body.title + '.',
+  to: '1' + req.body.phone,
 }).then((message) => console.log(message.sid))
