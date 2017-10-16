@@ -195,6 +195,17 @@ const renderRecordDetail = (record) => {
   return $detailBox2
 }
 
+const renderBigImage = (record) => {
+  const $detailBox1 = createElement('div', { class: 'col-1-2' }, [])
+
+  const $img = document.createElement('img')
+
+  $img.src = record.filename
+
+  $detailBox1.appendChild($img)
+  return $detailBox1
+}
+
 const $list = document.getElementById('listings')
 const $form = document.getElementById('form')
 const $detail = document.getElementById('detail')
@@ -223,6 +234,7 @@ fetch('/inventory', {
       .slice()
       .reverse()
       .forEach(obj => {
+        $detail.appendChild(renderBigImage(obj))
         $detail.appendChild(renderRecordDetail(obj))
       })
   })
