@@ -133,12 +133,18 @@ const showImage = (record) => {
   const $title = document.createElement('li')
   const $condition = document.createElement('li')
   const $price = document.createElement('li')
+  const $format = document.createElement('li')
+  const $label = document.createElement('li')
+  const $comment = document.createElement('li')
 
   $img.src = record.filename
   $artist.textContent = record.artist
   $title.textContent = record.title
   $condition.textContent = record.mediaCondition + '/' + record.coverCondition
   $price.textContent = record.price + 'USD'
+  $format.textContent = record.format
+  $label.textContent = record.label
+  $comment.textContent = record.comment
 
   $box.appendChild($img)
   $box.addEventListener('mouseover', () => {
