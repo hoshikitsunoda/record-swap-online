@@ -43,6 +43,14 @@ MongoClient.connect(url, (err, db) => {
         console.error(err)
         res.sendStatus(400)
       })
+
+    const client = new twilio(accountSid, authToken)
+
+    client.messages.create({
+      body: 'Thank you for submitting ' + req.body.artist + '/' + req.body.title + '.',
+      to: '1' + req.body.phone,
+      from: '+15624554754'
+    }).then((message) => console.log(message.sid))
   })
   app.get('/inventory', (req, res) => {
     inventoryItems
@@ -56,11 +64,3 @@ MongoClient.connect(url, (err, db) => {
   })
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
-
-const client = new twilio(accountSid, authToken)
-
-client.messages.create({
-  body: 'Thank you for submitting ' + req.body.artist + '/' + req.body.title + '.',
-  to: '1' + req.body.phone,
-  from: '+15624554754'
-}).then((message) => console.log(message.sid))
