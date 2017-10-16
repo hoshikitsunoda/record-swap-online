@@ -15,8 +15,8 @@ const upload = multer({ storage: storage })
 const path = require('path')
 
 const twilio = require('twilio')
-const accountSid = '***'
-const authToken = '***'
+const accountSid = 'AC64c0e0345125c81ab87e3a98664378f4'
+const authToken = '17d1782ce5f40c3c66da56cd5eaca658'
 
 const app = express()
 const bodyParser = require('body-parser')
@@ -60,5 +60,5 @@ MongoClient.connect(url, (err, db) => {
 const client = new twilio(accountSid, authToken)
 
 client.messages.create({
-
+  body: 'Thank you for submitting ' + req.body.artist + '/' + req.body.title + '.',
 }).then((message) => console.log(message.sid))
