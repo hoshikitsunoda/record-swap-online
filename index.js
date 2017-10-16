@@ -14,6 +14,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const path = require('path')
 
+const twilio = require('twilio')
+const accountSid = process.env.accountSid
+const authToken = process.env.authToken
+
 const app = express()
 const bodyParser = require('body-parser')
 
@@ -39,6 +43,15 @@ MongoClient.connect(url, (err, db) => {
         console.error(err)
         res.sendStatus(400)
       })
+
+    const client = new twilio(accountSid, authToken)
+    const phoneNumber = process.env.phoneNumber
+
+    client.messages.create({
+      body: 'Thank you for submitting ' + req.body.artist + '/' + req.body.title + '.',
+      to: '1' + req.body.phone,
+      from: phoneNumber
+    }).then((message) => console.log(message.sid))
   })
   app.get('/inventory', (req, res) => {
     inventoryItems
@@ -50,5 +63,17 @@ MongoClient.connect(url, (err, db) => {
         res.sendStatus(500)
       })
   })
+  app.delete('/inventory/:id', (req, res) => {
+    const noteId = { _id: req.params.id }
+    inventoryItems
+      .deleteOne(noteId)
+      .then(() => res.sendStatus(204))
+      .catch((err) => {
+        console.error(err)
+        res.sendStatus(400)
+      })
+  })
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
+
+console.log(process.env.accountSid, process.env.authToken, process.env.phoneNumber)
