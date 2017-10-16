@@ -126,7 +126,7 @@ const renderPhotos = () => {
 
 document.body.appendChild(renderPhotos())
 
-const showImage = (record) => {
+const renderRecord = (record) => {
   const $box = createElement('div', { class: 'col-1-3' }, [])
   const $img = document.createElement('img')
   const $artist = document.createElement('li')
@@ -172,7 +172,7 @@ fetch('/inventory', {
   .then((res) => res.json())
   .then((result) => {
     result.slice().reverse().forEach(obj => {
-      $list.appendChild(showImage(obj))
+      $list.appendChild(renderRecord(obj))
     })
   })
 
