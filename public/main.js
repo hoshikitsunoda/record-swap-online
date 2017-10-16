@@ -81,7 +81,7 @@ const renderForm = () => {
       body: formData
     })
       .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting.'))
+      .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting. You will receive a confirmation text message shortly.'))
       .then(window.location.reload(true))
   })
   return $form

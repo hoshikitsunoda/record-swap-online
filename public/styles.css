@@ -20,7 +20,7 @@ select {
 
 img {
   width: auto;
-  height: 680px;
+  height: 670px;
   left: 50%;
   box-sizing: border-box;
   position: relative;
@@ -32,7 +32,7 @@ img {
 ul,
 li {
   position: relative;
-  top: -120px;
+  top: -130px;
   left: 10px;
   margin-bottom: 5px;
   font-family: 'Nova Flat', cursive;
@@ -167,7 +167,7 @@ button:focus {
   box-sizing: border-box;
   margin: 0 auto;
   margin-top: 25px;
-  width: 78%;
+  width: 80%;
   height: 700px;
   border: 10px solid transparent;
   border-radius: 5px;
@@ -210,8 +210,8 @@ button:focus {
 }
 
 .col-1-3 {
-  width: 33%;
-  height: 690px;
+  width: 24.78%;
+  height: 670px;
   overflow: hidden;
   margin-left: 2px;
   float: left;
