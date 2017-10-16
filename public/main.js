@@ -81,7 +81,7 @@ const renderForm = () => {
       body: formData
     })
       .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting.'))
+      .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting. You will receive a confirmation text message shortly.'))
       .then(window.location.reload(true))
   })
   return $form
@@ -126,7 +126,7 @@ const renderPhotos = () => {
 
 document.body.appendChild(renderPhotos())
 
-function showImage(record) {
+const showImage = (record) => {
   const $box = createElement('div', { class: 'col-1-3' }, [])
   const $img = document.createElement('img')
   const $artist = document.createElement('li')
