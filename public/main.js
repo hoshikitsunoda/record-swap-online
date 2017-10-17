@@ -87,8 +87,6 @@ const renderForm = () => {
   return $form
 }
 
-document.body.appendChild(renderForm())
-
 const recordDetail = () => {
   const $detailBox =
     createElement('div', { class: 'container' }, [
@@ -97,16 +95,17 @@ const recordDetail = () => {
   return $detailBox
 }
 
-document.body.appendChild(recordDetail())
-
 const listImageBox = () => {
   const $photo =
     createElement('div', { class: 'container' }, [
-      createElement('div', { class: 'list', id: 'listings' }, [])
+      createElement('div', { class: 'list', id: 'listings' }, []),
+      createElement('button', { class: 'goback hidden', id: 'goback' }, [])
     ])
   return $photo
 }
 
+document.body.appendChild(renderForm())
+document.body.appendChild(recordDetail())
 document.body.appendChild(listImageBox())
 
 const renderListings = (record) => {
@@ -164,9 +163,13 @@ const renderRecordDetail = (record) => {
   $price.textContent = record.price + 'USD'
   $format.textContent = record.format
   $label.textContent = record.label
-  $comment.textContent = record.comment
+  $comment.textContent = 'Condition Comment: ' + record.comment
 
-  $detailBox2.append($artist, $title, $condition, $price, $format, $label, $comment)
+  $detailBox2.append($artist, $title, $condition, $price, $format, $label)
+  if (record.comment !== undefined) {
+    $detailBox2.appendChild($comment)
+  }
+
   return $detailBox2
 }
 
@@ -210,14 +213,16 @@ const fetchById = (id) => {
     .catch(err => console.error(err))
 }
 
+const $sell = document.getElementById('sell')
+const $buy = document.getElementById('buy')
+const $goBack = document.getElementById('goback')
+
 $list.addEventListener('click', (event) => {
   const id = event.target.getAttribute('data-id')
   fetchById(id)
   $list.classList.add('hidden')
+  $goBack.classList.toggle('hidden')
 })
-
-const $sell = document.getElementById('sell')
-const $buy = document.getElementById('buy')
 
 $sell.addEventListener('click', () => {
   $list.classList.toggle('hidden')
