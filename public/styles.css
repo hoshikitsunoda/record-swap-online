@@ -227,6 +227,24 @@ button:focus {
   display: inline;
 }
 
+.col-2-2 {
+  width: 35%;
+  height: 100%;
+  overflow: hidden;
+  margin-left: 2px;
+  float: left;
+  display: inline;
+}
+
+.col-2-3 {
+  width: 61%;
+  height: 100%;
+  overflow: hidden;
+  margin-left: 2px;
+  float: left;
+  display: inline;
+}
+
 .row {
   top: 20px;
   box-sizing: content-box;

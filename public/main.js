@@ -89,43 +89,6 @@ const renderForm = () => {
 
 document.body.appendChild(renderForm())
 
-/*
-
-// function to render record detail. (for issue-5)
-
-function renderRecord(record) {
-  const $record = document.createElement('div')
-  const $artist = document.createElement('h3')
-  const $title = document.createElement('h4')
-  const $condition = document.createElement('h4')
-  const $format = document.createElement('h4')
-  const $label = document.createElement('h4')
-  const $price = document.createElement('h4')
-
-  $artist.textContent = record.artist
-  $title.textContent = record.title
-  $condition.textContent = record.mediaCondition + '/' + record.coverCondition
-  $format.textContent = record.format
-  $label.textContent = record.label
-  $price.textContent = record.price + ' USD'
-
-  $record.append($artist, $title, $condition, $format, $label, $price)
-
-  return $record
-}
-
-*/
-
-const listImageBox = () => {
-  const $photo =
-    createElement('div', { class: 'container hidden' }, [
-      createElement('div', { class: 'list', id: 'listings' }, [])
-    ])
-  return $photo
-}
-
-document.body.appendChild(listImageBox())
-
 const recordDetail = () => {
   const $detailBox =
     createElement('div', { class: 'container' }, [
@@ -135,6 +98,16 @@ const recordDetail = () => {
 }
 
 document.body.appendChild(recordDetail())
+
+const listImageBox = () => {
+  const $photo =
+    createElement('div', { class: 'container' }, [
+      createElement('div', { class: 'list', id: 'listings' }, [])
+    ])
+  return $photo
+}
+
+document.body.appendChild(listImageBox())
 
 const renderListings = (record) => {
   const $box = createElement('div', { class: 'col-1-3' }, [])
@@ -156,6 +129,8 @@ const renderListings = (record) => {
   $label.textContent = record.label
   $comment.textContent = record.comment
 
+  $img.setAttribute('data-id', record._id)
+
   $box.appendChild($img)
   $box.addEventListener('mouseover', () => {
     $box.appendChild($artist)
@@ -173,7 +148,7 @@ const renderListings = (record) => {
 }
 
 const renderRecordDetail = (record) => {
-  const $detailBox2 = createElement('div', { class: 'col-1-2' }, [])
+  const $detailBox2 = createElement('div', { class: 'col-2-2' }, [])
 
   const $artist = document.createElement('li')
   const $title = document.createElement('li')
@@ -196,9 +171,10 @@ const renderRecordDetail = (record) => {
 }
 
 const renderBigImage = (record) => {
-  const $detailBox1 = createElement('div', { class: 'col-1-2' }, [])
+  const $detailBox1 = createElement('div', { class: 'col-2-3' }, [])
 
   const $img = document.createElement('img')
+  $img.classList.add('big')
 
   $img.src = record.filename
 
@@ -224,20 +200,21 @@ fetch('/inventory', {
       })
   })
 
-fetch('/inventory', {
-  method: 'GET',
-  headers: { 'content-type': 'application/json' }
+const fetchById = (id) => {
+  return fetch('/inventory/' + id)
+    .then((res) => res.json())
+    .then((result) => {
+      $detail.appendChild(renderBigImage(result))
+      $detail.appendChild(renderRecordDetail(result))
+    })
+    .catch(err => console.error(err))
+}
+
+$list.addEventListener('click', (event) => {
+  const id = event.target.getAttribute('data-id')
+  fetchById(id)
+  $list.classList.add('hidden')
 })
-  .then((res) => res.json())
-  .then((result) => {
-    result
-      .slice()
-      .reverse()
-      .forEach(obj => {
-        $detail.appendChild(renderBigImage(obj))
-        $detail.appendChild(renderRecordDetail(obj))
-      })
-  })
 
 const $sell = document.getElementById('sell')
 const $buy = document.getElementById('buy')
