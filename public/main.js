@@ -224,6 +224,9 @@ $list.addEventListener('click', (event) => {
   $goBack.classList.toggle('hidden')
 })
 
+$goBack.addEventListener('click', () => {
+})
+
 $sell.addEventListener('click', () => {
   $list.classList.toggle('hidden')
   $form.classList.toggle('hidden')
