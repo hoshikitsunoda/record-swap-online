@@ -225,6 +225,7 @@ $list.addEventListener('click', (event) => {
 })
 
 $goBack.addEventListener('click', () => {
+  window.location.reload(true)
 })
 
 $sell.addEventListener('click', () => {
