@@ -1,19 +1,12 @@
-const createElement = (tagName, attributes, children) => {
-  const $element = document.createElement(tagName)
-  for (let key in attributes) {
-    $element.setAttribute(key, attributes[key])
-  }
-  children.forEach(child => {
-    child instanceof Node
-      ? $element.appendChild(child)
-      : $element.appendChild(document.createTextNode(child))
-  })
-  return $element
-}
+/* global HashRouter createElement */
+
+const $view = document.querySelector('#view')
+
+const router = new HashRouter($view)
 
 const renderForm = () => {
   const $form =
-      createElement('form', { class: 'form hidden', id: 'form' }, [
+      createElement('form', { id: 'form' }, [
         createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Artist-',
           createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
         ]),
@@ -82,33 +75,12 @@ const renderForm = () => {
     })
       .then(res => res.json())
       .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting. You will receive a confirmation text message shortly.'))
-      .then(window.location.reload(true))
+      .then(window.location.hash = '#lists')
   })
   return $form
 }
 
-const recordDetail = () => {
-  const $detailBox =
-    createElement('div', { class: 'container' }, [
-      createElement('div', { class: 'list', id: 'detail' }, [])
-    ])
-  return $detailBox
-}
-
-const listImageBox = () => {
-  const $photo =
-    createElement('div', { class: 'container' }, [
-      createElement('div', { class: 'list', id: 'listings' }, []),
-      createElement('button', { class: 'goback hidden', id: 'goback' }, [])
-    ])
-  return $photo
-}
-
-document.body.appendChild(renderForm())
-document.body.appendChild(recordDetail())
-document.body.appendChild(listImageBox())
-
-const renderListings = (record) => {
+const renderList = (record) => {
   const $box = createElement('div', { class: 'col-1-3' }, [])
   const $img = document.createElement('img')
   const $artist = document.createElement('li')
@@ -129,7 +101,7 @@ const renderListings = (record) => {
   $comment.textContent = record.comment
 
   $img.setAttribute('data-id', record._id)
-
+  $img.setAttribute('class', 'image')
   $box.appendChild($img)
   $box.addEventListener('mouseover', () => {
     $box.appendChild($artist)
@@ -143,11 +115,29 @@ const renderListings = (record) => {
     $box.removeChild($condition)
     $box.removeChild($price)
   })
+  $box.addEventListener('click', event => {
+    const $image = event.target.closest('.image')
+    if (!$image) return
+    router.push('item', { _id: $image.getAttribute('data-id') })
+  })
   return $box
 }
 
-const renderRecordDetail = (record) => {
-  const $detailBox2 = createElement('div', { class: 'col-2-2' }, [])
+const renderListings = (records) => {
+  const $listing = createElement('div', { class: 'list', id: 'listings' }, [])
+  records
+    .map(renderList)
+    .slice()
+    .reverse()
+    .forEach($box => $listing.appendChild($box))
+  return $listing
+}
+
+const renderDetail = (record) => {
+  const $box = createElement('div', {}, [])
+  const $detailBox = createElement('div', { class: 'col-2-3' }, [])
+  const $detailBox1 = createElement('div', { class: 'col-2-2' }, [])
+  const $goBack = createElement('button', { class: 'goback', id: 'goback' }, ['Go Back'])
 
   const $artist = document.createElement('li')
   const $title = document.createElement('li')
@@ -156,6 +146,8 @@ const renderRecordDetail = (record) => {
   const $format = document.createElement('li')
   const $label = document.createElement('li')
   const $comment = document.createElement('li')
+  const $img = document.createElement('img')
+  $img.classList.add('big')
 
   $artist.textContent = record.artist
   $title.textContent = record.title
@@ -163,82 +155,69 @@ const renderRecordDetail = (record) => {
   $price.textContent = record.price + 'USD'
   $format.textContent = record.format
   $label.textContent = record.label
-  $comment.textContent = 'Condition Comment: ' + record.comment
-
-  $detailBox2.append($artist, $title, $condition, $price, $format, $label)
-  if (record.comment !== undefined) {
-    $detailBox2.appendChild($comment)
-  }
-
-  return $detailBox2
-}
-
-const renderBigImage = (record) => {
-  const $detailBox1 = createElement('div', { class: 'col-2-3' }, [])
-
-  const $img = document.createElement('img')
-  $img.classList.add('big')
-
+  $comment.textContent = 'Condition Comment: ' + '\n' + record.comment
   $img.src = record.filename
 
-  $detailBox1.appendChild($img)
-  return $detailBox1
+  $detailBox.appendChild($img)
+  $detailBox1.append($artist, $title, $condition, $price, $format, $label, $goBack)
+  if (record.comment !== undefined) {
+    $detailBox1.appendChild($comment)
+  }
+  $goBack.addEventListener('click', () => {
+    window.location.hash = '#lists'
+  })
+  $box.append($detailBox, $detailBox1)
+  return $box
 }
 
-const $list = document.getElementById('listings')
-const $form = document.getElementById('form')
-const $detail = document.getElementById('detail')
-
-fetch('/inventory', {
-  method: 'GET',
-  headers: { 'content-type': 'application/json' }
+router.when('', {
+  resolve: getList,
+  render: renderListings
 })
-  .then((res) => res.json())
-  .then((result) => {
-    result
-      .slice()
-      .reverse()
-      .forEach(obj => {
-        $list.appendChild(renderListings(obj))
-      })
-  })
 
-const fetchById = (id) => {
-  return fetch('/inventory/' + id)
-    .then((res) => res.json())
-    .then((result) => {
-      $detail.appendChild(renderBigImage(result))
-      $detail.appendChild(renderRecordDetail(result))
-    })
-    .catch(err => console.error(err))
+router.when('lists', {
+  resolve: getList,
+  render: renderListings
+})
+
+router.when('item', {
+  resolve: getRecord,
+  render: renderDetail
+})
+
+router.when('form', {
+  resolve: sendForm,
+  render: renderForm
+})
+
+router.listen()
+
+function getList(params) {
+  return fetch('/inventory/')
+    .then(res => res.json())
+}
+
+function getRecord(params) {
+  return fetch('/inventory/' + params.id)
+    .then(res => res.json())
+}
+
+function sendForm(params) {
+  return fetch('/inventory')
+    .then(res => res.json())
 }
 
 const $sell = document.getElementById('sell')
 const $buy = document.getElementById('buy')
-const $goBack = document.getElementById('goback')
-
-$list.addEventListener('click', (event) => {
-  const id = event.target.getAttribute('data-id')
-  fetchById(id)
-  $list.classList.add('hidden')
-  $goBack.classList.toggle('hidden')
-})
-
-$goBack.addEventListener('click', () => {
-  window.location.reload(true)
-})
 
 $sell.addEventListener('click', () => {
-  $list.classList.toggle('hidden')
-  $form.classList.toggle('hidden')
+  window.location.hash = '#form'
   $buy.classList.toggle('hidden')
   $sell.classList.toggle('hidden')
 })
 
 $buy.addEventListener('click', () => {
-  window.location.reload(true)
-  $list.classList.toggle('hidden')
-  $form.classList.toggle('hidden')
+  window.location.hash = '#lists'
   $buy.classList.toggle('hidden')
   $sell.classList.toggle('hidden')
 })

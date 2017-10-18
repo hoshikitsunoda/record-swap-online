@@ -64,6 +64,7 @@ li {
   box-sizing: border-box;
   position: relative;
   opacity: 1;
+  animation: fadein 0.2s ease-in;
 }
 
 @keyframes fadein {
@@ -122,6 +123,18 @@ button {
   box-shadow: inset -7px -7px 8px -7px rgba(0, 0, 0, 0.7);
 }
 
+button:active {
+  border-top: 6px solid;
+  border-left: 6px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
 .goback {
   box-sizing: border-box;
   position: absolute;
@@ -135,19 +148,16 @@ button {
   height: 51px;
   width: 55px;
   box-shadow: inset -7px -7px 8px -7px rgba(0, 0, 0, 0.7);
-  animation: fadein 0.6s ease-in;
+  animation: fadein 0.4s ease-in;
   z-index: 1;
 }
 
-button:active {
-  border-top: 6px solid;
-  border-left: 6px solid;
+.goback:active {
+  border-top: 4px solid;
+  border-left: 4px solid;
   border-right: 2px solid;
   border-bottom: 2px solid;
-  outline: none;
-}
-
-button:focus {
+  box-shadow: inset -7px -7px 11px -7px rgba(0, 0, 0, 0.9);
   outline: none;
 }
 
@@ -218,11 +228,11 @@ button:focus {
     0 15px 5px rgba(0, 0, 0, 0.15),
     10px 20px 5px rgba(0, 0, 0, 0.05),
     -10px 20px 5px rgba(0, 0, 0, 0.05);
-  animation: fadein 0.6s ease-in;
+  animation: fadein 0.4s ease-in;
   z-index: -1;
 }
 
-.form {
+.view {
   position: absolute;
   left: 0;
   right: 0;
@@ -230,12 +240,19 @@ button:focus {
   box-sizing: border-box;
   margin: 0 auto;
   margin-top: 25px;
-  width: 78%;
+  width: 80%;
   height: 700px;
   border: 10px solid transparent;
   border-radius: 5px;
   padding: 10px;
-  animation: fadein 0.6s ease-in;
+  overflow: auto;
+  background-color: rgba(209, 209, 209, 0.2);
+  box-shadow:
+    0 15px 5px rgba(0, 0, 0, 0.15),
+    10px 20px 5px rgba(0, 0, 0, 0.05),
+    -10px 20px 5px rgba(0, 0, 0, 0.05);
+  animation: fadein 0.4s ease-in;
+  z-index: -1;
 }
 
 .list {
@@ -246,11 +263,6 @@ button:focus {
   margin: 0 auto;
   width: 100%;
   height: 700px;
-  animation: fadein 0.6s ease-in;
-}
-
-.big {
-  animation: fadein 0.6s ease-in;
 }
 
 .col-1-3 {
