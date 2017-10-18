@@ -146,15 +146,24 @@ const renderDetail = (record) => {
   const $label = document.createElement('li')
   const $comment = document.createElement('li')
   const $img = document.createElement('img')
+  const $submit = document.createElement('textarea')
   $img.classList.add('big')
 
-  $artist.textContent = record.artist
-  $title.textContent = record.title
-  $condition.textContent = record.mediaCondition + '/' + record.coverCondition + '  (Media/Cover)'
-  $price.textContent = record.price + 'USD'
-  $format.textContent = record.format
-  $label.textContent = record.label
-  $comment.textContent = 'Condition Comment: ' + '\n' + record.comment
+  const setAttributes = (element, attributes) => {
+    for (let key in attributes) {
+      element.setAttribute(key, attributes[key])
+    }
+  }
+
+  setAttributes($submit, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50'})
+
+  $artist.textContent = '-' + record.artist
+  $title.textContent = '-' + record.title
+  $condition.textContent = '-' + record.mediaCondition + '/' + record.coverCondition + '  (Media/Cover)'
+  $price.textContent = '-' + record.price + 'USD'
+  $format.textContent = '-' + record.format
+  $label.textContent = '-' + record.label
+  $comment.textContent = '\n' + 'Note: ' + '\n' + '\n' + '\u00A0' + record.comment
 
   $img.src = record.filename
 
@@ -166,6 +175,7 @@ const renderDetail = (record) => {
   $goBack.addEventListener('click', () => {
     window.location.hash = '#lists'
   })
+  $detailBox1.appendChild($submit)
   $box.append($detailBox, $detailBox1)
   $buy.classList.add('hidden')
   $sell.classList.remove('hidden')

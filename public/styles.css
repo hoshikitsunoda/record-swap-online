@@ -5,7 +5,14 @@ html {
     inset -20px -10px 0 black;
 }
 
-input,
+.artist,
+.title,
+.mediaCondition,
+.coverCondition,
+.format,
+.price,
+.label,
+.phone,
 select {
   display: block;
   width: 60%;
@@ -15,6 +22,16 @@ select {
   background: rgba(255, 255, 255, 0.5);
   text-align: center;
   text-align-last: center;
+  letter-spacing: 3px;
+}
+
+input[type='file'] {
+  display: block;
+  width: 60%;
+  margin: 10px auto;
+  padding: 3px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
   letter-spacing: 3px;
 }
 
@@ -320,17 +337,17 @@ form {
 .submit {
   box-sizing: content-box;
   display: block;
-  width: 10%;
+  width: 15%;
   margin: 10px auto;
-  padding: 3px;
+  padding: 7px;
   font-family: 'Open Sans', sans-serif;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
-.fade {
-  -webit-transition: opacity 0.5s;
-  opacity: 1;
-}
-
-.faded {
-  opacity: 0;
+.buyerMessage {
+  position: relative;
+  padding: 5px;
+  top: 70px;
+  left: 50px;
 }
