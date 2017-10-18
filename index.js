@@ -63,10 +63,20 @@ MongoClient.connect(url, (err, db) => {
         res.sendStatus(500)
       })
   })
-  app.delete('/inventory/:id', (req, res) => {
-    const noteId = { _id: req.params.id }
+  app.get('/inventory/:id', (req, res) => {
+    const itemId = { _id: req.params.id }
     inventoryItems
-      .deleteOne(noteId)
+      .findOne(itemId)
+      .then((contents) => res.json(contents))
+      .catch((err) => {
+        console.error(err)
+        res.sendStatus(500)
+      })
+  })
+  app.delete('/inventory/:id', (req, res) => {
+    const itemId = { _id: req.params.id }
+    inventoryItems
+      .deleteOne(itemId)
       .then(() => res.sendStatus(204))
       .catch((err) => {
         console.error(err)
