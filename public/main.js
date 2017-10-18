@@ -77,6 +77,9 @@ const renderForm = () => {
       .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting. You will receive a confirmation text message shortly.'))
       .then(window.location.hash = '#lists')
   })
+
+  $sell.classList.add('hidden')
+  $buy.classList.remove('hidden')
   return $form
 }
 
@@ -87,18 +90,12 @@ const renderList = (record) => {
   const $title = document.createElement('li')
   const $condition = document.createElement('li')
   const $price = document.createElement('li')
-  const $format = document.createElement('li')
-  const $label = document.createElement('li')
-  const $comment = document.createElement('li')
 
   $img.src = record.filename
   $artist.textContent = record.artist
   $title.textContent = record.title
   $condition.textContent = record.mediaCondition + '/' + record.coverCondition
   $price.textContent = record.price + 'USD'
-  $format.textContent = record.format
-  $label.textContent = record.label
-  $comment.textContent = record.comment
 
   $img.setAttribute('data-id', record._id)
   $img.setAttribute('class', 'image')
@@ -120,6 +117,8 @@ const renderList = (record) => {
     if (!$image) return
     router.push('item', { _id: $image.getAttribute('data-id') })
   })
+  $buy.classList.add('hidden')
+  $sell.classList.remove('hidden')
   return $box
 }
 
@@ -151,11 +150,12 @@ const renderDetail = (record) => {
 
   $artist.textContent = record.artist
   $title.textContent = record.title
-  $condition.textContent = record.mediaCondition + '/' + record.coverCondition
+  $condition.textContent = record.mediaCondition + '/' + record.coverCondition + '  (Media/Cover)'
   $price.textContent = record.price + 'USD'
   $format.textContent = record.format
   $label.textContent = record.label
   $comment.textContent = 'Condition Comment: ' + '\n' + record.comment
+
   $img.src = record.filename
 
   $detailBox.appendChild($img)
@@ -167,6 +167,8 @@ const renderDetail = (record) => {
     window.location.hash = '#lists'
   })
   $box.append($detailBox, $detailBox1)
+  $buy.classList.add('hidden')
+  $sell.classList.remove('hidden')
   return $box
 }
 
@@ -212,12 +214,8 @@ const $buy = document.getElementById('buy')
 
 $sell.addEventListener('click', () => {
   window.location.hash = '#form'
-  $buy.classList.toggle('hidden')
-  $sell.classList.toggle('hidden')
 })
 
 $buy.addEventListener('click', () => {
   window.location.hash = '#lists'
-  $buy.classList.toggle('hidden')
-  $sell.classList.toggle('hidden')
 })
