@@ -29,8 +29,20 @@ select {
   position: relative;
   display: block;
   left: -81px;
-  top: 56px;
+  top: 79px;
   width: 30%;
+  margin: 0 auto;
+  padding: 3px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.contact {
+  position: relative;
+  display: block;
+  left: 88px;
+  top: 56px;
+  width: 47%;
   margin: 0 auto;
   padding: 3px;
   border-radius: 5px;
@@ -77,7 +89,7 @@ input[type='file'] {
   position: relative;
   top: 50px;
   left: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 6px;
   text-align: left;
@@ -301,7 +313,8 @@ form {
 .col-2-2 {
   width: 35%;
   height: 100%;
-  margin-left: 2px;
+  margin-left: 20px;
+  margin-top: 6px;
   float: left;
   display: inline;
 }
