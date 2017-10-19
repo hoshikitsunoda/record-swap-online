@@ -193,11 +193,15 @@ const renderDetail = (record) => {
     formData.append('title', record.title)
     formData.append('phone', record.phone)
     formData.append('message', 'message')
+    formData.append('buyerName', 'name')
+    formData.append('contact', 'contact')
     const data = {
       artist: formData.get('artist'),
       title: formData.get('title'),
       phone: formData.get('phone'),
-      message: formData.get('message')
+      message: formData.get('message'),
+      name: formData.get('buyerName'),
+      contact: formData.get('contact')
     }
     const json = JSON.stringify(data)
     fetch('/message', {

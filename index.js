@@ -69,7 +69,7 @@ MongoClient.connect(url, (err, db) => {
     const phoneNumber = process.env.phoneNumber
 
     client.messages.create({
-      body: 'You have an inquiry for ' + req.body.artist + '/' + req.body.title + '.' + '\n' + 'Message from the buyer: ' + req.body.message,
+      body: 'You have an inquiry from ' + req.body.name + ' for ' + req.body.artist + '/' + req.body.title + '.' + '\n' + 'Buyer contact: ' + req.body.contact + '\n' + 'Message from the buyer: ' + req.body.message,
       to: '1' + req.body.phone,
       from: phoneNumber
     }).then((message) => console.log(message.sid))
