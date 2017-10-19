@@ -31,6 +31,7 @@ MongoClient.connect(url, (err, db) => {
     process.exit(1)
   }
   const inventoryItems = db.collection('items')
+  const messages = db.collection('messages')
 
   app.post('/inventory', upload.single('photo'), (req, res) => {
     console.log(req.body)
@@ -49,6 +50,26 @@ MongoClient.connect(url, (err, db) => {
 
     client.messages.create({
       body: 'Thank you for submitting ' + req.body.artist + '/' + req.body.title + '.',
+      to: '1' + req.body.phone,
+      from: phoneNumber
+    }).then((message) => console.log(message.sid))
+  })
+  app.post('/message', (req, res) => {
+    console.log(req.body)
+
+    messages
+      .insertOne(Object.assign({ _id: uuidv4() }, req.body))
+      .then((result) => res.status(201).json(result.ops[0]))
+      .catch((err) => {
+        console.error(err)
+        res.sendStatus(400)
+      })
+
+    const client = new twilio(accountSid, authToken)
+    const phoneNumber = process.env.phoneNumber
+
+    client.messages.create({
+      body: 'You have an inquiry for ' + req.body.artist + '/' + req.body.title + '.' + '\n' + 'Message from the buyer: ' + req.body.message,
       to: '1' + req.body.phone,
       from: phoneNumber
     }).then((message) => console.log(message.sid))
@@ -73,9 +94,29 @@ MongoClient.connect(url, (err, db) => {
         res.sendStatus(500)
       })
   })
+  app.get('/message', (req, res) => {
+    messages
+      .find({})
+      .toArray()
+      .then((contents) => res.json(contents))
+      .catch((err) => {
+        console.error(err)
+        res.sendStatus(500)
+      })
+  })
   app.delete('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
     inventoryItems
+      .deleteOne(itemId)
+      .then(() => res.sendStatus(204))
+      .catch((err) => {
+        console.error(err)
+        res.sendStatus(400)
+      })
+  })
+  app.delete('/message/:id', (req, res) => {
+    const itemId = { _id: req.params.id }
+    messages
       .deleteOne(itemId)
       .then(() => res.sendStatus(204))
       .catch((err) => {

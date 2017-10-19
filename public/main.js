@@ -63,7 +63,8 @@ const renderForm = () => {
           createElement('textarea', { type: 'text', class: 'comment', rows: '10', cols: '50', id: 'comment', name: 'comment' }, [])
         ]),
         createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
-        ])
+        ]),
+        createElement('a', { class: 'close', href: '#lists' }, [])
       ])
 
   $form.addEventListener('submit', event => {
@@ -136,8 +137,8 @@ const renderDetail = (record) => {
   const $box = createElement('form', { id: 'sendMessage' }, [])
   const $detailBox = createElement('div', { class: 'col-2-3' }, [])
   const $detailBox1 = createElement('div', { class: 'col-2-2' }, [])
-  const $goBack = createElement('button', { class: 'goback', id: 'goback' }, ['Go Back'])
-  const $submit = createElement('input', { type: 'submit', class: 'send' }, [])
+  const $close = createElement('a', { class: 'close' }, [])
+  const $submit = createElement('input', { type: 'submit', class: 'send', value: 'Send' }, [])
 
   const $artist = document.createElement('li')
   const $title = document.createElement('li')
@@ -155,7 +156,8 @@ const renderDetail = (record) => {
     }
   }
 
-  setAttributes($message, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'placeholder': 'Message to the seller'})
+  setAttributes($message, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'name': 'message', 'placeholder': 'Message to the seller'})
+  setAttributes($artist, {'name': record.artist})
 
   $artist.textContent = '-' + record.artist
   $title.textContent = '-' + record.title
@@ -173,9 +175,9 @@ const renderDetail = (record) => {
     $detailBox1.appendChild($comment)
   }
   $detailBox1.append($message, $submit)
-  $detailBox1.appendChild($goBack)
+  $detailBox1.appendChild($close)
   $box.append($detailBox, $detailBox1)
-  $goBack.addEventListener('click', () => {
+  $close.addEventListener('click', () => {
     window.location.hash = '#lists'
   })
   $buy.classList.add('hidden')
@@ -183,7 +185,21 @@ const renderDetail = (record) => {
 
   $box.addEventListener('submit', (event) => {
     event.preventDefault()
-    console.log('sending message...')
+    const formData = new FormData(event.target)
+    const data = {
+      artist: formData.get(record.artist),
+      title: formData.get(record.title),
+      phone: formData.get(record.phone),
+      message: formData.get(record.message)
+    }
+    const json = JSON.stringify(data)
+    fetch('/message', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: json
+    })
+      .then(res => res.json())
+      .then(saved => console.log(saved, 'posted'), alert('Your message has been sent. The seller will reply shortly.'))
   })
 
   return $box
