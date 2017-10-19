@@ -5,6 +5,12 @@ html {
     inset -20px -10px 0 black;
 }
 
+.navigation {
+  height: 760px;
+  background-color: white;
+  opacity: 0.8;
+}
+
 .artist,
 .title,
 .mediaCondition,
@@ -160,7 +166,6 @@ button {
   border-right: 2px solid;
   border-top: 3px solid;
   border-bottom: 2px solid;
-  left: 18px;
   height: 51px;
   width: 55px;
   box-shadow: inset -7px -7px 8px -7px rgba(0, 0, 0, 0.7);

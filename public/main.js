@@ -4,6 +4,13 @@ const $view = document.querySelector('#view')
 
 const router = new HashRouter($view)
 
+const renderNavigation = () => {
+  const $overlay = createElement('div', { class: 'navigation' }, [])
+  return $overlay
+}
+
+document.body.appendChild(renderNavigation())
+
 const renderForm = () => {
   const $form =
       createElement('form', { id: 'form' }, [
@@ -75,7 +82,7 @@ const renderForm = () => {
       body: formData
     })
       .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting. You will receive a confirmation text message shortly.'))
+      .then(saved => console.log(saved), alert('Thank you for submitting. You will receive a confirmation text message shortly.'))
       .then(window.location.hash = '#lists')
   })
 
@@ -210,7 +217,7 @@ const renderDetail = (record) => {
       body: json
     })
       .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'), alert('Your message has been sent. The seller will reply shortly.'))
+      .then(saved => console.log(saved), alert('Your message has been sent. The seller will reply shortly.'))
     $box.reset()
   })
 
@@ -250,7 +257,7 @@ function getRecord(params) {
 }
 
 function sendForm(params) {
-  return fetch('/inventory')
+  return fetch('/inventory/')
     .then(res => res.json())
 }
 
