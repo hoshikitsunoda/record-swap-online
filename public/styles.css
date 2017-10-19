@@ -6,9 +6,12 @@ html {
 }
 
 .navigation {
+  max-height: 80%;
   height: 760px;
   background-color: white;
   opacity: 0.9;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .artist,
@@ -33,14 +36,17 @@ select {
 
 .landing {
   position: relative;
-  left: 30px;
+  display: block;
+  margin: 0 auto;
   margin-bottom: 30px;
   font-family: 'Nova Flat', cursive;
   letter-spacing: 4px;
-  text-align: left;
   font-size: 20px;
   list-style: none;
   animation: fadein 0.2s ease-in;
+  width: 31%;
+  right: 100px;
+  text-align: right;
 }
 
 .landbox {

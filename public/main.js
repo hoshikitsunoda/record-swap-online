@@ -5,11 +5,11 @@ const $view = document.querySelector('#view')
 const router = new HashRouter($view)
 
 const renderNavigation = () => {
-  const $overlay = createElement('div', { class: 'navigation' }, [
+  const $overlay = createElement('div', { class: 'navigation', id: 'overlay' }, [
     createElement('div', { class: 'landbox' }, [
-      createElement('li', { class: 'landing' }, ['BUY']),
-      createElement('li', { class: 'landing' }, ['SELL']),
-      createElement('li', { class: 'landing' }, ['ABOUT US'])
+      createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, ['BUY']),
+      createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, ['SELL']),
+      createElement('a', { class: 'landing', id: 'toAbout', href: '#aboutus' }, ['ABOUT US'])
     ]),
     createElement('img', { src: 'https://preview.ibb.co/is7XRR/rsologo.png', class: 'logo' }, [])
   ])
