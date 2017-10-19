@@ -5,7 +5,13 @@ const $view = document.querySelector('#view')
 const router = new HashRouter($view)
 
 const renderNavigation = () => {
-  const $overlay = createElement('div', { class: 'navigation' }, [])
+  const $overlay = createElement('div', { class: 'navigation' }, [
+    createElement('div', { class: 'landbox' }, [
+      createElement('li', { class: 'landing' }, ['BUY']),
+      createElement('li', { class: 'landing' }, ['SELL']),
+      createElement('li', { class: 'landing' }, ['ABOUT US'])
+    ])
+  ])
   return $overlay
 }
 
