@@ -182,6 +182,7 @@ const renderDetail = (record) => {
   $sell.classList.remove('hidden')
 
   $box.addEventListener('submit', (event) => {
+    event.preventDefault()
   })
 
   return $box
