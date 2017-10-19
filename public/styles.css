@@ -58,6 +58,7 @@ input[type='file'] {
   font-size: 16px;
   list-style: none;
   animation: fadein 0.2s ease-in;
+  vertical-align: bottom;
 }
 
 .col-2-2 li {
@@ -72,6 +73,7 @@ input[type='file'] {
   list-style: none;
   animation: fadein 0.2s ease-in;
   white-space: pre-line;
+  word-wrap: break-word;
 }
 
 .col-2-3 img {
@@ -106,6 +108,7 @@ h4 {
 }
 
 textarea {
+  padding: 10px;
   margin-top: 12px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.5);
@@ -149,14 +152,14 @@ button:focus {
 
 .goback {
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   background-color: #dfe4e4;
   border-left: 3px solid;
   border-right: 2px solid;
   border-top: 3px solid;
   border-bottom: 2px solid;
-  left: 1070px;
-  bottom: 7px;
+  left: 1230px;
+  bottom: 60px;
   height: 41px;
   width: 45px;
   opacity: 0.7;
@@ -246,31 +249,8 @@ button:focus {
   z-index: -1;
 }
 
-.view {
-  position: absolute;
-  left: 0;
-  right: 0;
-  float: none;
-  box-sizing: border-box;
-  margin: 0 auto;
-  margin-top: 25px;
-  width: 80%;
-  height: 700px;
-  border: 10px solid transparent;
-  border-radius: 5px;
-  padding: 10px;
-  overflow: auto;
-  background-color: rgba(209, 209, 209, 0.2);
-  box-shadow:
-    0 15px 5px rgba(0, 0, 0, 0.15),
-    10px 20px 5px rgba(0, 0, 0, 0.05),
-    -10px 20px 5px rgba(0, 0, 0, 0.05);
-  animation: fadein 0.4s ease-in;
-  z-index: -1;
-}
-
 form {
-  animation: fadein 0.4s ease-in;
+  animation: fadein 0.2s ease-in;
 }
 
 .list {
@@ -348,13 +328,14 @@ form {
   display: block;
   width: 15%;
   margin: 10px auto;
-  top: 375px;
+  top: 75px;
   left: 20px;
   padding: 7px;
   font-family: 'Open Sans', sans-serif;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border-radius: 5px;
+  animation: fadein 0.2s ease-in;
 }
 
 .buyerMessage {

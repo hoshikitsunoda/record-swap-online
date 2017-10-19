@@ -133,7 +133,7 @@ const renderListings = (records) => {
 }
 
 const renderDetail = (record) => {
-  const $box = createElement('div', {}, [])
+  const $box = createElement('form', { id: 'sendMessage' }, [])
   const $detailBox = createElement('div', { class: 'col-2-3' }, [])
   const $detailBox1 = createElement('div', { class: 'col-2-2' }, [])
   const $goBack = createElement('button', { class: 'goback', id: 'goback' }, ['Go Back'])
@@ -155,7 +155,7 @@ const renderDetail = (record) => {
     }
   }
 
-  setAttributes($message, {'type': 'form', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'placeholder': 'Message to the seller'})
+  setAttributes($message, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'placeholder': 'Message to the seller'})
 
   $artist.textContent = '-' + record.artist
   $title.textContent = '-' + record.title
@@ -168,17 +168,22 @@ const renderDetail = (record) => {
   $img.src = record.filename
 
   $detailBox.appendChild($img)
-  $detailBox1.append($artist, $title, $condition, $price, $format, $label, $submit, $goBack)
+  $detailBox1.append($artist, $title, $condition, $price, $format, $label)
   if (record.comment !== undefined) {
     $detailBox1.appendChild($comment)
   }
+  $detailBox1.append($message, $submit)
+  $detailBox1.appendChild($goBack)
+  $box.append($detailBox, $detailBox1)
   $goBack.addEventListener('click', () => {
     window.location.hash = '#lists'
   })
-  $detailBox1.appendChild($message)
-  $box.append($detailBox, $detailBox1)
   $buy.classList.add('hidden')
   $sell.classList.remove('hidden')
+
+  $box.addEventListener('submit', (event) => {
+  })
+
   return $box
 }
 
