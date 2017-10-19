@@ -137,6 +137,7 @@ const renderDetail = (record) => {
   const $detailBox = createElement('div', { class: 'col-2-3' }, [])
   const $detailBox1 = createElement('div', { class: 'col-2-2' }, [])
   const $goBack = createElement('button', { class: 'goback', id: 'goback' }, ['Go Back'])
+  const $submit = createElement('input', { type: 'submit', class: 'send' }, [])
 
   const $artist = document.createElement('li')
   const $title = document.createElement('li')
@@ -146,7 +147,7 @@ const renderDetail = (record) => {
   const $label = document.createElement('li')
   const $comment = document.createElement('li')
   const $img = document.createElement('img')
-  const $submit = document.createElement('textarea')
+  const $message = document.createElement('textarea')
 
   const setAttributes = (element, attributes) => {
     for (let key in attributes) {
@@ -154,7 +155,7 @@ const renderDetail = (record) => {
     }
   }
 
-  setAttributes($submit, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'placeholder': 'Message to the seller'})
+  setAttributes($message, {'type': 'form', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'placeholder': 'Message to the seller'})
 
   $artist.textContent = '-' + record.artist
   $title.textContent = '-' + record.title
@@ -167,14 +168,14 @@ const renderDetail = (record) => {
   $img.src = record.filename
 
   $detailBox.appendChild($img)
-  $detailBox1.append($artist, $title, $condition, $price, $format, $label, $goBack)
+  $detailBox1.append($artist, $title, $condition, $price, $format, $label, $submit, $goBack)
   if (record.comment !== undefined) {
     $detailBox1.appendChild($comment)
   }
   $goBack.addEventListener('click', () => {
     window.location.hash = '#lists'
   })
-  $detailBox1.appendChild($submit)
+  $detailBox1.appendChild($message)
   $box.append($detailBox, $detailBox1)
   $buy.classList.add('hidden')
   $sell.classList.remove('hidden')

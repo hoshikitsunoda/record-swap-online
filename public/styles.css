@@ -111,11 +111,6 @@ textarea {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.submit {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-}
-
 .blackbox {
   background-color: black;
   position: absolute;
@@ -162,8 +157,9 @@ button:focus {
   border-bottom: 2px solid;
   left: 1070px;
   bottom: 7px;
-  height: 51px;
-  width: 55px;
+  height: 41px;
+  width: 45px;
+  opacity: 0.7;
   box-shadow: inset -7px -7px 8px -7px rgba(0, 0, 0, 0.7);
   animation: fadein 0.4s ease-in;
   z-index: 1;
@@ -343,6 +339,22 @@ form {
   font-family: 'Open Sans', sans-serif;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  border-radius: 5px;
+}
+
+.send {
+  position: relative;
+  box-sizing: content-box;
+  display: block;
+  width: 15%;
+  margin: 10px auto;
+  top: 375px;
+  left: 20px;
+  padding: 7px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 5px;
 }
 
 .buyerMessage {
