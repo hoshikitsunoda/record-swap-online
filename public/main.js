@@ -183,6 +183,7 @@ const renderDetail = (record) => {
 
   $box.addEventListener('submit', (event) => {
     event.preventDefault()
+    console.log('sending message...')
   })
 
   return $box
