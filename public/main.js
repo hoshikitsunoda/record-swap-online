@@ -63,7 +63,8 @@ const renderForm = () => {
           createElement('textarea', { type: 'text', class: 'comment', rows: '10', cols: '50', id: 'comment', name: 'comment' }, [])
         ]),
         createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
-        ])
+        ]),
+        createElement('a', { class: 'close', href: '#lists' }, [])
       ])
 
   $form.addEventListener('submit', event => {
@@ -133,10 +134,11 @@ const renderListings = (records) => {
 }
 
 const renderDetail = (record) => {
-  const $box = createElement('div', {}, [])
+  const $box = createElement('form', { id: 'sendMessage' }, [])
   const $detailBox = createElement('div', { class: 'col-2-3' }, [])
   const $detailBox1 = createElement('div', { class: 'col-2-2' }, [])
-  const $goBack = createElement('button', { class: 'goback', id: 'goback' }, ['Go Back'])
+  const $close = createElement('a', { class: 'close' }, [])
+  const $submit = createElement('input', { type: 'submit', class: 'send', value: 'Send' }, [])
 
   const $artist = document.createElement('li')
   const $title = document.createElement('li')
@@ -146,29 +148,72 @@ const renderDetail = (record) => {
   const $label = document.createElement('li')
   const $comment = document.createElement('li')
   const $img = document.createElement('img')
-  $img.classList.add('big')
+  const $name = document.createElement('input')
+  const $contact = document.createElement('input')
+  const $message = document.createElement('textarea')
 
-  $artist.textContent = record.artist
-  $title.textContent = record.title
-  $condition.textContent = record.mediaCondition + '/' + record.coverCondition + '  (Media/Cover)'
-  $price.textContent = record.price + 'USD'
-  $format.textContent = record.format
-  $label.textContent = record.label
-  $comment.textContent = 'Condition Comment: ' + '\n' + record.comment
+  const setAttributes = (element, attributes) => {
+    for (let key in attributes) {
+      element.setAttribute(key, attributes[key])
+    }
+  }
+
+  setAttributes($message, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'name': 'message', 'placeholder': 'Message to the seller'})
+  setAttributes($name, {'name': 'buyerName', 'class': 'name', 'placeholder': 'Your name'})
+  setAttributes($contact, {'name': 'contact', 'class': 'contact', 'placeholder': 'Your phone or email'})
+
+  $artist.textContent = '-' + record.artist
+  $title.textContent = '-' + record.title
+  $condition.textContent = '-' + record.mediaCondition + '/' + record.coverCondition + '  (Media/Cover)'
+  $price.textContent = '-' + record.price + 'USD'
+  $format.textContent = '-' + record.format
+  $label.textContent = '-' + record.label
+  $comment.textContent = '\n' + 'Note: ' + '\n' + '\n' + '\u00A0' + record.comment
 
   $img.src = record.filename
 
   $detailBox.appendChild($img)
-  $detailBox1.append($artist, $title, $condition, $price, $format, $label, $goBack)
+  $detailBox1.append($artist, $title, $label, $format, $condition, $price)
   if (record.comment !== undefined) {
     $detailBox1.appendChild($comment)
   }
-  $goBack.addEventListener('click', () => {
+  $detailBox1.append($name, $contact, $message, $submit)
+  $detailBox1.appendChild($close)
+  $box.append($detailBox, $detailBox1)
+  $close.addEventListener('click', () => {
     window.location.hash = '#lists'
   })
-  $box.append($detailBox, $detailBox1)
   $buy.classList.add('hidden')
   $sell.classList.remove('hidden')
+
+  $box.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    formData.append('artist', record.artist)
+    formData.append('title', record.title)
+    formData.append('phone', record.phone)
+    formData.append('message', 'message')
+    formData.append('buyerName', 'name')
+    formData.append('contact', 'contact')
+    const data = {
+      artist: formData.get('artist'),
+      title: formData.get('title'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
+      name: formData.get('buyerName'),
+      contact: formData.get('contact')
+    }
+    const json = JSON.stringify(data)
+    fetch('/message', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: json
+    })
+      .then(res => res.json())
+      .then(saved => console.log(saved, 'posted'), alert('Your message has been sent. The seller will reply shortly.'))
+    $box.reset()
+  })
+
   return $box
 }
 
