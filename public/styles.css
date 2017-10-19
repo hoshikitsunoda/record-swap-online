@@ -25,6 +25,18 @@ select {
   letter-spacing: 3px;
 }
 
+.name {
+  position: relative;
+  display: block;
+  left: -81px;
+  top: 56px;
+  width: 30%;
+  margin: 0 auto;
+  padding: 3px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
 input[type='file'] {
   display: block;
   width: 60%;
@@ -112,6 +124,10 @@ textarea {
   margin-top: 12px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.5);
+  border-width: 2px;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
 }
 
 .blackbox {

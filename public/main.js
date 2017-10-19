@@ -148,6 +148,7 @@ const renderDetail = (record) => {
   const $label = document.createElement('li')
   const $comment = document.createElement('li')
   const $img = document.createElement('img')
+  const $name = document.createElement('input')
   const $message = document.createElement('textarea')
 
   const setAttributes = (element, attributes) => {
@@ -157,7 +158,7 @@ const renderDetail = (record) => {
   }
 
   setAttributes($message, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'name': 'message', 'placeholder': 'Message to the seller'})
-  setAttributes($artist, {'name': record.artist})
+  setAttributes($name, {'name': 'buyerName', 'class': 'name', 'placeholder': 'Your name'})
 
   $artist.textContent = '-' + record.artist
   $title.textContent = '-' + record.title
@@ -174,7 +175,7 @@ const renderDetail = (record) => {
   if (record.comment !== undefined) {
     $detailBox1.appendChild($comment)
   }
-  $detailBox1.append($message, $submit)
+  $detailBox1.append($name, $message, $submit)
   $detailBox1.appendChild($close)
   $box.append($detailBox, $detailBox1)
   $close.addEventListener('click', () => {
