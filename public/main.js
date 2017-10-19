@@ -186,11 +186,15 @@ const renderDetail = (record) => {
   $box.addEventListener('submit', (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
+    formData.append('artist', record.artist)
+    formData.append('title', record.title)
+    formData.append('phone', record.phone)
+    formData.append('message', 'message')
     const data = {
-      artist: formData.get(record.artist),
-      title: formData.get(record.title),
-      phone: formData.get(record.phone),
-      message: formData.get(record.message)
+      artist: formData.get('artist'),
+      title: formData.get('title'),
+      phone: formData.get('phone'),
+      message: formData.get('message')
     }
     const json = JSON.stringify(data)
     fetch('/message', {
