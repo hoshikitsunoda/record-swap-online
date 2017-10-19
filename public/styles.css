@@ -8,7 +8,7 @@ html {
 .navigation {
   height: 760px;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .artist,
@@ -33,7 +33,7 @@ select {
 
 .landing {
   position: relative;
-  left: 10px;
+  left: 30px;
   margin-bottom: 30px;
   font-family: 'Nova Flat', cursive;
   letter-spacing: 4px;
@@ -47,8 +47,14 @@ select {
   position: relative;
   width: 30%;
   margin: 0 auto;
-  top: 300px;
+  top: 330px;
   left: 300px;
+}
+
+.logo {
+  position: relative;
+  top: -80px;
+  left: 270px;
 }
 
 .name {
