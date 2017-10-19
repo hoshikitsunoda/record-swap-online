@@ -211,6 +211,7 @@ const renderDetail = (record) => {
     })
       .then(res => res.json())
       .then(saved => console.log(saved, 'posted'), alert('Your message has been sent. The seller will reply shortly.'))
+    $box.reset()
   })
 
   return $box
