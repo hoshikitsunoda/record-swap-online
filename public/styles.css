@@ -348,6 +348,7 @@ form {
 .buyerMessage {
   position: relative;
   padding: 5px;
-  top: 70px;
+  top: 60px;
   left: 50px;
+  animation: fadein 0.2s ease-in;
 }

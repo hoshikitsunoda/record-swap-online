@@ -147,7 +147,6 @@ const renderDetail = (record) => {
   const $comment = document.createElement('li')
   const $img = document.createElement('img')
   const $submit = document.createElement('textarea')
-  $img.classList.add('big')
 
   const setAttributes = (element, attributes) => {
     for (let key in attributes) {
@@ -155,7 +154,7 @@ const renderDetail = (record) => {
     }
   }
 
-  setAttributes($submit, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50'})
+  setAttributes($submit, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'placeholder': 'Message to the seller'})
 
   $artist.textContent = '-' + record.artist
   $title.textContent = '-' + record.title
