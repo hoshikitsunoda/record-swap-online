@@ -173,7 +173,7 @@ const renderDetail = (record) => {
   $img.src = record.filename
 
   $detailBox.appendChild($img)
-  $detailBox1.append($artist, $title, $condition, $price, $format, $label)
+  $detailBox1.append($artist, $title, $label, $format, $condition, $price)
   if (record.comment !== undefined) {
     $detailBox1.appendChild($comment)
   }

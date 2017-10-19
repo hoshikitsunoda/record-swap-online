@@ -34,15 +34,12 @@ MongoClient.connect(url, (err, db) => {
   const messages = db.collection('messages')
 
   app.post('/inventory', upload.single('photo'), (req, res) => {
-    console.log(req.body)
-    console.log(req.file)
-
     inventoryItems
       .insertOne(Object.assign({ _id: uuidv4() }, req.body, req.file))
       .then((result) => res.status(201).json(result.ops[0]))
       .catch((err) => {
         console.error(err)
-        res.sendStatus(400)
+        res.sendStatus(500)
       })
 
     const client = new twilio(accountSid, authToken)
@@ -55,21 +52,22 @@ MongoClient.connect(url, (err, db) => {
     }).then((message) => console.log(message.sid))
   })
   app.post('/message', (req, res) => {
-    console.log(req.body)
-
     messages
       .insertOne(Object.assign({ _id: uuidv4() }, req.body))
       .then((result) => res.status(201).json(result.ops[0]))
       .catch((err) => {
         console.error(err)
-        res.sendStatus(400)
+        res.sendStatus(500)
       })
 
     const client = new twilio(accountSid, authToken)
     const phoneNumber = process.env.phoneNumber
+    const message = (name, artist, title, contact, message) => {
+      return 'You have an inquiry from ' + name + ' for ' + artist + '/' + title + '.' + '\n' + 'Buyer contact: ' + contact + '\n' + 'Message from the buyer: ' + message
+    }
 
     client.messages.create({
-      body: 'You have an inquiry from ' + req.body.name + ' for ' + req.body.artist + '/' + req.body.title + '.' + '\n' + 'Buyer contact: ' + req.body.contact + '\n' + 'Message from the buyer: ' + req.body.message,
+      body: message(req.body.name, req.body.artist, req.body.title, req.body.contact, req.body.message),
       to: '1' + req.body.phone,
       from: phoneNumber
     }).then((message) => console.log(message.sid))

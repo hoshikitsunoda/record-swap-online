@@ -89,11 +89,11 @@ input[type='file'] {
   position: relative;
   top: 50px;
   left: 50px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-family: 'Open Sans', sans-serif;
-  letter-spacing: 6px;
+  letter-spacing: 3px;
   text-align: left;
-  font-size: 16px;
+  font-size: 15px;
   list-style: none;
   animation: fadein 0.2s ease-in;
   white-space: pre-line;
@@ -261,7 +261,7 @@ button:focus {
   float: none;
   box-sizing: border-box;
   margin: 0 auto;
-  margin-top: 25px;
+  margin-top: 2%;
   width: 80%;
   height: 90.2%;
   border: 10px solid transparent;
@@ -288,12 +288,12 @@ form {
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
-  height: 700px;
+  height: 106%;
   animation: fadein 0.2s ease-in;
 }
 
 .col-1-3 {
-  width: 24.78%;
+  width: 24.69%;
   height: 95.8%;
   overflow: hidden;
   margin-left: 2px;
@@ -302,6 +302,7 @@ form {
 }
 
 .col-1-2 {
+  position: relative;
   width: 49%;
   height: 100%;
   overflow: hidden;
@@ -377,8 +378,8 @@ form {
 
 .close {
   position: absolute;
-  right: 32px;
-  top: 32px;
+  right: 15px;
+  top: 15px;
   width: 32px;
   height: 32px;
   opacity: 0.3;
