@@ -24,6 +24,8 @@ $overlay.addEventListener('click', (event) => {
 
 const renderAboutUs = () => {
   const $aboutUs = createElement('div', { class: 'aboutus' }, ['Use at your own risk.'])
+  const $close = createElement('a', { class: 'close', href: '#lists' }, [])
+  $aboutUs.appendChild($close)
   return $aboutUs
 }
 

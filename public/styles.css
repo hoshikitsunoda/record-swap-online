@@ -447,10 +447,9 @@ form {
 }
 
 .aboutus {
-  position: relative;
   text-align: center;
-  font-family: 'Nova Flat', cursive;
-  font-size: 100px;
-  top: 250px;
   animation: fadein 1s ease-in;
+  padding-top: 250px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100px;
 }
