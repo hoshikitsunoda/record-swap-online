@@ -4,32 +4,6 @@ const $view = document.querySelector('#view')
 
 const router = new HashRouter($view)
 
-const renderNavigation = () => {
-  const $overlay = createElement('div', { class: 'navigation', id: 'overlay' }, [
-    createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, ['BUY']),
-    createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, ['SELL']),
-    createElement('a', { class: 'landing', id: 'toAbout', href: '#aboutus' }, ['ABOUT US']),
-    createElement('a', { class: 'close' }, []),
-    createElement('img', { src: 'https://preview.ibb.co/is7XRR/rsologo.png', class: 'logo' }, [])
-  ])
-  return $overlay
-}
-
-document.body.appendChild(renderNavigation())
-const $overlay = document.getElementById('overlay')
-$overlay.addEventListener('click', (event) => {
-  if (event.target && event.target.nodeName === 'A') {
-    $overlay.classList.add('hidden')
-  }
-})
-
-const renderAboutUs = () => {
-  const $aboutUs = createElement('div', { class: 'aboutus' }, ['Use at your own risk.'])
-  const $close = createElement('a', { class: 'close', href: '#lists' }, [])
-  $aboutUs.appendChild($close)
-  return $aboutUs
-}
-
 const renderForm = () => {
   const $form =
       createElement('form', { id: 'form' }, [
@@ -243,6 +217,32 @@ const renderDetail = (record) => {
   return $box
 }
 
+const renderNavigation = () => {
+  const $overlay = createElement('div', { class: 'navigation', id: 'overlay' }, [
+    createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, ['BUY']),
+    createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, ['SELL']),
+    createElement('a', { class: 'landing', id: 'toAbout', href: '#aboutus' }, ['ABOUT US']),
+    createElement('a', { class: 'close' }, []),
+    createElement('img', { src: 'https://preview.ibb.co/is7XRR/rsologo.png', class: 'logo' }, [])
+  ])
+  return $overlay
+}
+
+document.body.appendChild(renderNavigation())
+const $overlay = document.getElementById('overlay')
+$overlay.addEventListener('click', (event) => {
+  if (event.target && event.target.nodeName === 'A') {
+    $overlay.classList.add('hidden')
+  }
+})
+
+const renderAboutUs = () => {
+  const $aboutUs = createElement('div', { class: 'aboutus' }, ['Use at your own risk.'])
+  const $close = createElement('a', { class: 'close', href: '#lists' }, [])
+  $aboutUs.appendChild($close)
+  return $aboutUs
+}
+
 router.when('', {
   resolve: getList,
   render: renderListings
@@ -293,5 +293,9 @@ $sell.addEventListener('click', () => {
 })
 
 $buy.addEventListener('click', () => {
+  window.location.hash = '#lists'
+})
+
+window.addEventListener('load', () => {
   window.location.hash = '#lists'
 })
