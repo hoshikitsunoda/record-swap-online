@@ -299,18 +299,47 @@ $buy.addEventListener('click', () => {
 window.addEventListener('hashchange', (hash) => {
   switch (window.location.hash) {
     case '#lists':
-      $view.classList.add('overflow')
+      $view.classList.remove('overflow')
+      console.log('list')
       break
     case '#form':
-      $view.classList.add('overflow')
+      $view.classList.remove('overflow')
+      console.log('form')
       break
     case '#aboutus':
-      $view.classList.add('overflow')
+      $view.classList.remove('overflow')
+      console.log('aboutus')
       break
     case '':
-      $view.classList.remove('overflow')
+      $view.classList.add('overflow')
+      console.log('#')
       break
     default:
+      $view.classList.remove('overflow')
+      console.log('item')
+  }
+})
+
+window.addEventListener('load', () => {
+  switch (window.location.hash) {
+    case '#lists':
+      $view.classList.remove('overflow')
+      console.log('list')
+      break
+    case '#form':
+      $view.classList.remove('overflow')
+      console.log('form')
+      break
+    case '#aboutus':
+      $view.classList.remove('overflow')
+      console.log('aboutus')
+      break
+    case '':
       $view.classList.add('overflow')
+      console.log('#')
+      break
+    default:
+      $view.classList.remove('overflow')
+      console.log('item')
   }
 })
