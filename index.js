@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 const express = require('express')
 const { MongoClient } = require('mongodb')
 const url = 'mongodb://localhost/library'
