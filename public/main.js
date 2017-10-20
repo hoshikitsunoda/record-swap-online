@@ -17,6 +17,10 @@ const renderNavigation = () => {
 }
 
 document.body.appendChild(renderNavigation())
+const $overlay = document.getElementById(('overlay'))
+$overlay.addEventListener('click', () => {
+  $overlay.classList.add('hidden')
+})
 
 const renderForm = () => {
   const $form =

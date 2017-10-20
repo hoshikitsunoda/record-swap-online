@@ -12,6 +12,7 @@ html {
   opacity: 0.9;
   margin: 0 auto;
   overflow: hidden;
+  box-shadow: 0 0 5px 6px white;
 }
 
 .artist,
