@@ -9,13 +9,19 @@ body {
   overflow: hidden;
 }
 
+.full {
+  height: 100%;
+}
+
 .navigation {
-  max-height: 80%;
-  height: 785px;
+  position: absolute;
+  height: 760px;
+  width: 100vw;
+  top: -40px;
+  left: -148px;
   background-color: white;
   opacity: 0.98;
   margin: 0 auto;
-  overflow: hidden;
   box-shadow: 0 0 5px 6px white;
 }
 
@@ -66,7 +72,9 @@ select {
 .logo {
   position: relative;
   top: -80px;
-  left: 270px;
+  left: 340px;
+  z-index: -1;
+  animation: fadein 0.2s ease-in;
 }
 
 .name,
@@ -211,34 +219,6 @@ form {
   animation: fadein 0.2s ease-in;
 }
 
-.goback {
-  box-sizing: border-box;
-  position: fixed;
-  background-color: #dfe4e4;
-  border-left: 3px solid;
-  border-right: 2px solid;
-  border-top: 3px solid;
-  border-bottom: 2px solid;
-  left: 1230px;
-  bottom: 60px;
-  height: 41px;
-  width: 45px;
-  opacity: 0.7;
-  box-shadow: inset -7px -7px 8px -7px rgba(0, 0, 0, 0.7);
-  animation: fadein 0.4s ease-in;
-  z-index: 1;
-  font-family: 'Nova Flat', cursive;
-}
-
-.goback:active {
-  border-top: 4px solid;
-  border-left: 4px solid;
-  border-right: 2px solid;
-  border-bottom: 2px solid;
-  box-shadow: inset -7px -7px 11px -7px rgba(0, 0, 0, 0.9);
-  outline: none;
-}
-
 #sell,
 #buy {
   font: inherit;
@@ -300,7 +280,6 @@ form {
   border: 10px solid transparent;
   border-radius: 5px;
   padding: 10px;
-  overflow: auto;
   background-color: rgba(209, 209, 209, 0.2);
   box-shadow:
     0 15px 5px rgba(0, 0, 0, 0.15),
@@ -314,6 +293,7 @@ form {
   width: 100%;
   height: 106%;
   animation: fadein 0.2s ease-in;
+  overflow: auto;
 }
 
 .col-1-2,
@@ -434,4 +414,8 @@ form {
   padding-top: 250px;
   font-family: 'Open Sans', sans-serif;
   font-size: 100px;
+}
+
+.overflow {
+  overflow: auto;
 }

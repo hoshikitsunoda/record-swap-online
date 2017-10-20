@@ -222,19 +222,27 @@ const renderNavigation = () => {
     createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, ['BUY']),
     createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, ['SELL']),
     createElement('a', { class: 'landing', id: 'toAbout', href: '#aboutus' }, ['ABOUT US']),
-    createElement('a', { class: 'close' }, []),
+    createElement('a', { class: 'close', href: '#lists' }, []),
     createElement('img', { src: 'https://preview.ibb.co/is7XRR/rsologo.png', class: 'logo' }, [])
   ])
   return $overlay
 }
 
-document.body.appendChild(renderNavigation())
-const $overlay = document.getElementById('overlay')
-$overlay.addEventListener('click', (event) => {
-  if (event.target && event.target.nodeName === 'A') {
-    $overlay.classList.add('hidden')
-  }
-})
+const renderLanding = (records) => {
+  const $landing = createElement('div', { class: 'full' }, [
+    renderListings(records),
+    renderNavigation()
+  ])
+  return $landing
+}
+
+// document.body.appendChild(renderNavigation())
+// const $overlay = document.getElementById('overlay')
+// $overlay.addEventListener('click', (event) => {
+//   if (event.target && event.target.nodeName === 'A') {
+//     $overlay.classList.add('hidden')
+//   }
+// })
 
 const renderAboutUs = () => {
   const $aboutUs = createElement('div', { class: 'aboutus' }, ['Use at your own risk.'])
@@ -245,7 +253,7 @@ const renderAboutUs = () => {
 
 router.when('', {
   resolve: getList,
-  render: renderListings
+  render: renderLanding
 })
 
 router.when('lists', {
@@ -296,6 +304,12 @@ $buy.addEventListener('click', () => {
   window.location.hash = '#lists'
 })
 
-window.addEventListener('load', () => {
-  window.location.hash = '#lists'
+window.addEventListener('hashchange', () => {
+  if (window.location.hash !== '#') {
+    $view.classList.toggle('overflow')
+  }
 })
+
+// window.addEventListener('load', () => {
+//   window.location.hash = '#lists'
+// })
