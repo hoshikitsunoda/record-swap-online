@@ -445,3 +445,12 @@ form {
 .close::after {
   transform: rotate(-45deg);
 }
+
+.aboutus {
+  position: relative;
+  text-align: center;
+  font-family: 'Nova Flat', cursive;
+  font-size: 100px;
+  top: 250px;
+  animation: fadein 1s ease-in;
+}

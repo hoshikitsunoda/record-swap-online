@@ -22,6 +22,11 @@ $overlay.addEventListener('click', (event) => {
   }
 })
 
+const renderAboutUs = () => {
+  const $aboutUs = createElement('div', { class: 'aboutus' }, ['Use at your own risk.'])
+  return $aboutUs
+}
+
 const renderForm = () => {
   const $form =
       createElement('form', { id: 'form' }, [
@@ -253,6 +258,11 @@ router.when('item', {
 router.when('form', {
   resolve: sendForm,
   render: renderForm
+})
+
+router.when('aboutus', {
+  resolve: sendForm,
+  render: renderAboutUs
 })
 
 router.listen()
