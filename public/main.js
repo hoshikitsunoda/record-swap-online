@@ -236,14 +236,6 @@ const renderLanding = (records) => {
   return $landing
 }
 
-// document.body.appendChild(renderNavigation())
-// const $overlay = document.getElementById('overlay')
-// $overlay.addEventListener('click', (event) => {
-//   if (event.target && event.target.nodeName === 'A') {
-//     $overlay.classList.add('hidden')
-//   }
-// })
-
 const renderAboutUs = () => {
   const $aboutUs = createElement('div', { class: 'aboutus' }, ['Use at your own risk.'])
   const $close = createElement('a', { class: 'close', href: '#lists' }, [])
@@ -304,12 +296,21 @@ $buy.addEventListener('click', () => {
   window.location.hash = '#lists'
 })
 
-window.addEventListener('hashchange', () => {
-  if (window.location.hash !== '#') {
-    $view.classList.toggle('overflow')
+window.addEventListener('hashchange', (hash) => {
+  switch (window.location.hash) {
+    case '#lists':
+      $view.classList.add('overflow')
+      break
+    case '#form':
+      $view.classList.add('overflow')
+      break
+    case '#aboutus':
+      $view.classList.add('overflow')
+      break
+    case '':
+      $view.classList.remove('overflow')
+      break
+    default:
+      $view.classList.add('overflow')
   }
 })
-
-// window.addEventListener('load', () => {
-//   window.location.hash = '#lists'
-// })
