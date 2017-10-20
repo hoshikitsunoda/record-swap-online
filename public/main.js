@@ -9,6 +9,7 @@ const renderNavigation = () => {
     createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, ['BUY']),
     createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, ['SELL']),
     createElement('a', { class: 'landing', id: 'toAbout', href: '#aboutus' }, ['ABOUT US']),
+    createElement('a', { class: 'close' }, []),
     createElement('img', { src: 'https://preview.ibb.co/is7XRR/rsologo.png', class: 'logo' }, [])
   ])
   return $overlay
