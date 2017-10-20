@@ -43,11 +43,12 @@ select {
   font-family: 'Nova Flat', cursive;
   letter-spacing: 4px;
   font-size: 20px;
-  list-style: none;
   animation: fadein 0.2s ease-in;
-  width: 31%;
-  right: 100px;
+  width: 10%;
+  left: 170px;
+  top: 300px;
   text-align: right;
+  text-decoration: none !important;
 }
 
 .landbox {

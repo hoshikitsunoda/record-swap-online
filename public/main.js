@@ -6,20 +6,20 @@ const router = new HashRouter($view)
 
 const renderNavigation = () => {
   const $overlay = createElement('div', { class: 'navigation', id: 'overlay' }, [
-    createElement('div', { class: 'landbox' }, [
-      createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, ['BUY']),
-      createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, ['SELL']),
-      createElement('a', { class: 'landing', id: 'toAbout', href: '#aboutus' }, ['ABOUT US'])
-    ]),
+    createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, ['BUY']),
+    createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, ['SELL']),
+    createElement('a', { class: 'landing', id: 'toAbout', href: '#aboutus' }, ['ABOUT US']),
     createElement('img', { src: 'https://preview.ibb.co/is7XRR/rsologo.png', class: 'logo' }, [])
   ])
   return $overlay
 }
 
 document.body.appendChild(renderNavigation())
-const $overlay = document.getElementById(('overlay'))
-$overlay.addEventListener('click', () => {
-  $overlay.classList.add('hidden')
+const $overlay = document.getElementById('overlay')
+$overlay.addEventListener('click', (event) => {
+  if (event.target && event.target.nodeName === 'A') {
+    $overlay.classList.add('hidden')
+  }
 })
 
 const renderForm = () => {
