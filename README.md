@@ -2,7 +2,7 @@
 A website for record collectors who want to buy and sell records.
 # Usage
 ```
-node index.js
+npm run watch
 ```
 # Use
 * HTML5
