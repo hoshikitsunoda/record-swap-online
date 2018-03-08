@@ -2,6 +2,8 @@
 A website for record collectors who want to buy and sell records.
 # Usage
 ```
+git clone this repo
+npm install
 npm run watch
 ```
 # Use
