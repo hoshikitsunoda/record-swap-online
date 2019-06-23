@@ -1,5 +1,5 @@
 const express = require('express')
-const { MongoClient } = require('mongodb')
+// const { MongoClient } = require('mongodb')
 const url = 'mongodb://localhost/library'
 const uuidv4 = require('uuid/v4')
 const multer = require('multer')
@@ -13,18 +13,25 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 const path = require('path')
+const mongoose = require('mongoose')
 
-const twilio = require('twilio')
-const accountSid = process.env.accountSid
-const authToken = process.env.authToken
+// let dbs = mongoose.connection
+
+// dbs.once('open', () => console.log('connected to DB!'))
+
+// dbs.on('error', console.error.bind(console, 'DB connection error:'))
+
+// const twilio = require('twilio')
+// const accountSid = process.env.accountSid
+// const authToken = process.env.authToken
 
 const app = express()
 
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(express.static(path.join(__dirname, 'public/uploads')))
+app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '../public/uploads')))
 
-MongoClient.connect(url, (err, db) => {
+mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   if (err) {
     console.error(err)
     process.exit(1)
@@ -59,39 +66,39 @@ MongoClient.connect(url, (err, db) => {
         res.sendStatus(500)
       })
 
-    const client = new twilio(accountSid, authToken)
-    const phoneNumber = process.env.phoneNumber
-    const message = (name, artist, title, contact, message) => {
-      return (
-        'You have an inquiry from ' +
-        name +
-        ' for ' +
-        artist +
-        '/' +
-        title +
-        '.' +
-        '\n' +
-        'Buyer contact: ' +
-        contact +
-        '\n' +
-        'Message from the buyer: ' +
-        message
-      )
-    }
+    // const client = new twilio(accountSid, authToken)
+    // const phoneNumber = process.env.phoneNumber
+    // const message = (name, artist, title, contact, message) => {
+    //   return (
+    //     'You have an inquiry from ' +
+    //     name +
+    //     ' for ' +
+    //     artist +
+    //     '/' +
+    //     title +
+    //     '.' +
+    //     '\n' +
+    //     'Buyer contact: ' +
+    //     contact +
+    //     '\n' +
+    //     'Message from the buyer: ' +
+    //     message
+    //   )
+    // }
 
-    client.messages
-      .create({
-        body: message(
-          req.body.name,
-          req.body.artist,
-          req.body.title,
-          req.body.contact,
-          req.body.message
-        ),
-        to: '1' + req.body.phone,
-        from: phoneNumber
-      })
-      .then(message => console.log(message.sid))
+    // client.messages
+    //   .create({
+    //     body: message(
+    //       req.body.name,
+    //       req.body.artist,
+    //       req.body.title,
+    //       req.body.contact,
+    //       req.body.message
+    //     ),
+    //     to: '1' + req.body.phone,
+    //     from: phoneNumber
+    //   })
+    //   .then(message => console.log(message.sid))
   })
   app.get('/inventory', (req, res) => {
     inventoryItems
@@ -146,8 +153,8 @@ MongoClient.connect(url, (err, db) => {
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
 
-console.log(
-  process.env.accountSid,
-  process.env.authToken,
-  process.env.phoneNumber
-)
+// console.log(
+//   process.env.accountSid,
+//   process.env.authToken,
+//   process.env.phoneNumber
+// )
