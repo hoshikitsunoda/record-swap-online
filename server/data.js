@@ -12,6 +12,9 @@ const DataSchema = new Schema(
     contact: String
   },
   {
+    collection: 'items'
+  },
+  {
     timestamps: true
   }
 )
