@@ -116,13 +116,18 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   })
   app.get('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
-    inventoryItems
-      .findOne(itemId)
-      .then(contents => res.json(contents))
-      .catch(err => {
-        console.error(err)
-        res.sendStatus(500)
-      })
+    Record.findOne(itemId, (err, data) => {
+      console.log(data)
+      if (err) return res.json({ success: false, error: err })
+      return res.json({ success: true, data: data })
+    })
+    // inventoryItems
+    //   .findOne(itemId)
+    //   .then(contents => res.json(contents))
+    //   .catch(err => {
+    //     console.error(err)
+    //     res.sendStatus(500)
+    //   })
   })
   app.get('/message', (req, res) => {
     messages

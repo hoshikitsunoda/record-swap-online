@@ -262,25 +262,25 @@ const renderDetail = record => {
     placeholder: 'Your phone or email'
   })
 
-  $artist.textContent = '-' + record.artist
-  $title.textContent = '-' + record.title
+  $artist.textContent = '-' + record.data.artist
+  $title.textContent = '-' + record.data.title
   $condition.textContent =
     '-' +
     record.mediaCondition +
     '/' +
     record.coverCondition +
     '  (Media/Cover)'
-  $price.textContent = '-' + record.price + 'USD'
-  $format.textContent = '-' + record.format
-  $label.textContent = '-' + record.label
+  $price.textContent = '-' + record.data.price + 'USD'
+  $format.textContent = '-' + record.data.format
+  $label.textContent = '-' + record.data.label
   $comment.textContent =
-    '\n' + 'Note: ' + '\n' + '\n' + '\u00A0' + record.comment
+    '\n' + 'Note: ' + '\n' + '\n' + '\u00A0' + record.data.comment
 
-  $img.src = record.filename
+  $img.src = record.data.filename
 
   $detailBox.appendChild($img)
   $detailBox1.append($artist, $title, $label, $format, $condition, $price)
-  if (record.comment !== undefined) {
+  if (record.data.comment !== undefined) {
     $detailBox1.appendChild($comment)
   }
   $detailBox1.append($name, $contact, $message, $submit)
@@ -295,9 +295,9 @@ const renderDetail = record => {
   $box.addEventListener('submit', event => {
     event.preventDefault()
     const formData = new FormData(event.target)
-    formData.append('artist', record.artist)
-    formData.append('title', record.title)
-    formData.append('phone', record.phone)
+    formData.append('artist', record.data.artist)
+    formData.append('title', record.data.title)
+    formData.append('phone', record.data.phone)
     formData.append('message', 'message')
     formData.append('buyerName', 'name')
     formData.append('contact', 'contact')
