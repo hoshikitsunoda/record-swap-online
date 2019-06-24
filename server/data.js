@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const DataSchema = new Schema(
   {
-    id: String,
+    _id: { type: String, unique: true },
     artist: String,
     title: String,
     phone: String,
