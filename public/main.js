@@ -5,16 +5,34 @@ const $view = document.querySelector('#view')
 const router = new HashRouter($view)
 
 const renderForm = () => {
-  const $form =
-      createElement('form', { id: 'form' }, [
-        createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Artist-',
-          createElement('input', { type: 'text', class: 'artist', id: 'artist', name: 'artist' }, [])
-        ]),
-        createElement('div', { class: 'row' }, [ '-Title-',
-          createElement('input', { type: 'text', class: 'title', id: 'title', name: 'title' }, [])
-        ]),
-        createElement('div', { class: 'row' }, [ '-Media Condition-',
-          createElement('select', { class: 'mediaCondition', id: 'mediaCondition', name: 'mediaCondition' }, [
+  const $form = createElement('form', { id: 'form' }, [
+    createElement('div', { class: 'col-1-2' }, [
+      createElement('div', { class: 'row' }, [
+        '-Artist-',
+        createElement(
+          'input',
+          { type: 'text', class: 'artist', id: 'artist', name: 'artist' },
+          []
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Title-',
+        createElement(
+          'input',
+          { type: 'text', class: 'title', id: 'title', name: 'title' },
+          []
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Media Condition-',
+        createElement(
+          'select',
+          {
+            class: 'mediaCondition',
+            id: 'mediaCondition',
+            name: 'mediaCondition'
+          },
+          [
             createElement('option', { value: 'SS' }, ['SS']),
             createElement('option', { value: 'NM' }, ['NM']),
             createElement('option', { value: 'VG+' }, ['VG+']),
@@ -24,10 +42,19 @@ const renderForm = () => {
             createElement('option', { value: 'G' }, ['G']),
             createElement('option', { value: 'F' }, ['F']),
             createElement('option', { value: 'P' }, ['P'])
-          ])
-        ]),
-        createElement('div', { class: 'row' }, [ '-Cover Condition-',
-          createElement('select', { class: 'coverCondition', id: 'coverCondition', name: 'coverCondition' }, [
+          ]
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Cover Condition-',
+        createElement(
+          'select',
+          {
+            class: 'coverCondition',
+            id: 'coverCondition',
+            name: 'coverCondition'
+          },
+          [
             createElement('option', { value: 'SS' }, ['SS']),
             createElement('option', { value: 'NM' }, ['NM']),
             createElement('option', { value: 'VG+' }, ['VG+']),
@@ -37,35 +64,84 @@ const renderForm = () => {
             createElement('option', { value: 'G' }, ['G']),
             createElement('option', { value: 'F' }, ['F']),
             createElement('option', { value: 'P' }, ['P'])
-          ])
-        ]),
-        createElement('div', { class: 'row' }, [ '-Format-',
-          createElement('select', { type: 'text', class: 'format', id: 'format', name: 'format' }, [
+          ]
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Format-',
+        createElement(
+          'select',
+          { type: 'text', class: 'format', id: 'format', name: 'format' },
+          [
             createElement('option', { value: 'LP' }, ['LP']),
             createElement('option', { value: 'EP' }, ['EP']),
             createElement('option', { value: '7"' }, ['7"'])
-          ])
-        ]),
-        createElement('div', { class: 'row' }, [ '-Label-',
-          createElement('input', { type: 'text', class: 'label', id: 'label', name: 'label' }, [])
-        ]),
-        createElement('div', { class: 'row' }, [ '-Price(USD)-',
-          createElement('input', { type: 'text', class: 'price', id: 'price', name: 'price' }, [])
-        ])
-        ]),
-        createElement('div', { class: 'col-1-2' }, [createElement('div', { class: 'row' }, [ '-Photos-',
-          createElement('input', { type: 'file', class: 'photo', id: 'photo', name: 'photo', accept: 'image/*' }, [])
-        ]),
-        createElement('div', { class: 'row' }, ['-Your Phone#-',
-          createElement('input', { type: 'text', class: 'phone', id: 'phone', name: 'phone' }, [])
-        ]),
-        createElement('div', { class: 'row' }, ['-Condition Comments-',
-          createElement('textarea', { type: 'text', class: 'comment', rows: '10', cols: '50', id: 'comment', name: 'comment' }, [])
-        ]),
-        createElement('input', { type: 'submit', class: 'submit', id: 'submit', name: 'submit' }, ['SUBMIT'])
-        ]),
-        createElement('a', { class: 'close', href: '#lists' }, [])
+          ]
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Label-',
+        createElement(
+          'input',
+          { type: 'text', class: 'label', id: 'label', name: 'label' },
+          []
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Price(USD)-',
+        createElement(
+          'input',
+          { type: 'text', class: 'price', id: 'price', name: 'price' },
+          []
+        )
       ])
+    ]),
+    createElement('div', { class: 'col-1-2' }, [
+      createElement('div', { class: 'row' }, [
+        '-Photos-',
+        createElement(
+          'input',
+          {
+            type: 'file',
+            class: 'photo',
+            id: 'photo',
+            name: 'photo',
+            accept: 'image/*'
+          },
+          []
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Your Phone#-',
+        createElement(
+          'input',
+          { type: 'text', class: 'phone', id: 'phone', name: 'phone' },
+          []
+        )
+      ]),
+      createElement('div', { class: 'row' }, [
+        '-Condition Comments-',
+        createElement(
+          'textarea',
+          {
+            type: 'text',
+            class: 'comment',
+            rows: '10',
+            cols: '50',
+            id: 'comment',
+            name: 'comment'
+          },
+          []
+        )
+      ]),
+      createElement(
+        'input',
+        { type: 'submit', class: 'submit', id: 'submit', name: 'submit' },
+        ['SUBMIT']
+      )
+    ]),
+    createElement('a', { class: 'close', href: '#lists' }, [])
+  ])
 
   $form.addEventListener('submit', event => {
     event.preventDefault()
@@ -75,8 +151,13 @@ const renderForm = () => {
       body: formData
     })
       .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'), alert('Thank you for submitting. You will receive a confirmation text message shortly.'))
-      .then(window.location.hash = '#lists')
+      .then(
+        saved => console.log(saved, 'posted'),
+        alert(
+          'Thank you for submitting. You will receive a confirmation text message shortly.'
+        )
+      )
+      .then((window.location.hash = '#lists'))
   })
 
   $sell.classList.add('hidden')
@@ -84,7 +165,7 @@ const renderForm = () => {
   return $form
 }
 
-const renderList = (record) => {
+const renderList = record => {
   const $box = createElement('div', { class: 'col-1-3' }, [])
   const $img = document.createElement('img')
   const $artist = document.createElement('li')
@@ -123,9 +204,9 @@ const renderList = (record) => {
   return $box
 }
 
-const renderListings = (records) => {
+const renderListings = records => {
   const $listing = createElement('div', { class: 'list', id: 'listings' }, [])
-  records
+  records.data
     .map(renderList)
     .slice()
     .reverse()
@@ -133,12 +214,16 @@ const renderListings = (records) => {
   return $listing
 }
 
-const renderDetail = (record) => {
+const renderDetail = record => {
   const $box = createElement('form', { id: 'sendMessage' }, [])
   const $detailBox = createElement('div', { class: 'col-2-3' }, [])
   const $detailBox1 = createElement('div', { class: 'col-2-2' }, [])
   const $close = createElement('a', { class: 'close' }, [])
-  const $submit = createElement('input', { type: 'submit', class: 'send', value: 'Send' }, [])
+  const $submit = createElement(
+    'input',
+    { type: 'submit', class: 'send', value: 'Send' },
+    []
+  )
 
   const $artist = document.createElement('li')
   const $title = document.createElement('li')
@@ -158,17 +243,38 @@ const renderDetail = (record) => {
     }
   }
 
-  setAttributes($message, {'type': 'text', 'class': 'buyerMessage', 'rows': '10', 'cols': '50', 'name': 'message', 'placeholder': 'Message to the seller'})
-  setAttributes($name, {'name': 'buyerName', 'class': 'name', 'placeholder': 'Your name'})
-  setAttributes($contact, {'name': 'contact', 'class': 'contact', 'placeholder': 'Your phone or email'})
+  setAttributes($message, {
+    type: 'text',
+    class: 'buyerMessage',
+    rows: '10',
+    cols: '50',
+    name: 'message',
+    placeholder: 'Message to the seller'
+  })
+  setAttributes($name, {
+    name: 'buyerName',
+    class: 'name',
+    placeholder: 'Your name'
+  })
+  setAttributes($contact, {
+    name: 'contact',
+    class: 'contact',
+    placeholder: 'Your phone or email'
+  })
 
   $artist.textContent = '-' + record.artist
   $title.textContent = '-' + record.title
-  $condition.textContent = '-' + record.mediaCondition + '/' + record.coverCondition + '  (Media/Cover)'
+  $condition.textContent =
+    '-' +
+    record.mediaCondition +
+    '/' +
+    record.coverCondition +
+    '  (Media/Cover)'
   $price.textContent = '-' + record.price + 'USD'
   $format.textContent = '-' + record.format
   $label.textContent = '-' + record.label
-  $comment.textContent = '\n' + 'Note: ' + '\n' + '\n' + '\u00A0' + record.comment
+  $comment.textContent =
+    '\n' + 'Note: ' + '\n' + '\n' + '\u00A0' + record.comment
 
   $img.src = record.filename
 
@@ -186,7 +292,7 @@ const renderDetail = (record) => {
   $buy.classList.add('hidden')
   $sell.classList.remove('hidden')
 
-  $box.addEventListener('submit', (event) => {
+  $box.addEventListener('submit', event => {
     event.preventDefault()
     const formData = new FormData(event.target)
     formData.append('artist', record.artist)
@@ -210,7 +316,10 @@ const renderDetail = (record) => {
       body: json
     })
       .then(res => res.json())
-      .then(saved => console.log(saved, 'posted'), alert('Your message has been sent. The seller will reply shortly.'))
+      .then(
+        saved => console.log(saved, 'posted'),
+        alert('Your message has been sent. The seller will reply shortly.')
+      )
     $box.reset()
   })
 
@@ -240,18 +349,15 @@ router.when('form', {
 router.listen()
 
 function getList(params) {
-  return fetch('/inventory/')
-    .then(res => res.json())
+  return fetch('/inventory/').then(res => res.json())
 }
 
 function getRecord(params) {
-  return fetch('/inventory/' + params.id)
-    .then(res => res.json())
+  return fetch('/inventory/' + params.id).then(res => res.json())
 }
 
 function sendForm(params) {
-  return fetch('/inventory')
-    .then(res => res.json())
+  return fetch('/inventory').then(res => res.json())
 }
 
 const $sell = document.getElementById('sell')
