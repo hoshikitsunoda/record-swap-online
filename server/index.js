@@ -1,6 +1,6 @@
 const express = require('express')
 // const { MongoClient } = require('mongodb')
-const url = 'mongodb://localhost/library'
+const url = 'mongodb://localhost/photos'
 const uuidv4 = require('uuid/v4')
 const multer = require('multer')
 const storage = multer.diskStorage({
@@ -14,12 +14,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const path = require('path')
 const mongoose = require('mongoose')
+const Record = require('./data')
 
-// let dbs = mongoose.connection
-
-// dbs.once('open', () => console.log('connected to DB!'))
-
-// dbs.on('error', console.error.bind(console, 'DB connection error:'))
+let dbs = mongoose.connection
+dbs.once('open', () => console.log('connected to DB!'))
+dbs.on('error', console.error.bind(console, 'DB connection error:'))
 
 // const twilio = require('twilio')
 // const accountSid = process.env.accountSid
@@ -28,6 +27,7 @@ const mongoose = require('mongoose')
 const app = express()
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../public/uploads')))
 
@@ -101,14 +101,18 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
     //   .then(message => console.log(message.sid))
   })
   app.get('/inventory', (req, res) => {
-    inventoryItems
-      .find({})
-      .toArray()
-      .then(contents => res.json(contents))
-      .catch(err => {
-        console.error(err)
-        res.sendStatus(500)
-      })
+    Record.find((err, data) => {
+      if (err) return res.json({ success: false, error: err })
+      return res.json({ success: true, data: data })
+    })
+    // inventoryItems
+    //   .find({})
+    //   .toArray()
+    //   .then(contents => res.json(contents))
+    //   .catch(err => {
+    //     console.error(err)
+    //     res.sendStatus(500)
+    //   })
   })
   app.get('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
