@@ -90,13 +90,6 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
         message: 'Message saved successfully!'
       })
     })
-    // messages
-    //   .insertOne(Object.assign({ _id: uuidv4() }, req.body))
-    //   .then(result => res.status(201).json(result.ops[0]))
-    //   .catch(err => {
-    //     console.error(err)
-    //     res.sendStatus(500)
-    //   })
 
     // const client = new twilio(accountSid, authToken)
     // const phoneNumber = process.env.phoneNumber
