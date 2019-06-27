@@ -36,7 +36,6 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
     console.error(err)
     process.exit(1)
   }
-  const inventoryItems = db.collection('items')
   const messages = db.collection('messages')
 
   app.post('/inventory', upload.single('photo'), (req, res) => {
@@ -66,11 +65,9 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       comment
     })
 
-    newPost.save(function (error) {
-      if (error) {
-        console.log(error)
-      }
-      res.send({
+    newPost.save(err => {
+      if (err) return res.json({ success: false, error: err })
+      return res.send({
         success: true,
         message: 'Post saved successfully!'
       })
@@ -145,13 +142,10 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   })
   app.delete('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
-    inventoryItems
-      .deleteOne(itemId)
-      .then(() => res.sendStatus(204))
-      .catch(err => {
-        console.error(err)
-        res.sendStatus(400)
-      })
+    Record.remove(itemId, err => {
+      if (err) return res.send({ success: false, error: err })
+      return res.send({ success: true, message: 'Item Deleted Successfully!' })
+    })
   })
   app.delete('/message/:id', (req, res) => {
     const itemId = { _id: req.params.id }
