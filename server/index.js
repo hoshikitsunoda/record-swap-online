@@ -150,14 +150,10 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
     })
   })
   app.get('/message', (req, res) => {
-    messages
-      .find({})
-      .toArray()
-      .then(contents => res.json(contents))
-      .catch(err => {
-        console.error(err)
-        res.sendStatus(500)
-      })
+    Message.find((err, data) => {
+      if (err) return res.json({ success: false, error: err })
+      return res.json({ success: true, data: data })
+    })
   })
   app.delete('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
