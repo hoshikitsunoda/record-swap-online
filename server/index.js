@@ -1,7 +1,7 @@
 const express = require('express')
 // const { MongoClient } = require('mongodb')
 const url = 'mongodb://localhost/photos'
-const uuidv4 = require('uuid/v4')
+// const uuidv4 = require('uuid/v4')
 const multer = require('multer')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -15,6 +15,7 @@ const upload = multer({ storage: storage })
 const path = require('path')
 const mongoose = require('mongoose')
 const Record = require('./data')
+const Message = require('./message')
 
 let dbs = mongoose.connection
 dbs.once('open', () => console.log('connected to DB!'))
@@ -74,13 +75,31 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
     })
   })
   app.post('/message', (req, res) => {
-    messages
-      .insertOne(Object.assign({ _id: uuidv4() }, req.body))
-      .then(result => res.status(201).json(result.ops[0]))
-      .catch(err => {
-        console.error(err)
-        res.sendStatus(500)
+    const { artist, title, phone, message, name, contact } = req.body
+
+    const newMessage = new Message({
+      artist,
+      title,
+      phone,
+      message,
+      name,
+      contact
+    })
+
+    newMessage.save(err => {
+      if (err) return res.json({ success: false, error: err })
+      return res.send({
+        success: true,
+        message: 'Message saved successfully!'
       })
+    })
+    // messages
+    //   .insertOne(Object.assign({ _id: uuidv4() }, req.body))
+    //   .then(result => res.status(201).json(result.ops[0]))
+    //   .catch(err => {
+    //     console.error(err)
+    //     res.sendStatus(500)
+    //   })
 
     // const client = new twilio(accountSid, authToken)
     // const phoneNumber = process.env.phoneNumber
