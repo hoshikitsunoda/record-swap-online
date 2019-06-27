@@ -1,7 +1,5 @@
 const express = require('express')
-// const { MongoClient } = require('mongodb')
 const url = 'mongodb://localhost/photos'
-// const uuidv4 = require('uuid/v4')
 const multer = require('multer')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -37,7 +35,6 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
     console.error(err)
     process.exit(1)
   }
-  const messages = db.collection('messages')
 
   app.post('/inventory', upload.single('photo'), (req, res) => {
     const {
@@ -157,20 +154,17 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   })
   app.delete('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
-    Record.remove(itemId, err => {
+    Record.deleteOne(itemId, err => {
       if (err) return res.send({ success: false, error: err })
       return res.send({ success: true, message: 'Item Deleted Successfully!' })
     })
   })
   app.delete('/message/:id', (req, res) => {
     const itemId = { _id: req.params.id }
-    messages
-      .deleteOne(itemId)
-      .then(() => res.sendStatus(204))
-      .catch(err => {
-        console.error(err)
-        res.sendStatus(400)
-      })
+    Message.deleteOne(itemId, err => {
+      if (err) return res.send({ success: false, error: err })
+      return res.send({ success: true, message: 'Item Deleted Successfully!' })
+    })
   })
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
