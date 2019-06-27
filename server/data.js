@@ -3,13 +3,16 @@ const Schema = mongoose.Schema
 
 const DataSchema = new Schema(
   {
-    _id: { type: String, unique: true },
     artist: String,
     title: String,
+    mediaCondition: String,
+    coverCondition: String,
+    format: String,
+    label: String,
+    price: Number,
+    filename: String,
     phone: String,
-    message: String,
-    name: String,
-    contact: String
+    comment: String
   },
   {
     collection: 'items'
