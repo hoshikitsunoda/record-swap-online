@@ -215,6 +215,7 @@ const renderListings = records => {
 }
 
 const renderDetail = record => {
+  console.log(record)
   const $box = createElement('form', { id: 'sendMessage' }, [])
   const $detailBox = createElement('div', { class: 'col-2-3' }, [])
   const $detailBox1 = createElement('div', { class: 'col-2-2' }, [])
@@ -266,9 +267,9 @@ const renderDetail = record => {
   $title.textContent = '-' + record.data.title
   $condition.textContent =
     '-' +
-    record.mediaCondition +
+    record.data.mediaCondition +
     '/' +
-    record.coverCondition +
+    record.data.coverCondition +
     '  (Media/Cover)'
   $price.textContent = '-' + record.data.price + 'USD'
   $format.textContent = '-' + record.data.format
@@ -294,6 +295,7 @@ const renderDetail = record => {
 
   $box.addEventListener('submit', event => {
     event.preventDefault()
+    console.log(event)
     const formData = new FormData(event.target)
     formData.append('artist', record.data.artist)
     formData.append('title', record.data.title)
