@@ -40,22 +40,41 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   const messages = db.collection('messages')
 
   app.post('/inventory', upload.single('photo'), (req, res) => {
-    inventoryItems
-      .insertOne(Object.assign({ _id: uuidv4() }, req.body, req.file))
-      .then(result => res.status(201).json(result.ops[0]))
-      .catch(err => {
-        console.error(err)
-        res.sendStatus(500)
+    const {
+      artist,
+      title,
+      mediaCondition,
+      coverCondition,
+      format,
+      label,
+      price,
+      phone,
+      comment
+    } = req.body
+
+    const { filename } = req.file
+    const newPost = new Record({
+      artist,
+      title,
+      mediaCondition,
+      coverCondition,
+      format,
+      label,
+      price,
+      filename,
+      phone,
+      comment
+    })
+
+    newPost.save(function (error) {
+      if (error) {
+        console.log(error)
+      }
+      res.send({
+        success: true,
+        message: 'Post saved successfully!'
       })
-
-    // const client = new twilio(accountSid, authToken)
-    // const phoneNumber = process.env.phoneNumber
-
-    // client.messages.create({
-    //   body: 'Thank you for submitting ' + req.body.artist + '/' + req.body.title + '.',
-    //   to: '1' + req.body.phone,
-    //   from: phoneNumber
-    // }).then((message) => console.log(message.sid))
+    })
   })
   app.post('/message', (req, res) => {
     messages
@@ -105,14 +124,6 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       if (err) return res.json({ success: false, error: err })
       return res.json({ success: true, data: data })
     })
-    // inventoryItems
-    //   .find({})
-    //   .toArray()
-    //   .then(contents => res.json(contents))
-    //   .catch(err => {
-    //     console.error(err)
-    //     res.sendStatus(500)
-    //   })
   })
   app.get('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
@@ -121,13 +132,6 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       if (err) return res.json({ success: false, error: err })
       return res.json({ success: true, data: data })
     })
-    // inventoryItems
-    //   .findOne(itemId)
-    //   .then(contents => res.json(contents))
-    //   .catch(err => {
-    //     console.error(err)
-    //     res.sendStatus(500)
-    //   })
   })
   app.get('/message', (req, res) => {
     messages
