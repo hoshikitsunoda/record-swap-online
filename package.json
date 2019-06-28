@@ -8,8 +8,8 @@
     "lint:js": "eslint ./**/*.js",
     "test": "npm run lint",
     "precommit": "npm test",
-    "start": "npm index.js",
-    "watch": "nodemon index.js"
+    "start": "npm server/index.js",
+    "watch": "nodemon server/index.js"
   },
   "devDependencies": {
     "eslint": "4.5.0",
@@ -19,20 +19,21 @@
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-react": "7.3.0",
     "eslint-plugin-standard": "3.0.1",
-    "htmlhint": "0.9.13",
+    "htmlhint": "^0.11.0",
     "husky": "0.14.3",
-    "nodemon": "^1.12.1",
+    "nodemon": "^1.19.1",
     "npm-run-all": "4.1.1",
     "stylelint": "8.0.0",
     "stylelint-config-standard": "17.0.0"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.1",
-    "mongodb": "^2.2.31",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.0",
     "multer": "^1.3.0",
     "path": "^0.12.7",
-    "twilio": "^3.8.1",
+    "twilio": "^3.33.0",
     "uuid": "^3.1.0"
   }
 }
