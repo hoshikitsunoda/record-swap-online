@@ -1,6 +1,7 @@
 const express = require('express')
-const password = process.env.password
-const url = `mongodb+srv://hoshki:${password}@rsd-3tupd.mongodb.net/test?retryWrites=true&w=majority`
+const url = 'mongodb://localhost/photos'
+// const url =
+//   'mongodb+srv://hoshki:password01@rsd-3tupd.mongodb.net/test?retryWrites=true&w=majority'
 const multer = require('multer')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,7 +21,7 @@ let dbs = mongoose.connection
 dbs.once('open', () => console.log('connected to DB!'))
 dbs.on('error', console.error.bind(console, 'DB connection error:'))
 
-const Twilio = require('twilio')
+const twilio = require('twilio')
 const accountSid = process.env.accountSid
 const authToken = process.env.authToken
 
@@ -92,7 +93,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       })
     })
 
-    const client = new Twilio(accountSid, authToken)
+    const client = new twilio(accountSid, authToken)
     const phoneNumber = process.env.phoneNumber
     const buyerMessage = (name, artist, title, contact, message) => {
       return `You have an inquiry from ${name} for ${artist}/${title}. <br>Buyer contact: ${contact}. <br>Message from the buyer: ${message}`
