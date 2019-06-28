@@ -5,6 +5,26 @@ html {
     inset -20px -10px 0 black;
 }
 
+body {
+  overflow: hidden;
+}
+
+.full {
+  height: 100%;
+}
+
+.navigation {
+  position: absolute;
+  height: 760px;
+  width: 100vw;
+  top: -40px;
+  left: -148px;
+  background-color: white;
+  opacity: 0.98;
+  margin: 0 auto;
+  box-shadow: 0 0 5px 6px white;
+}
+
 .artist,
 .title,
 .mediaCondition,
@@ -25,28 +45,58 @@ select {
   letter-spacing: 3px;
 }
 
-.name {
+.landing {
   position: relative;
   display: block;
-  left: -81px;
-  top: 79px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  font-family: 'Nova Flat', cursive;
+  letter-spacing: 4px;
+  font-size: 20px;
+  animation: fadein 0.2s ease-in;
+  width: 15%;
+  left: 170px;
+  top: 400px;
+  text-align: right;
+  text-decoration: none !important;
+}
+
+.landbox {
+  position: relative;
   width: 30%;
+  margin: 0 auto;
+  top: 330px;
+  left: 300px;
+}
+
+.logo {
+  position: relative;
+  top: -80px;
+  left: 340px;
+  z-index: -1;
+  animation: fadein 0.2s ease-in;
+}
+
+.name,
+.contact {
+  position: relative;
+  display: block;
   margin: 0 auto;
   padding: 3px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.5);
 }
 
+.name {
+  left: -81px;
+  top: 79px;
+  width: 30%;
+}
+
 .contact {
-  position: relative;
-  display: block;
   left: 88px;
   top: 56px;
   width: 47%;
-  margin: 0 auto;
-  padding: 3px;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.5);
 }
 
 input[type='file'] {
@@ -119,18 +169,6 @@ input[type='file'] {
   display: none;
 }
 
-h3,
-h4 {
-  box-sizing: content-box;
-  margin: 0 auto;
-  width: 80%;
-  padding: 10px;
-  font-family: 'Nova Flat', cursive;
-  letter-spacing: 4px;
-  text-align: left;
-  font-size: 14px;
-}
-
 textarea {
   padding: 10px;
   margin-top: 12px;
@@ -160,7 +198,6 @@ button {
   border-right: 2px solid;
   border-top: 3px solid;
   border-bottom: 2px solid;
-  left: 18px;
   height: 51px;
   width: 55px;
   box-shadow: inset -7px -7px 8px -7px rgba(0, 0, 0, 0.7);
@@ -178,96 +215,71 @@ button:focus {
   outline: none;
 }
 
-.goback {
-  box-sizing: border-box;
-  position: fixed;
-  background-color: #dfe4e4;
-  border-left: 3px solid;
-  border-right: 2px solid;
-  border-top: 3px solid;
-  border-bottom: 2px solid;
-  left: 1230px;
-  bottom: 60px;
-  height: 41px;
-  width: 45px;
-  opacity: 0.7;
-  box-shadow: inset -7px -7px 8px -7px rgba(0, 0, 0, 0.7);
-  animation: fadein 0.4s ease-in;
-  z-index: 1;
-  font-family: 'Nova Flat', cursive;
+form {
+  animation: fadein 0.2s ease-in;
 }
 
-.goback:active {
-  border-top: 4px solid;
-  border-left: 4px solid;
-  border-right: 2px solid;
-  border-bottom: 2px solid;
-  box-shadow: inset -7px -7px 11px -7px rgba(0, 0, 0, 0.9);
-  outline: none;
-}
-
-#sell {
-  font: inherit;
-  line-height: 1;
-  font-family: 'Nova Flat', cursive;
-  letter-spacing: 4px;
-  text-align: left;
-  font-size: 14px;
-}
-
+#sell,
 #buy {
   font: inherit;
   line-height: 1;
   font-family: 'Nova Flat', cursive;
-  letter-spacing: 5.5px;
   text-align: left;
   font-size: 14px;
 }
 
-#r {
+#sell {
+  letter-spacing: 4px;
+}
+
+#buy {
+  letter-spacing: 5.5px;
+}
+
+#r,
+#s,
+#o {
   font-family: 'Nova Flat', cursive;
+  display: block;
+  position: fixed;
+  z-index: -1;
+}
+
+#r {
   font-size: 110px;
   left: -3px;
   bottom: 500px;
-  display: block;
-  position: fixed;
-  z-index: -1;
 }
 
 #s {
-  font-family: 'Nova Flat', cursive;
   font-size: 80px;
   left: 42px;
   bottom: 451px;
-  display: block;
-  position: fixed;
-  z-index: -1;
 }
 
 #o {
-  font-family: 'Nova Flat', cursive;
   font-size: 120px;
   left: -11px;
   bottom: 382px;
-  display: block;
-  position: fixed;
-  z-index: -1;
 }
 
-.container {
-  position: absolute;
+.container,
+.list {
   left: 0;
   right: 0;
   float: none;
   box-sizing: border-box;
   margin: 0 auto;
+}
+
+.container {
+  position: absolute;
   margin-top: 2%;
   width: 80%;
   height: 90.2%;
   border: 10px solid transparent;
   border-radius: 5px;
   padding: 10px;
-  overflow: auto;
   background-color: rgba(209, 209, 209, 0.2);
   box-shadow:
     0 15px 5px rgba(0, 0, 0, 0.15),
@@ -275,57 +287,50 @@ button:focus {
     -10px 20px 5px rgba(0, 0, 0, 0.05);
   animation: fadein 0.4s ease-in;
   z-index: -1;
-}
-
-form {
-  animation: fadein 0.2s ease-in;
+  overflow: auto;
 }
 
 .list {
-  left: 0;
-  right: 0;
-  float: none;
-  box-sizing: border-box;
-  margin: 0 auto;
   width: 100%;
   height: 106%;
   animation: fadein 0.2s ease-in;
 }
 
+.col-1-2,
 .col-1-3 {
-  width: 24.69%;
-  height: 95.8%;
   overflow: hidden;
   margin-left: 2px;
   float: left;
   display: inline;
+}
+
+.col-1-3 {
+  width: 24.69%;
+  height: 95.8%;
 }
 
 .col-1-2 {
   position: relative;
   width: 49%;
   height: 100%;
-  overflow: hidden;
-  margin-left: 2px;
+}
+
+.col-2-2,
+.col-2-3 {
+  height: 100%;
   float: left;
   display: inline;
 }
 
 .col-2-2 {
   width: 35%;
-  height: 100%;
   margin-left: 20px;
   margin-top: 6px;
-  float: left;
-  display: inline;
 }
 
 .col-2-3 {
   width: 56%;
-  height: 100%;
   margin-left: 2px;
-  float: left;
-  display: inline;
 }
 
 .row {
@@ -340,31 +345,27 @@ form {
   font-size: 14px;
 }
 
-.submit {
+.submit,
+.send {
   box-sizing: content-box;
   display: block;
   width: 15%;
   margin: 10px auto;
-  padding: 7px;
   font-family: 'Open Sans', sans-serif;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border-radius: 5px;
 }
 
+.submit {
+  padding: 7px;
+}
+
 .send {
   position: relative;
-  box-sizing: content-box;
-  display: block;
-  width: 15%;
-  margin: 10px auto;
   top: 75px;
   left: 20px;
   padding: 7px;
-  font-family: 'Open Sans', sans-serif;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border-radius: 5px;
   animation: fadein 0.2s ease-in;
 }
 
@@ -405,4 +406,16 @@ form {
 
 .close::after {
   transform: rotate(-45deg);
+}
+
+.aboutus {
+  text-align: center;
+  animation: fadein 1s ease-in;
+  padding-top: 250px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100px;
+}
+
+.overflow {
+  overflow: visible;
 }

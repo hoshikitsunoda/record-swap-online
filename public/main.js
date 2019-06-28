@@ -158,6 +158,13 @@ const renderForm = () => {
         )
       )
       .then((window.location.hash = '#lists'))
+      .then(
+        saved => console.log(saved),
+        alert(
+          'Thank you for submitting. You will receive a confirmation text message shortly.'
+        )
+      )
+      .then((window.location.hash = '#lists'))
   })
 
   $sell.classList.add('hidden')
@@ -322,15 +329,63 @@ const renderDetail = record => {
         saved => console.log(saved, 'posted'),
         alert('Your message has been sent. The seller will reply shortly.')
       )
+      .then(
+        saved => console.log(saved),
+        alert('Your message has been sent. The seller will reply shortly.')
+      )
     $box.reset()
   })
 
   return $box
 }
 
+const renderNavigation = () => {
+  const $overlay = createElement(
+    'div',
+    { class: 'navigation', id: 'overlay' },
+    [
+      createElement('a', { class: 'landing', id: 'toBuy', href: '#lists' }, [
+        'BUY'
+      ]),
+      createElement('a', { class: 'landing', id: 'toSell', href: '#form' }, [
+        'SELL'
+      ]),
+      createElement(
+        'a',
+        { class: 'landing', id: 'toAbout', href: '#aboutus' },
+        ['ABOUT US']
+      ),
+      createElement('a', { class: 'close', href: '#lists' }, []),
+      createElement(
+        'img',
+        { src: 'https://preview.ibb.co/is7XRR/rsologo.png', class: 'logo' },
+        []
+      )
+    ]
+  )
+  return $overlay
+}
+
+const renderLanding = records => {
+  const $landing = createElement('div', { class: 'full' }, [
+    renderListings(records),
+    renderNavigation()
+  ])
+  return $landing
+}
+
+const renderAboutUs = () => {
+  const $aboutUs = createElement('div', { class: 'aboutus' }, [
+    'Use at your own risk.'
+  ])
+  const $close = createElement('a', { class: 'close', href: '#lists' }, [])
+  $aboutUs.appendChild($close)
+  return $aboutUs
+}
+
 router.when('', {
   resolve: getList,
-  render: renderListings
+  render: renderLanding
 })
 
 router.when('lists', {
@@ -346,6 +401,11 @@ router.when('item', {
 router.when('form', {
   resolve: sendForm,
   render: renderForm
+})
+
+router.when('aboutus', {
+  resolve: sendForm,
+  render: renderAboutUs
 })
 
 router.listen()
@@ -371,4 +431,52 @@ $sell.addEventListener('click', () => {
 
 $buy.addEventListener('click', () => {
   window.location.hash = '#lists'
+})
+
+window.addEventListener('hashchange', hash => {
+  switch (window.location.hash) {
+    case '#lists':
+      $view.classList.remove('overflow')
+      console.log('list')
+      break
+    case '#form':
+      $view.classList.remove('overflow')
+      console.log('form')
+      break
+    case '#aboutus':
+      $view.classList.remove('overflow')
+      console.log('aboutus')
+      break
+    case '':
+      $view.classList.add('overflow')
+      console.log('#')
+      break
+    default:
+      $view.classList.remove('overflow')
+      console.log('item')
+  }
+})
+
+window.addEventListener('load', () => {
+  switch (window.location.hash) {
+    case '#lists':
+      $view.classList.remove('overflow')
+      console.log('list')
+      break
+    case '#form':
+      $view.classList.remove('overflow')
+      console.log('form')
+      break
+    case '#aboutus':
+      $view.classList.remove('overflow')
+      console.log('aboutus')
+      break
+    case '':
+      $view.classList.add('overflow')
+      console.log('#')
+      break
+    default:
+      $view.classList.remove('overflow')
+      console.log('item')
+  }
 })
