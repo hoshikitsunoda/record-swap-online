@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import ItemPanel from './ItemPanel'
+
 class App extends Component {
   state = {
     data: []
@@ -22,9 +24,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          {this.state.data.map(item => (
-            <div>{item.artist}</div>
-          ))}
+          <ItemPanel />
         </div>
       </div>
     )
