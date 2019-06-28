@@ -1,5 +1,6 @@
 const express = require('express')
-const url = 'mongodb://localhost/photos'
+const password = process.env.password
+const url = `mongodb+srv://hoshki:${password}@rsd-3tupd.mongodb.net/test?retryWrites=true&w=majority`
 const multer = require('multer')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -19,9 +20,9 @@ let dbs = mongoose.connection
 dbs.once('open', () => console.log('connected to DB!'))
 dbs.on('error', console.error.bind(console, 'DB connection error:'))
 
-// const twilio = require('twilio')
-// const accountSid = process.env.accountSid
-// const authToken = process.env.authToken
+const Twilio = require('twilio')
+const accountSid = process.env.accountSid
+const authToken = process.env.authToken
 
 const app = express()
 
@@ -91,39 +92,25 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       })
     })
 
-    // const client = new twilio(accountSid, authToken)
-    // const phoneNumber = process.env.phoneNumber
-    // const message = (name, artist, title, contact, message) => {
-    //   return (
-    //     'You have an inquiry from ' +
-    //     name +
-    //     ' for ' +
-    //     artist +
-    //     '/' +
-    //     title +
-    //     '.' +
-    //     '\n' +
-    //     'Buyer contact: ' +
-    //     contact +
-    //     '\n' +
-    //     'Message from the buyer: ' +
-    //     message
-    //   )
-    // }
+    const client = new Twilio(accountSid, authToken)
+    const phoneNumber = process.env.phoneNumber
+    const buyerMessage = (name, artist, title, contact, message) => {
+      return `You have an inquiry from ${name} for ${artist}/${title}. <br>Buyer contact: ${contact}. <br>Message from the buyer: ${message}`
+    }
 
-    // client.messages
-    //   .create({
-    //     body: message(
-    //       req.body.name,
-    //       req.body.artist,
-    //       req.body.title,
-    //       req.body.contact,
-    //       req.body.message
-    //     ),
-    //     to: '1' + req.body.phone,
-    //     from: phoneNumber
-    //   })
-    //   .then(message => console.log(message.sid))
+    client.messages
+      .create({
+        body: buyerMessage(
+          req.body.name,
+          req.body.artist,
+          req.body.title,
+          req.body.contact,
+          req.body.message
+        ),
+        to: '1' + req.body.phone,
+        from: phoneNumber
+      })
+      .then(message => console.log(message.sid))
   })
   app.get('/inventory', (req, res) => {
     Record.find((err, data) => {
@@ -162,8 +149,8 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
 
-// console.log(
-//   process.env.accountSid,
-//   process.env.authToken,
-//   process.env.phoneNumber
-// )
+console.log(
+  process.env.accountSid,
+  process.env.authToken,
+  process.env.phoneNumber
+)
