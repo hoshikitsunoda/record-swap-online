@@ -2,28 +2,30 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 class App extends Component {
-  componentDidMount() {
-    this.getDataFromDb()
+  state = {
+    data: []
   }
-  getDataFromDb = () => {
-    axios
+  componentDidMount() {
+    this.getData()
+  }
+  getData = () => {
+    const res = axios
       .get('http://localhost:3000/inventory')
-      .then(res => console.log(res.data))
-
-    // fetch('http://localhost:3000/inventory', {
-    //   crossDomain: true,
-    //   headers: {
-    //     'Content-Type': 'application/jason',
-    //     Accept: 'application/json'
-    //   }
-    // })
-    //   .then(data => data.json())
-    //   .then(res => console.log(res.data))
+      .then(response => {
+        console.log(response.data.data)
+        this.setState({ data: response.data.data })
+      })
+      .catch(err => console.error(err))
+    return res
   }
   render() {
     return (
       <div className="App">
-        <div>Test</div>
+        <div>
+          {this.state.data.map(item => (
+            <div>{item.artist}</div>
+          ))}
+        </div>
       </div>
     )
   }
