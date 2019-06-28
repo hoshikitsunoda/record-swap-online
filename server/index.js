@@ -153,8 +153,8 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
 
-console.log(
-  process.env.accountSid,
-  process.env.authToken,
-  process.env.phoneNumber
-)
+// console.log(
+//   process.env.accountSid,
+//   process.env.authToken,
+//   process.env.phoneNumber
+// )
