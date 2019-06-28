@@ -1,7 +1,8 @@
 const express = require('express')
 const url = 'mongodb://localhost/photos'
+// const password = process.env.password
 // const url =
-//   'mongodb+srv://hoshki:password01@rsd-3tupd.mongodb.net/test?retryWrites=true&w=majority'
+//   `mongodb+srv://hoshki:${password}@rsd-3tupd.mongodb.net/test?retryWrites=true&w=majority`
 const multer = require('multer')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -21,9 +22,9 @@ let dbs = mongoose.connection
 dbs.once('open', () => console.log('connected to DB!'))
 dbs.on('error', console.error.bind(console, 'DB connection error:'))
 
-const twilio = require('twilio')
-const accountSid = process.env.accountSid
-const authToken = process.env.authToken
+// const twilio = require('twilio')
+// const accountSid = process.env.accountSid
+// const authToken = process.env.authToken
 
 const app = express()
 
@@ -72,6 +73,17 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
         message: 'Post saved successfully!'
       })
     })
+
+    // const client = new twilio(accountSid, authToken)
+    // const phoneNumber = process.env.phoneNumber
+
+    // client.messages
+    //   .create({
+    //     body: `Thank you for submitting ${artist} / ${title}.`,
+    //     to: '1' + phone,
+    //     from: phoneNumber
+    //   })
+    //   .then(message => console.log(message.sid))
   })
   app.post('/message', (req, res) => {
     const { artist, title, phone, message, name, contact } = req.body
@@ -93,25 +105,16 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       })
     })
 
-    const client = new twilio(accountSid, authToken)
-    const phoneNumber = process.env.phoneNumber
-    const buyerMessage = (name, artist, title, contact, message) => {
-      return `You have an inquiry from ${name} for ${artist}/${title}. <br>Buyer contact: ${contact}. <br>Message from the buyer: ${message}`
-    }
+    // const client = new twilio(accountSid, authToken)
+    // const phoneNumber = process.env.phoneNumber
 
-    client.messages
-      .create({
-        body: buyerMessage(
-          req.body.name,
-          req.body.artist,
-          req.body.title,
-          req.body.contact,
-          req.body.message
-        ),
-        to: '1' + req.body.phone,
-        from: phoneNumber
-      })
-      .then(message => console.log(message.sid))
+    // client.messages
+    //   .create({
+    //     body: `You have an inquiry from ${name} for ${artist}/${title}. <br>Buyer contact: ${contact}. <br>Message from the buyer: ${message}`,
+    //     to: '1' + phone,
+    //     from: phoneNumber
+    //   })
+    //   .then(message => console.log(message.sid))
   })
   app.get('/inventory', (req, res) => {
     Record.find((err, data) => {
