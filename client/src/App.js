@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import ItemPanel from './ItemPanel'
+import ItemPanel from './components/ItemPanel'
 
 class App extends Component {
   state = {
