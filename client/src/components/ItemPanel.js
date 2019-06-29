@@ -3,7 +3,7 @@ import React from 'react'
 const ItemPanel = props => {
   const path = 'http://localhost:3000/'
   return (
-    <div>
+    <React.Fragment>
       {props.recordInfo.map((record, i) => (
         <div key={i}>
           <img src={path + record.filename} alt="" className="item_photo" />
@@ -19,7 +19,7 @@ const ItemPanel = props => {
           </div>
         </div>
       ))}
-    </div>
+    </React.Fragment>
   )
 }
 
