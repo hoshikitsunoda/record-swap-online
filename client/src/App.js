@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <ItemPanel />
+          <ItemPanel recordInfo={this.state.data} />
         </div>
       </div>
     )
