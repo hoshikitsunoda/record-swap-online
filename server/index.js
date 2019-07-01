@@ -32,6 +32,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../public/uploads')))
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  next()
+})
 
 mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   if (err) {
@@ -41,6 +49,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
 
   app.post('/inventory', upload.single('photo'), (req, res) => {
     const {
+      _id,
       artist,
       title,
       mediaCondition,
@@ -54,6 +63,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
 
     const { filename } = req.file
     const newPost = new Record({
+      _id,
       artist,
       title,
       mediaCondition,
@@ -153,8 +163,8 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   app.listen('3000', () => console.log('Listening on port 3000'))
 })
 
-console.log(
-  process.env.accountSid,
-  process.env.authToken,
-  process.env.phoneNumber
-)
+// console.log(
+//   process.env.accountSid,
+//   process.env.authToken,
+//   process.env.phoneNumber
+// )
