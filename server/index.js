@@ -49,6 +49,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
 
   app.post('/inventory', upload.single('photo'), (req, res) => {
     const {
+      _id,
       artist,
       title,
       mediaCondition,
@@ -62,6 +63,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
 
     const { filename } = req.file
     const newPost = new Record({
+      _id,
       artist,
       title,
       mediaCondition,
