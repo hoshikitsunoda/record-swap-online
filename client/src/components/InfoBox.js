@@ -6,7 +6,12 @@ const InfoBox = ({ info }) => {
   return (
     <Styled.InfoBox>
       <Styled.ImageContainer>
-        <img src={path + info.filename} alt="" className="itemPhoto" />
+        <img
+          src={path + info.filename}
+          data-id={info._id}
+          alt={info.title}
+          className="itemPhoto"
+        />
       </Styled.ImageContainer>
       <Styled.InfoContainer>
         <Styled.UnorderedList>

@@ -34,6 +34,10 @@ export const GlobalStyle = createGlobalStyle`
 export const App = styled.div`
   background: #000;
   padding: 1.5em;
+
+  @media (min-width: 767px) {
+    height: 100vh;
+  }
 `
 
 // InfoBox styling
@@ -111,5 +115,8 @@ export const ItemPanel = styled.div`
   @media (min-width: 767px) {
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
 `
