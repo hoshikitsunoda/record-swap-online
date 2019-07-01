@@ -23,9 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <ItemPanel recordInfo={this.state.data} />
-        </div>
+        <ItemPanel recordInfo={this.state.data} />
       </div>
     )
   }
