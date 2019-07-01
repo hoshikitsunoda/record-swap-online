@@ -92,10 +92,24 @@ export const InfoBox = styled.div`
   padding: 1em 1em 0.5em;
   margin-bottom: 0.5em;
   background: rgba(192, 192, 192, 0.6);
+
+  @media (min-width: 767px) {
+    width: calc(33.3% - 0.5em);
+    margin: 0 0.25em 0.5em;
+  }
 `
 
 // ItemPanel styling
 
 export const ItemPanel = styled.div`
   width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1em;
+  background: #313131;
+
+  @media (min-width: 767px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `
