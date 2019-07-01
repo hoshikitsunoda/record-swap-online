@@ -43,10 +43,32 @@ export const UnorderedList = styled.ul`
   margin: 0;
   padding: 0;
   color: #fdf9f9;
+
+  li {
+    letter-spacing: 0.1em;
+  }
+`
+
+export const DetailButtonContainer = styled.div`
+  button {
+    width: 100%;
+    background-color: #c0c0c0;
+    border: none;
+    padding: 0.3em 1em;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+
+    a {
+      color: #272727;
+      text-decoration: none;
+      font-size: 1em;
+    }
+  }
 `
 
 export const ImageContainer = styled.div`
-  padding: 1em;
   flex: 0 1 50%;
 
   img {
@@ -58,18 +80,22 @@ export const Image = styled.img`
   width: 100%;
 `
 export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   flex: 0 1 50%;
+  padding-left: 1em;
 `
 
 export const InfoBox = styled.div`
   display: flex;
   align-items: center;
   padding: 1em 1em 0.5em;
+  margin-bottom: 0.5em;
+  background: rgba(192, 192, 192, 0.6);
 `
 
 // ItemPanel styling
 
 export const ItemPanel = styled.div`
   width: 100%;
-  background: rgba(192, 192, 192, 0.6);
 `

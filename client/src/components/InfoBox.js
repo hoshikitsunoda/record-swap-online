@@ -17,6 +17,11 @@ const InfoBox = ({ info }) => {
           </li>
           <li>${info.price}USD</li>
         </Styled.UnorderedList>
+        <Styled.DetailButtonContainer>
+          <button>
+            <a href="JavaScript:;">View Detail</a>
+          </button>
+        </Styled.DetailButtonContainer>
       </Styled.InfoContainer>
     </Styled.InfoBox>
   )
