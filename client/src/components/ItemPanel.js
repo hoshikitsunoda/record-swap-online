@@ -1,13 +1,15 @@
 import React from 'react'
 import InfoBox from './InfoBox'
 
+import * as Styled from './styled'
+
 const ItemPanel = props => {
   return (
-    <React.Fragment>
+    <Styled.ItemPanel>
       {props.recordInfo.map((record, i) => (
         <InfoBox info={record} key={i} />
       ))}
-    </React.Fragment>
+    </Styled.ItemPanel>
   )
 }
 

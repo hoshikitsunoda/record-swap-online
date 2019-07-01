@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import ItemPanel from './components/ItemPanel'
 
+import * as Styled from './components/styled'
+
 class App extends Component {
   state = {
     data: []
@@ -22,9 +24,10 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <Styled.App className="App">
+        <Styled.GlobalStyle />
         <ItemPanel recordInfo={this.state.data} />
-      </div>
+      </Styled.App>
     )
   }
 }
