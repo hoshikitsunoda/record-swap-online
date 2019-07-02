@@ -19,8 +19,7 @@ class App extends Component {
     const res = axios
       .get('http://localhost:3000/inventory')
       .then(response => {
-        console.log(response.data.data)
-        this.setState({ data: response.data.data })
+        this.setState({ data: response.data.data.reverse() })
       })
       .catch(err => console.error(err))
     return res
