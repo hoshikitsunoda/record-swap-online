@@ -15,14 +15,11 @@ class App extends Component {
   componentDidMount() {
     this.getData()
   }
-  getData = () => {
-    const res = axios
-      .get('http://localhost:3000/inventory')
-      .then(response => {
-        this.setState({ data: response.data.data.reverse() })
-      })
-      .catch(err => console.error(err))
-    return res
+  getData = async err => {
+    if (err) return console.error(err)
+    const res = await axios.get('http://localhost:3000/inventory')
+    const { data } = await res
+    this.setState({ data: data.data.reverse() })
   }
   render() {
     return (
