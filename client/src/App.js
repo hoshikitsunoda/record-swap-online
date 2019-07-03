@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 import ItemPanel from './components/ItemPanel'
 
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from 'styled-components'
 import * as Styled from './components/styled'
+import InfoBox from './components/InfoBox'
 
 const theme = createMuiTheme()
 class App extends Component {
@@ -26,7 +28,13 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Styled.App className="App">
           <Styled.GlobalStyle />
-          <ItemPanel recordInfo={this.state.data} />
+          <Router>
+            <Route
+              path="/"
+              exact
+              render={() => <ItemPanel recordInfo={this.state.data} />}
+            />
+          </Router>
         </Styled.App>
       </ThemeProvider>
     )
