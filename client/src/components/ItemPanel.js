@@ -1,5 +1,6 @@
 import React from 'react'
 import InfoBox from './InfoBox'
+import Detail from './Detail'
 
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
@@ -12,7 +13,8 @@ const ItemPanel = props => {
   return (
     <Styled.ItemPanel className="itemPanel">
       <Router>
-        <Route path="/" render={() => ListView} />
+        <Route path="/" exact render={() => ListView} />
+        <Route path="/detail" render={() => Detail()} />
       </Router>
     </Styled.ItemPanel>
   )
