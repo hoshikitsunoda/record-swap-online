@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 import ItemPanel from './components/ItemPanel'
 

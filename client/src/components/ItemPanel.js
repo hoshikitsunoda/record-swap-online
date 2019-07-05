@@ -1,14 +1,19 @@
 import React from 'react'
 import InfoBox from './InfoBox'
 
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+
 import * as Styled from './styled'
 
 const ItemPanel = props => {
+  const ListView = props.recordInfo.map((record, i) => (
+    <InfoBox info={record} key={i} />
+  ))
   return (
-    <Styled.ItemPanel>
-      {props.recordInfo.map((record, i) => (
-        <InfoBox info={record} key={i} />
-      ))}
+    <Styled.ItemPanel className="itemPanel">
+      <Router>
+        <Route path="/" render={() => ListView} />
+      </Router>
     </Styled.ItemPanel>
   )
 }
