@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Detail = () => {
+const Detail = props => {
+  console.log(props)
   return (
     <div>
       <p>Detail Here</p>
