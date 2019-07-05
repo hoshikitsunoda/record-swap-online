@@ -7,7 +7,6 @@ import ItemPanel from './components/ItemPanel'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from 'styled-components'
 import * as Styled from './components/styled'
-import InfoBox from './components/InfoBox'
 
 const theme = createMuiTheme()
 class App extends Component {
@@ -28,13 +27,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Styled.App className="App">
           <Styled.GlobalStyle />
-          <Router>
-            <Route
-              path="/"
-              exact
-              render={() => <ItemPanel recordInfo={this.state.data} />}
-            />
-          </Router>
+          <ItemPanel recordInfo={this.state.data} />
         </Styled.App>
       </ThemeProvider>
     )
