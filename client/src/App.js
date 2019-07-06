@@ -12,12 +12,10 @@ class App extends Component {
   state = {
     data: []
   }
-  componentDidMount() {
-    this.getData()
-  }
-  getData = async err => {
+  getData = async (url, err) => {
     if (err) return console.error(err)
-    const res = await axios.get('http://localhost:3000/inventory')
+    // const res = await axios.get('http://localhost:3000/inventory/')
+    const res = await axios.get(url)
     const { data } = await res
     this.setState({ data: data.data.reverse() })
   }
@@ -26,7 +24,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Styled.App className="App">
           <Styled.GlobalStyle />
-          <ItemPanel recordInfo={this.state.data} />
+          <ItemPanel recordInfo={this.state.data} getData={this.getData} />
         </Styled.App>
       </ThemeProvider>
     )
