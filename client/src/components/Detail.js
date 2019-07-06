@@ -1,12 +1,13 @@
 import React from 'react'
 
+import { withRouter, BrowserRouter as Router } from 'react-router-dom'
+
 const Detail = props => {
-  console.log(props)
   return (
     <div>
-      <p>Detail Here</p>
+      <p>{props.recordInfo.artist}</p>
     </div>
   )
 }
 
-export default Detail
+export default withRouter(Detail)
