@@ -1,6 +1,8 @@
 import React from 'react'
 import * as Styled from './styled'
 
+import { withRouter } from 'react-router-dom'
+
 const InfoBox = props => {
   const { info } = props
   const path = 'http://localhost:3000/'
@@ -11,7 +13,7 @@ const InfoBox = props => {
           src={path + info.filename}
           data-id={info._id}
           alt={info.title}
-          className="itemPhoto"
+          className="itemPhoto image"
         />
       </Styled.ImageContainer>
       <Styled.InfoContainer>
@@ -24,8 +26,8 @@ const InfoBox = props => {
           <li>${info.price}USD</li>
         </Styled.UnorderedList>
         <Styled.DetailButtonContainer>
-          <button>
-            <a href="JavaScript:;">View Detail</a>
+          <button data-id={info._id} onClick={props.updateURLOnClick}>
+            View Detail
           </button>
         </Styled.DetailButtonContainer>
       </Styled.InfoContainer>
@@ -33,4 +35,4 @@ const InfoBox = props => {
   )
 }
 
-export default InfoBox
+export default withRouter(InfoBox)
