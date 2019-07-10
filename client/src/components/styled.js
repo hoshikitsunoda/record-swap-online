@@ -34,6 +34,7 @@ export const GlobalStyle = createGlobalStyle`
 export const App = styled.div`
   background: #000;
   padding: 1.5em;
+  min-height: 100vh;
 
   @media (min-width: 767px) {
     height: 100vh;
@@ -77,6 +78,7 @@ export const ImageContainer = styled.div`
 
   img {
     width: 100%;
+    cursor: pointer;
   }
 `
 
@@ -120,5 +122,37 @@ export const ItemPanel = styled.div`
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+  }
+`
+
+// Detail styling
+
+export const DetailBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+  width: 100%;
+
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
+`
+
+export const LeftBox = styled.div`
+  flex: 0 1 50%;
+  padding: 1em;
+
+  img {
+    width: 100%;
+  }
+`
+
+export const RightBox = styled.div`
+  flex: 0 1 50%;
+  padding: 1em;
+
+  p {
+    color: #fdf9f9;
   }
 `
