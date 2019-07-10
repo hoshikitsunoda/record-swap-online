@@ -31,11 +31,11 @@ class ItemPanel extends Component {
     this.props.getData(detailURL)
   }
   closeOnClick = () => {
-    const detailURL = `http://localhost:3000/inventory/`
+    const mainURL = `http://localhost:3000/inventory/`
     this.props.history.push({
       pathname: '/'
     })
-    this.props.getData(detailURL)
+    this.props.getData(mainURL)
   }
   render() {
     let ListView = {}
