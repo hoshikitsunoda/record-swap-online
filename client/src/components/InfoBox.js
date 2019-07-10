@@ -13,6 +13,7 @@ const InfoBox = props => {
           src={path + info.filename}
           data-id={info._id}
           alt={info.title}
+          onClick={props.updateURLOnClick}
           className="itemPhoto image"
         />
       </Styled.ImageContainer>
