@@ -10,6 +10,9 @@ const Detail = props => {
   return (
     <Styled.DetailBox className="detailBox" key={recordInfo._id}>
       <Styled.LeftBox className="left">
+        <img src={path + recordInfo.filename} alt="" />
+      </Styled.LeftBox>
+      <Styled.RightBox className="right">
         <p>{recordInfo.artist}</p>
         <p>{recordInfo.title}</p>
         <p>
@@ -19,9 +22,6 @@ const Detail = props => {
         <Styled.DetailButtonContainer>
           <button onClick={props.closeOnClick}>Close</button>
         </Styled.DetailButtonContainer>
-      </Styled.LeftBox>
-      <Styled.RightBox className="right">
-        <img src={path + recordInfo.filename} alt="" />
       </Styled.RightBox>
     </Styled.DetailBox>
   )
