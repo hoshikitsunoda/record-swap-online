@@ -1,13 +1,29 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
+import * as Styled from './styled'
+
 const Detail = props => {
   console.log(props)
+  const { recordInfo } = props
+  const path = 'http://localhost:3000/'
   return (
-    <div className="detailBox" key={props.recordInfo._id}>
-      <p>{props.recordInfo.artist}</p>
-      <button onClick={props.closeOnClick}>Close</button>
-    </div>
+    <Styled.DetailBox className="detailBox" key={recordInfo._id}>
+      <Styled.LeftBox className="left">
+        <p>{recordInfo.artist}</p>
+        <p>{recordInfo.title}</p>
+        <p>
+          {recordInfo.mediaCondition} / {recordInfo.coverCondition}
+        </p>
+        <p>${recordInfo.price}usd</p>
+        <Styled.DetailButtonContainer>
+          <button onClick={props.closeOnClick}>Close</button>
+        </Styled.DetailButtonContainer>
+      </Styled.LeftBox>
+      <Styled.RightBox className="right">
+        <img src={path + recordInfo.filename} alt="" />
+      </Styled.RightBox>
+    </Styled.DetailBox>
   )
 }
 
