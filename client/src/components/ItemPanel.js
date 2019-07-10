@@ -2,13 +2,7 @@ import React, { Component } from 'react'
 import InfoBox from './InfoBox'
 import Detail from './Detail'
 
-import {
-  Route,
-  Link,
-  Switch,
-  withRouter,
-  BrowserRouter as Router
-} from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 import * as Styled from './styled'
 
@@ -19,26 +13,51 @@ class ItemPanel extends Component {
       this.props.getData(this.state.url)
     })
   }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.location.pathname !== prevProps.location.pathname &&
+      this.props.location.pathname === '/'
+    ) {
+      this.props.getData(this.state.url)
+    }
+  }
   updateURLOnClick = event => {
-    console.log(this.props.history)
     const dataId = event.target.getAttribute('data-id')
-    this.setState({ dataId: dataId }, () => {
-      this.props.history.push({
-        pathname: 'item/',
-        search: `?_${this.state.dataId}`
-      })
+    const detailURL = `http://localhost:3000/inventory/${dataId}`
+    this.props.history.push({
+      pathname: 'item/',
+      search: `?_${dataId}`
     })
+    this.props.getData(detailURL)
+  }
+  closeOnClick = () => {
+    const detailURL = `http://localhost:3000/inventory/`
+    this.props.history.push({
+      pathname: '/'
+    })
+    this.props.getData(detailURL)
   }
   render() {
-    const ListView = this.props.recordInfo.map((record, i) => (
-      <InfoBox updateURLOnClick={this.updateURLOnClick} info={record} key={i} />
-    ))
-    const DetailView = <Detail {...this.props} />
+    let ListView = {}
+    if (Array.isArray(this.props.recordInfo)) {
+      ListView = this.props.recordInfo.map((record, i) => (
+        <InfoBox
+          updateURLOnClick={this.updateURLOnClick}
+          info={record}
+          key={i}
+        />
+      ))
+    } else {
+      ListView = null
+    }
+    const DetailView = (
+      <Detail closeOnClick={this.closeOnClick} {...this.props} />
+    )
     return (
       <Styled.ItemPanel className="itemPanel">
         <Switch>
           <Route path="/" exact render={() => ListView} />
-          <Route path="/item" render={() => DetailView} />
+          <Route path="/item" exact render={() => DetailView} />
         </Switch>
       </Styled.ItemPanel>
     )
