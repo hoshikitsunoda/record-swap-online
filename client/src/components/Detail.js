@@ -1,11 +1,12 @@
 import React from 'react'
-
-import { withRouter, BrowserRouter as Router } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 const Detail = props => {
+  console.log(props)
   return (
-    <div>
+    <div className="detailBox" key={props.recordInfo._id}>
       <p>{props.recordInfo.artist}</p>
+      <button onClick={props.closeOnClick}>Close</button>
     </div>
   )
 }
