@@ -14,14 +14,16 @@ class App extends Component {
   state = {
     data: []
   }
-  getData = async (url, err) => {
-    if (err) return console.error(err)
-    // const res = await axios.get('http://localhost:3000/inventory/')
-    const res = await axios.get(url)
-    const { data } = await res
-    this.setState({
-      data: data.data.length < 1 ? data.data.reverse() : data.data
-    })
+  getData = async url => {
+    try {
+      const res = await axios.get(url)
+      const { data } = await res
+      this.setState({
+        data: data.data.length > 1 ? data.data.reverse() : data.data
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
   render() {
     return (
