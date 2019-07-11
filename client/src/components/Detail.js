@@ -5,7 +5,6 @@ import * as Styled from './styled'
 
 const Detail = props => {
   const { recordInfo } = props
-  console.log(Array.isArray(recordInfo), recordInfo)
   const path = 'http://localhost:3000/'
   return (
     <Styled.DetailBox className="detailBox" key={recordInfo._id}>
