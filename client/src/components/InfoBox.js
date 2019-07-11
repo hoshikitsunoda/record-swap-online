@@ -1,16 +1,20 @@
 import React from 'react'
 import * as Styled from './styled'
 
-const InfoBox = ({ info }) => {
+import { withRouter } from 'react-router-dom'
+
+const InfoBox = props => {
+  const { info } = props
   const path = 'http://localhost:3000/'
   return (
-    <Styled.InfoBox>
+    <Styled.InfoBox className="infoBox">
       <Styled.ImageContainer>
         <img
           src={path + info.filename}
           data-id={info._id}
           alt={info.title}
-          className="itemPhoto"
+          onClick={props.updateURLOnClick}
+          className="itemPhoto image"
         />
       </Styled.ImageContainer>
       <Styled.InfoContainer>
@@ -23,8 +27,8 @@ const InfoBox = ({ info }) => {
           <li>${info.price}USD</li>
         </Styled.UnorderedList>
         <Styled.DetailButtonContainer>
-          <button>
-            <a href="JavaScript:;">View Detail</a>
+          <button data-id={info._id} onClick={props.updateURLOnClick}>
+            View Detail
           </button>
         </Styled.DetailButtonContainer>
       </Styled.InfoContainer>
@@ -32,4 +36,4 @@ const InfoBox = ({ info }) => {
   )
 }
 
-export default InfoBox
+export default withRouter(InfoBox)
