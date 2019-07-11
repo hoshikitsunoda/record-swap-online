@@ -151,8 +151,13 @@ export const LeftBox = styled.div`
 export const RightBox = styled.div`
   flex: 0 1 50%;
   padding: 1em;
+  width: 100%;
 
   p {
     color: #fdf9f9;
+  }
+
+  @media (min-width: 767px) {
+    width: auto;
   }
 `
