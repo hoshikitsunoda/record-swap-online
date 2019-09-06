@@ -18,6 +18,7 @@ const Detail = props => {
           {recordInfo.mediaCondition} / {recordInfo.coverCondition}
         </p>
         <p>${recordInfo.price}usd</p>
+        <p>{recordInfo.comment}</p>
         <Styled.DetailButtonContainer>
           <button onClick={props.closeOnClick}>Close</button>
         </Styled.DetailButtonContainer>
