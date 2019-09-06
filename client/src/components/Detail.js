@@ -19,6 +19,9 @@ const Detail = props => {
         </p>
         <p>${recordInfo.price}usd</p>
         <p>{recordInfo.comment}</p>
+        <Styled.AddToCartButton>
+          <button onClick={props.closeOnClick}>Add To Cart</button>
+        </Styled.AddToCartButton>
         <Styled.DetailButtonContainer>
           <button onClick={props.closeOnClick}>Close</button>
         </Styled.DetailButtonContainer>
