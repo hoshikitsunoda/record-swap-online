@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 const InfoBox = props => {
   const { info } = props
-  const path = 'http://localhost:3000/'
+  const path = 'http://localhost:5000/'
   return (
     <Styled.InfoBox className="infoBox">
       <Styled.ImageContainer>

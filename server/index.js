@@ -15,8 +15,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const path = require('path')
 const mongoose = require('mongoose')
+const cors = require('cors')
+
 const Record = require('./data')
 const Message = require('./message')
+const CartItem = require('./cartItem')
 
 let dbs = mongoose.connection
 dbs.once('open', () => console.log('connected to DB!'))
@@ -30,10 +33,16 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(cors())
 app.use(express.static(path.join(__dirname, '../public/uploads')))
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
+  res.header(
+    'Access-Control-Allow-Origin',
+    req.header('origin') ||
+      req.header('x-forwarded-host') ||
+      req.header('referer') ||
+      req.header('host')
+  )
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
@@ -83,17 +92,6 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
         message: 'Post saved successfully!'
       })
     })
-
-    // const client = new twilio(accountSid, authToken)
-    // const phoneNumber = process.env.phoneNumber
-
-    // client.messages
-    //   .create({
-    //     body: `Thank you for submitting ${artist} / ${title}.`,
-    //     to: '1' + phone,
-    //     from: phoneNumber
-    //   })
-    //   .then(message => console.log(message.sid))
   })
   app.post('/message', (req, res) => {
     const { artist, title, phone, message, name, contact } = req.body
@@ -125,6 +123,25 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
     //     from: phoneNumber
     //   })
     //   .then(message => console.log(message.sid))
+  })
+  app.post('/cart', (req, res) => {
+    const { artist, title, format, price, filename } = req.body
+
+    const shoppingCart = new CartItem({
+      artist,
+      title,
+      format,
+      price,
+      filename
+    })
+
+    shoppingCart.save(err => {
+      if (err) return res.json({ success: false, error: err })
+      return res.send({
+        success: true,
+        message: 'Item added to cart successfully!'
+      })
+    })
   })
   app.get('/inventory', (req, res) => {
     Record.find((err, data) => {
@@ -160,7 +177,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       return res.send({ success: true, message: 'Item Deleted Successfully!' })
     })
   })
-  app.listen('3000', () => console.log('Listening on port 3000'))
+  app.listen('5000', () => console.log('Listening on port 5000'))
 })
 
 // console.log(

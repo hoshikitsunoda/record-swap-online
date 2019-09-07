@@ -9,7 +9,7 @@ import * as Styled from './styled'
 class ItemPanel extends Component {
   state = { url: '', dataId: '' }
   componentDidMount() {
-    this.setState({ url: 'http://localhost:3000/inventory/' }, () => {
+    this.setState({ url: 'http://localhost:5000/inventory/' }, () => {
       this.props.getData(this.state.url)
     })
   }
@@ -23,15 +23,16 @@ class ItemPanel extends Component {
   }
   updateURLOnClick = event => {
     const dataId = event.target.getAttribute('data-id')
-    const detailURL = `http://localhost:3000/inventory/${dataId}`
+    const detailURL = `http://localhost:5000/inventory/${dataId}`
     this.props.history.push({
       pathname: 'item/',
       search: `?_${dataId}`
     })
+    console.log(detailURL)
     this.props.getData(detailURL)
   }
   closeOnClick = () => {
-    const mainURL = `http://localhost:3000/inventory/`
+    const mainURL = `http://localhost:5000/inventory/`
     this.props.history.push({
       pathname: '/'
     })
