@@ -2,11 +2,20 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import * as Styled from './styled'
+import axios from 'axios'
 
 class Detail extends Component {
+  addToCart = async data => {
+    try {
+      const res = await axios.post('http://localhost:3000/cart')
+      console.log(data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
   render() {
     const { recordInfo } = this.props
-    const path = 'http://localhost:3000/'
+    const path = 'http://localhost:5000/'
     return (
       <Styled.DetailBox className="detailBox" key={recordInfo._id}>
         <Styled.LeftBox className="left">
@@ -21,7 +30,7 @@ class Detail extends Component {
           <p>${recordInfo.price}usd</p>
           <p>{recordInfo.comment}</p>
           <Styled.AddToCartButton>
-            <button onClick={this.props.closeOnClick}>Add To Cart</button>
+            <button onClick={this.addToCart}>Add To Cart</button>
           </Styled.AddToCartButton>
           <Styled.DetailButtonContainer>
             <button onClick={this.props.closeOnClick}>Close</button>
