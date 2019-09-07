@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const path = require('path')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const Record = require('./data')
 const Message = require('./message')
@@ -32,10 +33,16 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(cors())
 app.use(express.static(path.join(__dirname, '../public/uploads')))
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
+  res.header(
+    'Access-Control-Allow-Origin',
+    req.header('origin') ||
+      req.header('x-forwarded-host') ||
+      req.header('referer') ||
+      req.header('host')
+  )
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
@@ -170,7 +177,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       return res.send({ success: true, message: 'Item Deleted Successfully!' })
     })
   })
-  app.listen('3000', () => console.log('Listening on port 3000'))
+  app.listen('5000', () => console.log('Listening on port 5000'))
 })
 
 // console.log(
