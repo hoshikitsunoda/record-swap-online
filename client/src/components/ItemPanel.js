@@ -28,7 +28,6 @@ class ItemPanel extends Component {
       pathname: 'item/',
       search: `?_${dataId}`
     })
-    console.log(detailURL)
     this.props.getData(detailURL)
   }
   closeOnClick = () => {
