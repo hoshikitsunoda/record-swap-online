@@ -24,14 +24,15 @@ class Detail extends Component {
   }
 
   addToCart = async () => {
+    const itemToBeAdded = this.props.recordInfo
     try {
       this.setState(
         {
-          artist: this.props.recordInfo.artist,
-          title: this.props.recordInfo.title,
-          format: this.props.recordInfo.format,
-          price: this.props.recordInfo.price,
-          filename: this.props.recordInfo.filename
+          artist: itemToBeAdded.artist,
+          title: itemToBeAdded.title,
+          format: itemToBeAdded.format,
+          price: itemToBeAdded.price,
+          filename: itemToBeAdded.filename
         },
         () => this.postItemToCartDB()
       )
