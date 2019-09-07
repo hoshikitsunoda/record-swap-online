@@ -15,8 +15,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const path = require('path')
 const mongoose = require('mongoose')
+
 const Record = require('./data')
 const Message = require('./message')
+const CartItem = require('./cartItem')
 
 let dbs = mongoose.connection
 dbs.once('open', () => console.log('connected to DB!'))
@@ -83,17 +85,6 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
         message: 'Post saved successfully!'
       })
     })
-
-    // const client = new twilio(accountSid, authToken)
-    // const phoneNumber = process.env.phoneNumber
-
-    // client.messages
-    //   .create({
-    //     body: `Thank you for submitting ${artist} / ${title}.`,
-    //     to: '1' + phone,
-    //     from: phoneNumber
-    //   })
-    //   .then(message => console.log(message.sid))
   })
   app.post('/message', (req, res) => {
     const { artist, title, phone, message, name, contact } = req.body
@@ -125,6 +116,25 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
     //     from: phoneNumber
     //   })
     //   .then(message => console.log(message.sid))
+  })
+  app.post('/cart', (req, res) => {
+    const { artist, title, format, price, filename } = req.body
+
+    const shoppingCart = new CartItem({
+      artist,
+      title,
+      format,
+      price,
+      filename
+    })
+
+    shoppingCart.save(err => {
+      if (err) return res.json({ success: false, error: err })
+      return res.send({
+        success: true,
+        message: 'Item added to cart successfully!'
+      })
+    })
   })
   app.get('/inventory', (req, res) => {
     Record.find((err, data) => {
