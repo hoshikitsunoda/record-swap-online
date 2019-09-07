@@ -5,10 +5,36 @@ import * as Styled from './styled'
 import axios from 'axios'
 
 class Detail extends Component {
-  addToCart = async data => {
+  state = {
+    artist: '',
+    title: '',
+    format: '',
+    price: '',
+    filename: ''
+  }
+
+  postItemToCartDB = async () => {
+    await axios.post('http://localhost:3000/cart', {
+      artist: this.state.artist,
+      title: this.state.title,
+      format: this.state.format,
+      price: this.state.price,
+      filename: this.state.filename
+    })
+  }
+
+  addToCart = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/cart')
-      console.log(data)
+      this.setState(
+        {
+          artist: this.props.recordInfo.artist,
+          title: this.props.recordInfo.title,
+          format: this.props.recordInfo.format,
+          price: this.props.recordInfo.price,
+          filename: this.props.recordInfo.filename
+        },
+        () => this.postItemToCartDB()
+      )
     } catch (err) {
       console.error(err)
     }
