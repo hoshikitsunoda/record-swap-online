@@ -1,24 +1,20 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import CartItem from './CartItem'
+
 class Cart extends Component {
   state = {
-    id: '',
-    artist: '',
-    title: '',
-    format: '',
-    price: '',
-    filename: ''
+    data: []
   }
 
   getData = async url => {
     try {
       const res = await axios.get('http://localhost:5000/cart/')
-      const { data } = await res
-      console.log(data)
-      // this.setState({
-      //   data: data.data.length > 1 ? data.data.reverse() : data.data
-      // })
+      const { data } = await res.data
+      this.setState({
+        data: data
+      })
     } catch (err) {
       console.error(err)
     }
@@ -29,7 +25,10 @@ class Cart extends Component {
   }
 
   render() {
-    return <div>Cart</div>
+    const cartItemList = this.state.data.map((item, i) => {
+      return <CartItem key={i} recordData={item} />
+    })
+    return <div>{cartItemList}</div>
   }
 }
 
