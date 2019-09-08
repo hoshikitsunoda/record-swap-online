@@ -157,6 +157,12 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       return res.json({ success: true, data: data })
     })
   })
+  app.get('/cart', (req, res) => {
+    CartItem.find((err, data) => {
+      if (err) return res.json({ success: false, error: err })
+      return res.json({ success: true, data: data })
+    })
+  })
   app.get('/message', (req, res) => {
     Message.find((err, data) => {
       if (err) return res.json({ success: false, error: err })

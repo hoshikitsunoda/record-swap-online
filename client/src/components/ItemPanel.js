@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InfoBox from './InfoBox'
 import Detail from './Detail'
+import Cart from './Cart'
 
 import { Route, Switch, withRouter } from 'react-router-dom'
 
@@ -28,15 +29,7 @@ class ItemPanel extends Component {
       pathname: 'item/',
       search: `?_${dataId}`
     })
-    console.log(detailURL)
     this.props.getData(detailURL)
-  }
-  closeOnClick = () => {
-    const mainURL = `http://localhost:5000/inventory/`
-    this.props.history.push({
-      pathname: '/'
-    })
-    this.props.getData(mainURL)
   }
   render() {
     let ListView = {}
@@ -59,6 +52,7 @@ class ItemPanel extends Component {
         <Switch>
           <Route path="/" exact render={() => ListView} />
           <Route path="/item" exact render={() => DetailView} />
+          <Route path="/cart" exact component={Cart} />
         </Switch>
       </Styled.ItemPanel>
     )
