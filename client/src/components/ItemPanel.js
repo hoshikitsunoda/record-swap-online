@@ -31,13 +31,6 @@ class ItemPanel extends Component {
     })
     this.props.getData(detailURL)
   }
-  closeOnClick = () => {
-    const mainURL = `http://localhost:5000/inventory/`
-    this.props.history.push({
-      pathname: '/'
-    })
-    this.props.getData(mainURL)
-  }
   render() {
     let ListView = {}
     if (Array.isArray(this.props.recordInfo)) {
