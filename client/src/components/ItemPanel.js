@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InfoBox from './InfoBox'
 import Detail from './Detail'
+import Cart from './Cart'
 
 import { Route, Switch, withRouter } from 'react-router-dom'
 
@@ -58,6 +59,7 @@ class ItemPanel extends Component {
         <Switch>
           <Route path="/" exact render={() => ListView} />
           <Route path="/item" exact render={() => DetailView} />
+          <Route path="/cart" exact component={Cart} />
         </Switch>
       </Styled.ItemPanel>
     )
