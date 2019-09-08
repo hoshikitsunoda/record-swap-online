@@ -13,6 +13,14 @@ class Detail extends Component {
     filename: ''
   }
 
+  goBack = () => {
+    this.props.history.goBack()
+  }
+
+  goForward = () => {
+    this.props.history.goForward()
+  }
+
   postItemToCartDB = async () => {
     await axios.post('http://localhost:3000/cart', {
       artist: this.state.artist,
@@ -60,7 +68,7 @@ class Detail extends Component {
             <button onClick={this.addToCart}>Add To Cart</button>
           </Styled.AddToCartButton>
           <Styled.DetailButtonContainer>
-            <button onClick={this.props.closeOnClick}>Close</button>
+            <button onClick={this.goBack}>Close</button>
           </Styled.DetailButtonContainer>
         </Styled.RightBox>
       </Styled.DetailBox>
