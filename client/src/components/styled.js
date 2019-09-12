@@ -33,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const App = styled.div`
   background: #000;
-  padding: 1.5em;
+  padding: 0;
   min-height: 100vh;
 
   @media (min-width: 767px) {
