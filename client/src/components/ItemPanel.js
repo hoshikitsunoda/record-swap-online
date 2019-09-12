@@ -6,7 +6,6 @@ import Cart from './Cart'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
 import styled from 'styled-components'
-import * as Styled from './styled'
 
 class ItemPanel extends Component {
   state = { url: '', dataId: '' }

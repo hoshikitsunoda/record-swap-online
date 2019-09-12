@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import * as Styled from './styled'
+import styled from 'styled-components'
 import axios from 'axios'
 
 class Detail extends Component {
@@ -52,11 +52,11 @@ class Detail extends Component {
     const { recordInfo } = this.props
     const path = 'http://localhost:5000/'
     return (
-      <Styled.DetailBox className="detailBox" key={recordInfo._id}>
-        <Styled.LeftBox className="left">
+      <DetailBox className="detailBox" key={recordInfo._id}>
+        <LeftBox className="left">
           <img src={path + recordInfo.filename} alt="" />
-        </Styled.LeftBox>
-        <Styled.RightBox className="right">
+        </LeftBox>
+        <RightBox className="right">
           <p>{recordInfo.artist}</p>
           <p>{recordInfo.title}</p>
           <p>
@@ -64,16 +64,98 @@ class Detail extends Component {
           </p>
           <p>${recordInfo.price}usd</p>
           <p>{recordInfo.comment}</p>
-          <Styled.AddToCartButton>
+          <AddToCartButton>
             <button onClick={this.addToCart}>Add To Cart</button>
-          </Styled.AddToCartButton>
-          <Styled.DetailButtonContainer>
+          </AddToCartButton>
+          <DetailButtonContainer>
             <button onClick={this.goBack}>Close</button>
-          </Styled.DetailButtonContainer>
-        </Styled.RightBox>
-      </Styled.DetailBox>
+          </DetailButtonContainer>
+        </RightBox>
+      </DetailBox>
     )
   }
 }
+
+const DetailBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+  width: 100%;
+
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
+`
+
+const LeftBox = styled.div`
+  flex: 0 1 50%;
+  padding: 1em;
+
+  img {
+    width: 100%;
+  }
+`
+
+const RightBox = styled.div`
+  flex: 0 1 50%;
+  padding: 1em;
+  width: 100%;
+
+  p {
+    color: #fdf9f9;
+  }
+
+  @media (min-width: 767px) {
+    width: auto;
+  }
+`
+
+const AddToCartButton = styled.div`
+  button {
+    width: 100%;
+    background-color: #ede1cc;
+    border: none;
+    padding: 0.3em 1em;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #dd9497;
+    }
+
+    a {
+      color: #272727;
+      text-decoration: none;
+      font-size: 1em;
+    }
+  }
+`
+
+const DetailButtonContainer = styled.div`
+  button {
+    width: 100%;
+    background-color: #c0c0c0;
+    border: none;
+    padding: 0.3em 1em;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #fff;
+    }
+    a {
+      color: #272727;
+      text-decoration: none;
+      font-size: 1em;
+    }
+  }
+`
 
 export default withRouter(Detail)
