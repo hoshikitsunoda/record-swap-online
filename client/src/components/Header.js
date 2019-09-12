@@ -26,12 +26,16 @@ const HeaderBg = styled.div`
 `
 
 const HeaderContainer = styled.div`
-  width: 60%;
+  width: 90%;
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 767px) {
+    width: 60%;
+  }
 `
 
 const UserCartWrapper = styled.div`
@@ -47,15 +51,25 @@ const UserWrapper = styled.div`
   align-items: center;
 
   img {
-    max-width: 3.5rem;
-    margin-right: 1rem;
+    max-width: 2.5rem;
+    margin-right: 0.5rem;
     border-radius: 50%;
+
+    @media (min-width: 767px) {
+      max-width: 3.5rem;
+      margin-left: 1rem;
+    }
   }
 `
 
 const CartIcon = styled(ShoppingCart)`
-  width: 1.7rem;
-  margin-left: 1rem;
+  width: 1.5rem;
+  margin-left: 0.5rem;
+
+  @media (min-width: 767px) {
+    width: 1.7rem;
+    margin-left: 1rem;
+  }
 `
 
 export default Header
