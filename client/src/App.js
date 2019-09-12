@@ -5,7 +5,7 @@ import ItemPanel from './components/ItemPanel'
 import Header from './components/Header'
 
 import { createMuiTheme } from '@material-ui/core/styles'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import * as Styled from './components/styled'
 
 import { BrowserRouter } from 'react-router-dom'
@@ -30,15 +30,25 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <Styled.App className="App">
+          <AppWrapper className="App">
             <Styled.GlobalStyle />
             <Header />
             <ItemPanel recordInfo={this.state.data} getData={this.getData} />
-          </Styled.App>
+          </AppWrapper>
         </ThemeProvider>
       </BrowserRouter>
     )
   }
 }
+
+const AppWrapper = styled.div`
+  background: #fffafa;
+  padding: 0;
+  min-height: 100vh;
+
+  @media (min-width: 767px) {
+    height: 100vh;
+  }
+`
 
 export default App

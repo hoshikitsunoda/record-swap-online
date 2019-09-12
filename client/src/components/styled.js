@@ -29,18 +29,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 `
 
-// App styling
-
-export const App = styled.div`
-  background: #000;
-  padding: 0;
-  min-height: 100vh;
-
-  @media (min-width: 767px) {
-    height: 100vh;
-  }
-`
-
 // InfoBox styling
 
 export const UnorderedList = styled.ul`
