@@ -2,6 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 import { ShoppingCart } from 'styled-icons/feather/ShoppingCart'
 
+const Header = props => {
+  return (
+    <HeaderBg>
+      <HeaderContainer className="container">
+        <div className="left"></div>
+        <UserCartWrapper className="right">
+          <UserWrapper className="user">
+            <img src="/uploads/avatar.jpeg" alt="" />
+            <div>User Name</div>
+          </UserWrapper>
+          <div className="cart">
+            <CartIcon />
+          </div>
+        </UserCartWrapper>
+      </HeaderContainer>
+    </HeaderBg>
+  )
+}
+
 const HeaderBg = styled.div`
   background-color: #fffafa;
 `
@@ -38,24 +57,5 @@ const CartIcon = styled(ShoppingCart)`
   width: 1.7rem;
   margin-left: 1rem;
 `
-
-const Header = props => {
-  return (
-    <HeaderBg>
-      <HeaderContainer className="container">
-        <div className="left"></div>
-        <UserCartWrapper className="right">
-          <UserWrapper className="user">
-            <img src="/uploads/avatar.jpeg" alt="" />
-            <div>User Name</div>
-          </UserWrapper>
-          <div className="cart">
-            <CartIcon />
-          </div>
-        </UserCartWrapper>
-      </HeaderContainer>
-    </HeaderBg>
-  )
-}
 
 export default Header
