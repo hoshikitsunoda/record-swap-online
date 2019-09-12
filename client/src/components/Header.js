@@ -23,6 +23,10 @@ const Header = props => {
 
 const HeaderBg = styled.div`
   background-color: #fffafa;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 3;
 `
 
 const HeaderContainer = styled.div`
