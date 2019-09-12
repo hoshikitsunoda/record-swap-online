@@ -10,7 +10,7 @@ const Header = props => {
         <UserCartWrapper className="right">
           <UserWrapper className="user">
             <img src="/uploads/avatar.jpeg" alt="" />
-            <div>User Name</div>
+            <div className="userName">User Name</div>
           </UserWrapper>
           <div className="cart">
             <CartIcon />
@@ -58,6 +58,14 @@ const UserWrapper = styled.div`
     @media (min-width: 767px) {
       max-width: 3.5rem;
       margin-left: 1rem;
+    }
+  }
+
+  .userName {
+    display: none;
+
+    @media (min-width: 767px) {
+      display: block;
     }
   }
 `
