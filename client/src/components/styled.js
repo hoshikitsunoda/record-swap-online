@@ -121,26 +121,6 @@ export const InfoBox = styled.div`
   }
 `
 
-// ItemPanel styling
-
-export const ItemPanel = styled.div`
-  width: 100%;
-  max-width: 1000px;
-  max-height: 90%;
-  margin: 0 auto;
-  padding: 1em;
-  background: #313131;
-  overflow-y: scroll;
-
-  @media (min-width: 767px) {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-`
-
 // Detail styling
 
 export const DetailBox = styled.div`

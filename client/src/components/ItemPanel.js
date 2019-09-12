@@ -5,6 +5,7 @@ import Cart from './Cart'
 
 import { Route, Switch, withRouter } from 'react-router-dom'
 
+import styled from 'styled-components'
 import * as Styled from './styled'
 
 class ItemPanel extends Component {
@@ -48,15 +49,33 @@ class ItemPanel extends Component {
       <Detail closeOnClick={this.closeOnClick} {...this.props} />
     )
     return (
-      <Styled.ItemPanel className="itemPanel">
+      <ItemPanelWrapper className="itemPanel">
         <Switch>
           <Route path="/" exact render={() => ListView} />
           <Route path="/item" exact render={() => DetailView} />
           <Route path="/cart" exact component={Cart} />
         </Switch>
-      </Styled.ItemPanel>
+      </ItemPanelWrapper>
     )
   }
 }
+
+const ItemPanelWrapper = styled.div`
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90%;
+  margin: 0 auto;
+  padding: 1em;
+  background: #fffafa;
+  overflow-y: scroll;
+
+  @media (min-width: 767px) {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+`
 
 export default withRouter(ItemPanel)
