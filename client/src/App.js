@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import ItemPanel from './components/ItemPanel'
+import Header from './components/Header'
 
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from 'styled-components'
@@ -31,6 +32,7 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <Styled.App className="App">
             <Styled.GlobalStyle />
+            <Header />
             <ItemPanel recordInfo={this.state.data} getData={this.getData} />
           </Styled.App>
         </ThemeProvider>
