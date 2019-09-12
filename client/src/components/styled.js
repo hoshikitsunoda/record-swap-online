@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import fontRegular from '../fonts/AvenirNextCondensed-Regular-08.ttf'
 import fontMedium from '../fonts/AvenirNextCondensed-Medium-06.ttf'
 import fontBold from '../fonts/AvenirNextCondensed-Bold-01.ttf'

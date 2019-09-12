@@ -1,7 +1,6 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import * as Styled from './styled'
 
 import { withRouter } from 'react-router-dom'
 
@@ -11,7 +10,7 @@ const InfoBox = props => {
   return (
     <InfoBoxWrapper className="infoBox">
       <ImageContainer>
-        <img
+        <Image
           src={path + info.filename}
           data-id={info._id}
           alt={info.title}
