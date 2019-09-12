@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import ItemPanel from './components/ItemPanel'
 import Header from './components/Header'
+import HeroSection from './components/HeroSection'
 
 import { createMuiTheme } from '@material-ui/core/styles'
 import styled, { ThemeProvider } from 'styled-components'
@@ -33,6 +34,7 @@ class App extends Component {
           <AppWrapper className="App">
             <Styled.GlobalStyle />
             <Header />
+            <HeroSection />
             <ItemPanel recordInfo={this.state.data} getData={this.getData} />
           </AppWrapper>
         </ThemeProvider>
