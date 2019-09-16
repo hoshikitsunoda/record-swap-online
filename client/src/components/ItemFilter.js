@@ -38,6 +38,7 @@ const FilterWrapper = styled.div`
   text-align: center;
 
   @media (min-width: 767px) {
+    width: 12%;
     background-color: #eaeaea;
     margin-right: 0.8rem;
   }

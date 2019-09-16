@@ -44,7 +44,7 @@ const InfoBox = props => {
 const UnorderedList = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 1rem 0 0 1rem;
+  padding: 1rem 0 1rem 1rem;
   color: #fdf9f9;
 
   li {
@@ -72,6 +72,11 @@ const InfoContainer = styled.div`
   flex-direction: column;
   flex: 0 1 50%;
   height: 100%;
+  width: 100%;
+
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
 `
 
 const InfoBoxWrapper = styled.div`
@@ -80,13 +85,15 @@ const InfoBoxWrapper = styled.div`
   background: rgba(192, 192, 192, 0.6);
 
   @media (min-width: 767px) {
-    width: calc(33.3% - 0.5rem);
-    margin: 0 0.25rem 0.5rem;
+    width: calc(25%);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 `
 
 const DetailButtonContainer = styled.div`
-  margin-top: auto;
+  margin: auto 0 0 0;
 
   button {
     width: 100%;
@@ -100,12 +107,17 @@ const DetailButtonContainer = styled.div`
 
     &:hover {
       background-color: #fff;
+      color: #323232;
     }
     a {
       color: #272727;
       text-decoration: none;
       font-size: 1rem;
     }
+  }
+
+  @media (min-width: 767px) {
+    margin: auto 0 0 auto;
   }
 `
 

@@ -83,9 +83,14 @@ const ItemPanelWrapper = styled.div`
 `
 
 const ItemsWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
+  @media (min-width: 767px) {
+    width: 88%;
+  }
 `
 
 export default withRouter(ItemPanel)
