@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import InfoBox from './InfoBox'
 import Detail from './Detail'
 import Cart from './Cart'
+import ItemFilter from './ItemFilter'
 
 import { Route, Switch, withRouter } from 'react-router-dom'
 
-import * as Styled from './styled'
+import styled from 'styled-components'
 
 class ItemPanel extends Component {
   state = { url: '', dataId: '' }
@@ -48,15 +49,51 @@ class ItemPanel extends Component {
       <Detail closeOnClick={this.closeOnClick} {...this.props} />
     )
     return (
-      <Styled.ItemPanel className="itemPanel">
-        <Switch>
-          <Route path="/" exact render={() => ListView} />
-          <Route path="/item" exact render={() => DetailView} />
-          <Route path="/cart" exact component={Cart} />
-        </Switch>
-      </Styled.ItemPanel>
+      <ItemPanelWrapper className="itemPanel">
+        <ItemFilter />
+        <ItemsWrapper>
+          <Switch>
+            <Route path="/" exact render={() => ListView} />
+            <Route path="/item" exact render={() => DetailView} />
+            <Route path="/cart" exact component={Cart} />
+          </Switch>
+        </ItemsWrapper>
+      </ItemPanelWrapper>
     )
   }
 }
+
+const ItemPanelWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90%;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  background: #fffafa;
+  margin-top: -1rem;
+
+  @media (min-width: 767px) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -2.5rem;
+  }
+`
+
+const ItemsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+
+  @media (min-width: 767px) {
+    width: 88%;
+  }
+`
 
 export default withRouter(ItemPanel)
