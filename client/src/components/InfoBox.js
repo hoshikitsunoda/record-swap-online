@@ -9,15 +9,13 @@ const InfoBox = props => {
   const path = 'http://localhost:5000/'
   return (
     <InfoBoxWrapper className="infoBox">
-      <ImageContainer>
-        <Image
-          src={path + info.filename}
-          data-id={info._id}
-          alt={info.title}
-          onClick={props.updateURLOnClick}
-          className="itemPhoto image"
-        />
-      </ImageContainer>
+      <ImageContainer
+        srcUrl={path + info.filename}
+        data-id={info._id}
+        alt={info.title}
+        onClick={props.updateURLOnClick}
+        className="itemPhoto image"
+      ></ImageContainer>
       <InfoContainer>
         <UnorderedList>
           <li>
@@ -55,16 +53,15 @@ const UnorderedList = styled.ul`
 
 const ImageContainer = styled.div`
   flex: 0 1 50%;
-
-  img {
-    width: 100%;
-    cursor: pointer;
-    background-color: #fff;
-  }
-`
-
-const Image = styled.img`
+  background: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(255, 255, 255, 0.73)), 
+  url('${props => props.srcUrl}') no-repeat center center;
+  background-size: cover;
   width: 100%;
+  padding-bottom: 50%;
+
+  @media (min-width: 767px) {
+    padding-bottom: 100%;
+  }
 `
 
 const InfoContainer = styled.div`
@@ -80,9 +77,10 @@ const InfoContainer = styled.div`
 `
 
 const InfoBoxWrapper = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
-  background: rgba(192, 192, 192, 0.6);
+  background: #fffafa;
 
   @media (min-width: 767px) {
     width: calc(25%);

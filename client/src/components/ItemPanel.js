@@ -64,13 +64,14 @@ class ItemPanel extends Component {
 }
 
 const ItemPanelWrapper = styled.div`
+  position: relative;
   width: 100%;
   max-width: 1000px;
   max-height: 90%;
   margin: 0 auto;
   padding: 1rem 1.5rem;
   background: #fffafa;
-  overflow-y: scroll;
+  margin-top: -1rem;
 
   @media (min-width: 767px) {
     display: flex;
@@ -79,6 +80,7 @@ const ItemPanelWrapper = styled.div`
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    margin-top: -2.5rem;
   }
 `
 
@@ -87,6 +89,7 @@ const ItemsWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  overflow-y: scroll;
 
   @media (min-width: 767px) {
     width: 88%;

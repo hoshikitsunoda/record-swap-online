@@ -7,6 +7,10 @@ import fontHeavy from '../fonts/AvenirNextCondensed-Heavy-09.ttf'
 // Global
 
 export const GlobalStyle = createGlobalStyle`
+  html {
+    background-color: #fffafa;
+  }
+  
   html * {
     font-family: fontRegular;
   }
