@@ -39,6 +39,7 @@ const FilterWrapper = styled.div`
 
   @media (min-width: 767px) {
     background-color: #eaeaea;
+    margin-right: 0.8rem;
   }
 `
 
@@ -47,11 +48,19 @@ const FilterIcon = styled(FilterAlt)`
   margin-right: 0.2rem;
   position: absolute;
   left: 1.8rem;
+
+  @media (min-width: 767px) {
+    display: none;
+  }
 `
 
 const FilterList = styled.ul`
   font-size: 1.2rem;
   margin: 0.5rem 0;
+
+  @media (min-width: 767px) {
+    font-size: 1rem;
+  }
 `
 
 const FilterItem = styled.li`
@@ -70,6 +79,8 @@ const FilterItem = styled.li`
     visibility: visible;
     opacity: 1;
     display: block;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
   }
 `
 

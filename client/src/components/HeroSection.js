@@ -44,6 +44,10 @@ const BlurredBg = styled.div`
   background-position: center center;
   filter: blur(8px);
   height: 13rem;
+
+  @media (min-width: 767px) {
+    height: 20rem;
+  }
 `
 
 const Container = styled.div`
@@ -88,6 +92,10 @@ const InfoWrapper = styled.div`
     .itemInfo {
       padding-left: 3rem;
     }
+
+    @media (min-width: 767px) {
+      display: none;
+    }
   }
 
   .right {
@@ -96,6 +104,11 @@ const InfoWrapper = styled.div`
     img {
       max-width: 150px;
       margin: 0 auto;
+    }
+
+    @media (min-width: 767px) {
+      text-align: center;
+      margin-top: 3rem;
     }
   }
 `
