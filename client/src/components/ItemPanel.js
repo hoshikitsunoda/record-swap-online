@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InfoBox from './InfoBox'
 import Detail from './Detail'
 import Cart from './Cart'
+import ItemFilter from './ItemFilter'
 
 import { Route, Switch, withRouter } from 'react-router-dom'
 
@@ -49,6 +50,7 @@ class ItemPanel extends Component {
     )
     return (
       <ItemPanelWrapper className="itemPanel">
+        <ItemFilter />
         <Switch>
           <Route path="/" exact render={() => ListView} />
           <Route path="/item" exact render={() => DetailView} />
