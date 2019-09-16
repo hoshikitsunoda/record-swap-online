@@ -51,11 +51,13 @@ class ItemPanel extends Component {
     return (
       <ItemPanelWrapper className="itemPanel">
         <ItemFilter />
-        <Switch>
-          <Route path="/" exact render={() => ListView} />
-          <Route path="/item" exact render={() => DetailView} />
-          <Route path="/cart" exact component={Cart} />
-        </Switch>
+        <ItemsWrapper>
+          <Switch>
+            <Route path="/" exact render={() => ListView} />
+            <Route path="/item" exact render={() => DetailView} />
+            <Route path="/cart" exact component={Cart} />
+          </Switch>
+        </ItemsWrapper>
       </ItemPanelWrapper>
     )
   }
@@ -73,10 +75,17 @@ const ItemPanelWrapper = styled.div`
   @media (min-width: 767px) {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
   }
+`
+
+const ItemsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `
 
 export default withRouter(ItemPanel)

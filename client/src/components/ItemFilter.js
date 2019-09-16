@@ -15,7 +15,7 @@ class ItemFilter extends Component {
           <FilterList>
             {this.state.filterText}
             <FilterItem>All Items</FilterItem>
-            <FilterItem>New Arrival</FilterItem>
+            <FilterItem className="active">New Arrival</FilterItem>
             <FilterItem>Jazz</FilterItem>
             <FilterItem>Funk / Soul</FilterItem>
             <FilterItem>Hip Hop</FilterItem>
@@ -33,9 +33,13 @@ const FilterWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: #323232;
+  background-color: #323232;
   color: #fffafa;
   text-align: center;
+
+  @media (min-width: 767px) {
+    background-color: #eaeaea;
+  }
 `
 
 const FilterIcon = styled(FilterAlt)`
@@ -54,8 +58,19 @@ const FilterItem = styled.li`
   visibility: hidden;
   opacity: 0;
   transition: all 0.5s ease;
-  margin-top: 1rem;
+  padding: 0.5rem 0;
   display: none;
+  background-color: #eaeaea;
+
+  &.active {
+    background-color: #323232;
+  }
+
+  @media (min-width: 767px) {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
 `
 
 export default ItemFilter
