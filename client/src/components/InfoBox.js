@@ -20,8 +20,12 @@ const InfoBox = props => {
       </ImageContainer>
       <InfoContainer>
         <UnorderedList>
-          <li>{info.title}</li>
-          <li>{info.artist}</li>
+          <li>
+            <h3>{info.title}</h3>
+          </li>
+          <li>
+            <p>{info.artist}</p>
+          </li>
           <li>
             {info.mediaCondition}/{info.coverCondition}
           </li>
@@ -40,11 +44,12 @@ const InfoBox = props => {
 const UnorderedList = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 1rem 0 0 1rem;
   color: #fdf9f9;
 
   li {
     letter-spacing: 0.1em;
+    color: #4d4d4d;
   }
 `
 
@@ -54,6 +59,7 @@ const ImageContainer = styled.div`
   img {
     width: 100%;
     cursor: pointer;
+    background-color: #fff;
   }
 `
 
@@ -65,33 +71,32 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0 1 50%;
-  padding-left: 1em;
+  height: 100%;
 `
 
 const InfoBoxWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 1em 1em 0.5em;
-  margin-bottom: 0.5em;
   background: rgba(192, 192, 192, 0.6);
 
   @media (min-width: 767px) {
-    width: calc(33.3% - 0.5em);
-    margin: 0 0.25em 0.5em;
+    width: calc(33.3% - 0.5rem);
+    margin: 0 0.25rem 0.5rem;
   }
 `
 
 const DetailButtonContainer = styled.div`
+  margin-top: auto;
+
   button {
     width: 100%;
-    background-color: #c0c0c0;
+    background-color: #323232;
     border: none;
-    padding: 0.3em 1em;
+    padding: 0.3rem 1rem;
     cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
     transition: 0.3s;
+    text-align: center;
+    color: #fffafa;
 
     &:hover {
       background-color: #fff;
@@ -99,7 +104,7 @@ const DetailButtonContainer = styled.div`
     a {
       color: #272727;
       text-decoration: none;
-      font-size: 1em;
+      font-size: 1rem;
     }
   }
 `

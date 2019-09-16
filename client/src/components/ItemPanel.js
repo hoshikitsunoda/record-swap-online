@@ -68,7 +68,7 @@ const ItemPanelWrapper = styled.div`
   max-width: 1000px;
   max-height: 90%;
   margin: 0 auto;
-  padding: 1em;
+  padding: 1rem 1.5rem;
   background: #fffafa;
   overflow-y: scroll;
 
