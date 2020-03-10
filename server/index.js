@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 const express = require('express')
 const url = 'mongodb://localhost/rso'
 // const password = process.env.password
@@ -5,10 +6,10 @@ const url = 'mongodb://localhost/rso'
 //   `mongodb+srv://hoshki:${password}@rsd-3tupd.mongodb.net/test?retryWrites=true&w=majority`
 const multer = require('multer')
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: function(req, file, cb) {
     cb(null, '../client/public/uploads')
   },
-  filename: function (req, file, cb) {
+  filename: function(req, file, cb) {
     cb(null, file.originalname.slice(0, -4) + '-' + Date.now() + '.jpg')
   }
 })

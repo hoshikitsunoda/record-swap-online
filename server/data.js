@@ -13,7 +13,6 @@ const DataSchema = new Schema(
     label: String,
     price: Number,
     filename: String,
-    phone: String,
     comment: String
   },
   {
