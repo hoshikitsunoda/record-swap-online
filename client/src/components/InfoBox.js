@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 const InfoBox = props => {
   const { info } = props
+  console.log(props)
   const path = 'http://localhost:5000/'
   return (
     <InfoBoxWrapper className="infoBox">

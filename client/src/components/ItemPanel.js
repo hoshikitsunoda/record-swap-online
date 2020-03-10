@@ -3,6 +3,8 @@ import InfoBox from './InfoBox'
 import Detail from './Detail'
 import Cart from './Cart'
 import ItemFilter from './ItemFilter'
+import Header from './Header'
+import HeroSection from './HeroSection'
 
 import { Route, Switch, withRouter } from 'react-router-dom'
 
@@ -49,16 +51,20 @@ class ItemPanel extends Component {
       <Detail closeOnClick={this.closeOnClick} {...this.props} />
     )
     return (
-      <ItemPanelWrapper className="itemPanel">
-        <ItemFilter />
-        <ItemsWrapper>
-          <Switch>
-            <Route path="/" exact render={() => ListView} />
-            <Route path="/item" exact render={() => DetailView} />
-            <Route path="/cart" exact component={Cart} />
-          </Switch>
-        </ItemsWrapper>
-      </ItemPanelWrapper>
+      <React.Fragment>
+        <Header />
+        <HeroSection />
+        <ItemPanelWrapper className="itemPanel">
+          <ItemFilter />
+          <ItemsWrapper>
+            <Switch>
+              <Route path="/" exact render={() => ListView} />
+              <Route path="/item" exact render={() => DetailView} />
+              <Route path="/cart" exact component={Cart} />
+            </Switch>
+          </ItemsWrapper>
+        </ItemPanelWrapper>
+      </React.Fragment>
     )
   }
 }
@@ -80,7 +86,7 @@ const ItemPanelWrapper = styled.div`
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    margin-top: -2.5rem;
+    margin-top: -10.5rem;
   }
 `
 
