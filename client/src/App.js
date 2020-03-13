@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import Header from './components/Header'
 import IndexPage from './components/IndexPage'
 import PostPage from './components/PostPage'
 
@@ -32,6 +33,7 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <AppWrapper className="App">
             <Styled.GlobalStyle />
+            <Header />
             <Switch>
               <Route path="/post" component={() => <PostPage />} />
               <Route
