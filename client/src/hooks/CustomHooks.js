@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 const usePostForm = callback => {
   const [inputs, setInputs] = useState({})
 
-  const handleSubmit = event => {
+  const handleSubmitForm = event => {
     if (event) {
       event.preventDefault()
     }
@@ -20,7 +20,7 @@ const usePostForm = callback => {
   }
 
   return {
-    handleSubmit,
+    handleSubmitForm,
     handleInputChange,
     inputs
   }
