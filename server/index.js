@@ -156,7 +156,7 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
   app.get('/inventory/:id', (req, res) => {
     const itemId = { _id: req.params.id }
     Record.findOne(itemId, (err, data) => {
-      console.log(data)
+      // console.log(data)
       if (err) return res.json({ success: false, error: err })
       return res.json({ success: true, data: data })
     })
