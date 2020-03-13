@@ -69,11 +69,12 @@ mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
       format,
       label,
       price,
+      filename,
       phone,
       comment
     } = req.body
 
-    const { filename } = req.file
+    // const { filename } = req.file
     const newPost = new Record({
       _id,
       artist,

@@ -12,7 +12,7 @@ const DataSchema = new Schema(
     format: String,
     label: String,
     price: Number,
-    filename: String,
+    filename: { data: Buffer, contentType: String },
     comment: String
   },
   {
