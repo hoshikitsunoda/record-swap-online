@@ -14,7 +14,6 @@
     "dev": "concurrently \"npm run watch\" \"npm run client\""
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
     "eslint-config-dev": "^2.0.0",
     "eslint-config-standard": "10.2.1",
