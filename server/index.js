@@ -53,142 +53,152 @@ app.use((req, res, next) => {
   next()
 })
 
-mongoose.connect(url, { useNewUrlParser: true }, (err, db) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
+mongoose.connect(
+  url,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err, db) => {
+    if (err) {
+      console.error(err)
+      process.exit(1)
+    }
+
+    app.post('/inventory', upload.single('photo'), (req, res) => {
+      const {
+        _id,
+        artist,
+        title,
+        mediaCondition,
+        coverCondition,
+        format,
+        label,
+        price,
+        filename,
+        phone,
+        comment
+      } = req.body
+
+      // const { filename } = req.file
+      const newPost = new Record({
+        _id,
+        artist,
+        title,
+        mediaCondition,
+        coverCondition,
+        format,
+        label,
+        price,
+        filename,
+        phone,
+        comment
+      })
+
+      newPost.save(err => {
+        if (err) return res.json({ success: false, error: err })
+        return res.send({
+          success: true,
+          message: 'Post saved successfully!'
+        })
+      })
+    })
+    app.post('/message', (req, res) => {
+      const { artist, title, phone, message, name, contact } = req.body
+
+      const newMessage = new Message({
+        artist,
+        title,
+        phone,
+        message,
+        name,
+        contact
+      })
+
+      newMessage.save(err => {
+        if (err) return res.json({ success: false, error: err })
+        return res.send({
+          success: true,
+          message: 'Message saved successfully!'
+        })
+      })
+
+      // const client = new twilio(accountSid, authToken)
+      // const phoneNumber = process.env.phoneNumber
+
+      // client.messages
+      //   .create({
+      //     body: `You have an inquiry from ${name} for ${artist}/${title}. <br>Buyer contact: ${contact}. <br>Message from the buyer: ${message}`,
+      //     to: '1' + phone,
+      //     from: phoneNumber
+      //   })
+      //   .then(message => console.log(message.sid))
+    })
+    app.post('/cart', (req, res) => {
+      const { artist, title, format, price, filename } = req.body
+
+      const shoppingCart = new CartItem({
+        artist,
+        title,
+        format,
+        price,
+        filename
+      })
+
+      shoppingCart.save(err => {
+        if (err) return res.json({ success: false, error: err })
+        return res.send({
+          success: true,
+          message: 'Item added to cart successfully!'
+        })
+      })
+    })
+    app.get('/inventory', (req, res) => {
+      Record.find((err, data) => {
+        if (err) return res.json({ success: false, error: err })
+        return res.json({ success: true, data: data })
+      })
+    })
+    app.get('/inventory/:id', (req, res) => {
+      const itemId = { _id: req.params.id }
+      Record.findOne(itemId, (err, data) => {
+        // console.log(data)
+        if (err) return res.json({ success: false, error: err })
+        return res.json({ success: true, data: data })
+      })
+    })
+    app.get('/cart', (req, res) => {
+      CartItem.find((err, data) => {
+        if (err) return res.json({ success: false, error: err })
+        return res.json({ success: true, data: data })
+      })
+    })
+    app.get('/message', (req, res) => {
+      Message.find((err, data) => {
+        if (err) return res.json({ success: false, error: err })
+        return res.json({ success: true, data: data })
+      })
+    })
+    app.delete('/inventory/:id', (req, res) => {
+      const itemId = { _id: req.params.id }
+      Record.deleteOne(itemId, err => {
+        if (err) return res.send({ success: false, error: err })
+        return res.send({
+          success: true,
+          message: 'Item Deleted Successfully!'
+        })
+      })
+    })
+    app.delete('/message/:id', (req, res) => {
+      const itemId = { _id: req.params.id }
+      Message.deleteOne(itemId, err => {
+        if (err) return res.send({ success: false, error: err })
+        return res.send({
+          success: true,
+          message: 'Item Deleted Successfully!'
+        })
+      })
+    })
+    app.listen('5000', () => console.log('Listening on port 5000'))
   }
-
-  app.post('/inventory', upload.single('photo'), (req, res) => {
-    const {
-      _id,
-      artist,
-      title,
-      mediaCondition,
-      coverCondition,
-      format,
-      label,
-      price,
-      filename,
-      phone,
-      comment
-    } = req.body
-
-    // const { filename } = req.file
-    const newPost = new Record({
-      _id,
-      artist,
-      title,
-      mediaCondition,
-      coverCondition,
-      format,
-      label,
-      price,
-      filename,
-      phone,
-      comment
-    })
-
-    newPost.save(err => {
-      if (err) return res.json({ success: false, error: err })
-      return res.send({
-        success: true,
-        message: 'Post saved successfully!'
-      })
-    })
-  })
-  app.post('/message', (req, res) => {
-    const { artist, title, phone, message, name, contact } = req.body
-
-    const newMessage = new Message({
-      artist,
-      title,
-      phone,
-      message,
-      name,
-      contact
-    })
-
-    newMessage.save(err => {
-      if (err) return res.json({ success: false, error: err })
-      return res.send({
-        success: true,
-        message: 'Message saved successfully!'
-      })
-    })
-
-    // const client = new twilio(accountSid, authToken)
-    // const phoneNumber = process.env.phoneNumber
-
-    // client.messages
-    //   .create({
-    //     body: `You have an inquiry from ${name} for ${artist}/${title}. <br>Buyer contact: ${contact}. <br>Message from the buyer: ${message}`,
-    //     to: '1' + phone,
-    //     from: phoneNumber
-    //   })
-    //   .then(message => console.log(message.sid))
-  })
-  app.post('/cart', (req, res) => {
-    const { artist, title, format, price, filename } = req.body
-
-    const shoppingCart = new CartItem({
-      artist,
-      title,
-      format,
-      price,
-      filename
-    })
-
-    shoppingCart.save(err => {
-      if (err) return res.json({ success: false, error: err })
-      return res.send({
-        success: true,
-        message: 'Item added to cart successfully!'
-      })
-    })
-  })
-  app.get('/inventory', (req, res) => {
-    Record.find((err, data) => {
-      if (err) return res.json({ success: false, error: err })
-      return res.json({ success: true, data: data })
-    })
-  })
-  app.get('/inventory/:id', (req, res) => {
-    const itemId = { _id: req.params.id }
-    Record.findOne(itemId, (err, data) => {
-      // console.log(data)
-      if (err) return res.json({ success: false, error: err })
-      return res.json({ success: true, data: data })
-    })
-  })
-  app.get('/cart', (req, res) => {
-    CartItem.find((err, data) => {
-      if (err) return res.json({ success: false, error: err })
-      return res.json({ success: true, data: data })
-    })
-  })
-  app.get('/message', (req, res) => {
-    Message.find((err, data) => {
-      if (err) return res.json({ success: false, error: err })
-      return res.json({ success: true, data: data })
-    })
-  })
-  app.delete('/inventory/:id', (req, res) => {
-    const itemId = { _id: req.params.id }
-    Record.deleteOne(itemId, err => {
-      if (err) return res.send({ success: false, error: err })
-      return res.send({ success: true, message: 'Item Deleted Successfully!' })
-    })
-  })
-  app.delete('/message/:id', (req, res) => {
-    const itemId = { _id: req.params.id }
-    Message.deleteOne(itemId, err => {
-      if (err) return res.send({ success: false, error: err })
-      return res.send({ success: true, message: 'Item Deleted Successfully!' })
-    })
-  })
-  app.listen('5000', () => console.log('Listening on port 5000'))
-})
+)
 
 // console.log(
 //   process.env.accountSid,
