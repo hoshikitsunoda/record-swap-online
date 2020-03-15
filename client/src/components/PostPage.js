@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from './Header'
+import PostForm from './PostForm'
 
 const PostPage = () => {
   return (
     <React.Fragment>
-      <Header />
+      <PostForm />
     </React.Fragment>
   )
 }
