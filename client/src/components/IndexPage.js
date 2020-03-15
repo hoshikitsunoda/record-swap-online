@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import InfoBox from './InfoBox'
-import Detail from './Detail'
-import Cart from './Cart'
+// import Detail from './Detail'
+// import Cart from './Cart'
 import ItemFilter from './ItemFilter'
-import Header from './Header'
 import HeroSection from './HeroSection'
 
-import { Route, Switch, withRouter } from 'react-router-dom'
+// import { Route, Switch, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -35,33 +35,36 @@ class IndexPage extends Component {
     this.props.getData(detailURL)
   }
   render() {
-    let ListView = {}
-    if (Array.isArray(this.props.recordInfo)) {
-      ListView = this.props.recordInfo.map((record, i) => (
-        <InfoBox
-          updateURLOnClick={this.updateURLOnClick}
-          info={record}
-          key={i}
-        />
-      ))
-    } else {
-      ListView = null
-    }
-    const DetailView = (
-      <Detail closeOnClick={this.closeOnClick} {...this.props} />
-    )
+    // let ListView = {}
+    // if (Array.isArray(this.props.recordInfo)) {
+    //   ListView = this.props.recordInfo.map((record, i) => (
+    //     <InfoBox
+    //       updateURLOnClick={this.updateURLOnClick}
+    //       info={record}
+    //       key={i}
+    //     />
+    //   ))
+    // } else {
+    //   ListView = null
+    // }
     return (
       <React.Fragment>
-        <Header />
         <HeroSection />
         <ItemPanelWrapper className="itemPanel">
           <ItemFilter />
           <ItemsWrapper>
-            <Switch>
+            {this.props.recordInfo.map((record, i) => (
+              <InfoBox
+                updateURLOnClick={this.updateURLOnClick}
+                info={record}
+                key={i}
+              />
+            ))}
+            {/* <Switch>
               <Route path="/" exact render={() => ListView} />
               <Route path="/item" exact render={() => DetailView} />
               <Route path="/cart" exact component={Cart} />
-            </Switch>
+            </Switch> */}
           </ItemsWrapper>
         </ItemPanelWrapper>
       </React.Fragment>
