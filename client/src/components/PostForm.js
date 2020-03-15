@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form/dist/react-hook-form.ie11'
 import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
@@ -52,6 +52,21 @@ function PostForm() {
       })
   }
 
+  const [mediaCondition, setMediaCondition] = useState('')
+  const handleMediaConditionChange = event => {
+    setMediaCondition(event.target.value)
+  }
+
+  const [coverCondition, setCoverCondition] = useState('')
+  const handleCoverConditionChange = event => {
+    setCoverCondition(event.target.value)
+  }
+
+  const [mediaFormat, setFormat] = useState('')
+  const handleFormatChange = event => {
+    setFormat(event.target.value)
+  }
+
   return (
     <Wrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -63,7 +78,7 @@ function PostForm() {
                 id="artist"
                 name="artist"
                 placeholder="Artist"
-                ref={register}
+                inputRef={register}
                 fullWidth={true}
               />
             </Grid>
@@ -73,7 +88,7 @@ function PostForm() {
                 id="title"
                 name="title"
                 placeholder="Title"
-                ref={register}
+                inputRef={register}
                 fullWidth={true}
               />
             </Grid>
@@ -89,10 +104,15 @@ function PostForm() {
                   <Select
                     key={i}
                     name={condition}
-                    value={item}
+                    value={item === 'media' ? mediaCondition : coverCondition}
                     id={`${item.toLowerCase()}-condition`}
-                    ref={register}
+                    inputRef={register}
                     fullWidth={true}
+                    onChange={
+                      item === 'media'
+                        ? handleMediaConditionChange
+                        : handleCoverConditionChange
+                    }
                   >
                     {conditions.map((value, i) => (
                       <MenuItem key={i} value={value}>
@@ -107,11 +127,12 @@ function PostForm() {
               <InputLabel id="format-label">Format</InputLabel>
               <Select
                 name="format"
-                value={format}
+                value={mediaFormat}
                 id="format"
                 className="format"
-                ref={register}
+                inputRef={register}
                 fullWidth={true}
+                onChange={handleFormatChange}
               >
                 {format.map((item, i) => (
                   <MenuItem value={item} key={i}>
@@ -128,7 +149,7 @@ function PostForm() {
                 id="label"
                 name="label"
                 placeholder="Label"
-                ref={register}
+                inputRef={register}
                 fullWidth={true}
               />
             </Grid>
@@ -138,7 +159,7 @@ function PostForm() {
                 id="price"
                 name="price"
                 placeholder="Price"
-                ref={register}
+                inputRef={register}
                 fullWidth={true}
               />
             </Grid>
