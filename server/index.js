@@ -60,7 +60,7 @@ mongoose.connect(
       process.exit(1)
     }
 
-    app.post('/inventory', upload.array('coverImage', 1), (req, res) => {
+    app.post('/inventory', upload.array('coverImage', 3), (req, res) => {
       const {
         _id,
         artist,
@@ -70,12 +70,12 @@ mongoose.connect(
         format,
         label,
         price,
-        // coverImage,
         phone,
         comment
       } = req.body
-      console.log(req.file)
+
       const coverImage = req.files[0].filename
+
       const newPost = new Record({
         _id,
         artist,
@@ -89,8 +89,6 @@ mongoose.connect(
         phone,
         comment
       })
-
-      console.log(newPost)
 
       newPost.save(err => {
         if (err) return res.json({ success: false, error: err })
