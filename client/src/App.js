@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import ItemPanel from './components/ItemPanel'
 import Header from './components/Header'
-import HeroSection from './components/HeroSection'
+import IndexPage from './components/IndexPage'
+import PostPage from './components/PostPage'
 
 import { createMuiTheme } from '@material-ui/core/styles'
 import styled, { ThemeProvider } from 'styled-components'
 import * as Styled from './components/styled'
 
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const theme = createMuiTheme()
 class App extends Component {
@@ -34,8 +34,18 @@ class App extends Component {
           <AppWrapper className="App">
             <Styled.GlobalStyle />
             <Header />
-            <HeroSection />
-            <ItemPanel recordInfo={this.state.data} getData={this.getData} />
+            <Switch>
+              <Route path="/post" component={() => <PostPage />} />
+              <Route
+                path="/"
+                component={() => (
+                  <IndexPage
+                    recordInfo={this.state.data}
+                    getData={this.getData}
+                  />
+                )}
+              />
+            </Switch>
           </AppWrapper>
         </ThemeProvider>
       </BrowserRouter>

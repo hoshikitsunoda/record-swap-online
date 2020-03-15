@@ -22,7 +22,7 @@ class HeroSection extends Component {
               </div>
             </div>
             <div className="right">
-              <img src="/uploads/affinity-1562024947469.jpg" alt="" />
+              <img src="/uploads/affinity.jpg" alt="" />
             </div>
           </InfoWrapper>
         </Container>
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
 
 const BlurredBg = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    url('/uploads/affinity-1562024947469.jpg');
+    url('/uploads/affinity.jpg');
   background-size: cover;
   background-position: center center;
   filter: blur(8px);

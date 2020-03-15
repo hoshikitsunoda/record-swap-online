@@ -12,8 +12,7 @@ const DataSchema = new Schema(
     format: String,
     label: String,
     price: Number,
-    filename: String,
-    phone: String,
+    coverImage: String,
     comment: String
   },
   {

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import InfoBox from './InfoBox'
-import Detail from './Detail'
-import Cart from './Cart'
+// import Detail from './Detail'
+// import Cart from './Cart'
 import ItemFilter from './ItemFilter'
+import HeroSection from './HeroSection'
 
-import { Route, Switch, withRouter } from 'react-router-dom'
+// import { Route, Switch, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-class ItemPanel extends Component {
+class IndexPage extends Component {
   state = { url: '', dataId: '' }
   componentDidMount() {
     this.setState({ url: 'http://localhost:5000/inventory/' }, () => {
@@ -33,32 +35,39 @@ class ItemPanel extends Component {
     this.props.getData(detailURL)
   }
   render() {
-    let ListView = {}
-    if (Array.isArray(this.props.recordInfo)) {
-      ListView = this.props.recordInfo.map((record, i) => (
-        <InfoBox
-          updateURLOnClick={this.updateURLOnClick}
-          info={record}
-          key={i}
-        />
-      ))
-    } else {
-      ListView = null
-    }
-    const DetailView = (
-      <Detail closeOnClick={this.closeOnClick} {...this.props} />
-    )
+    // let ListView = {}
+    // if (Array.isArray(this.props.recordInfo)) {
+    //   ListView = this.props.recordInfo.map((record, i) => (
+    //     <InfoBox
+    //       updateURLOnClick={this.updateURLOnClick}
+    //       info={record}
+    //       key={i}
+    //     />
+    //   ))
+    // } else {
+    //   ListView = null
+    // }
     return (
-      <ItemPanelWrapper className="itemPanel">
-        <ItemFilter />
-        <ItemsWrapper>
-          <Switch>
-            <Route path="/" exact render={() => ListView} />
-            <Route path="/item" exact render={() => DetailView} />
-            <Route path="/cart" exact component={Cart} />
-          </Switch>
-        </ItemsWrapper>
-      </ItemPanelWrapper>
+      <React.Fragment>
+        <HeroSection />
+        <ItemPanelWrapper className="itemPanel">
+          <ItemFilter />
+          <ItemsWrapper>
+            {this.props.recordInfo.map((record, i) => (
+              <InfoBox
+                updateURLOnClick={this.updateURLOnClick}
+                info={record}
+                key={i}
+              />
+            ))}
+            {/* <Switch>
+              <Route path="/" exact render={() => ListView} />
+              <Route path="/item" exact render={() => DetailView} />
+              <Route path="/cart" exact component={Cart} />
+            </Switch> */}
+          </ItemsWrapper>
+        </ItemPanelWrapper>
+      </React.Fragment>
     )
   }
 }
@@ -80,7 +89,7 @@ const ItemPanelWrapper = styled.div`
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    margin-top: -2.5rem;
+    margin-top: -10.5rem;
   }
 `
 
@@ -96,4 +105,4 @@ const ItemsWrapper = styled.div`
   }
 `
 
-export default withRouter(ItemPanel)
+export default withRouter(IndexPage)
