@@ -4,17 +4,15 @@ const url = 'mongodb://localhost/rso'
 // const password = process.env.password
 // const url =
 //   `mongodb+srv://hoshki:${password}@rsd-3tupd.mongodb.net/test?retryWrites=true&w=majority`
+const path = require('path')
 const multer = require('multer')
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, '../client/public/uploads')
-  },
+  destination: path.join(__dirname, '../client/public/uploads'),
   filename: function(req, file, cb) {
     cb(null, file.originalname.slice(0, -4) + '-' + Date.now() + '.jpg')
   }
 })
 const upload = multer({ storage: storage })
-const path = require('path')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
@@ -62,7 +60,7 @@ mongoose.connect(
       process.exit(1)
     }
 
-    app.post('/inventory', upload.single('coverImage'), (req, res) => {
+    app.post('/inventory', upload.array('coverImage', 1), (req, res) => {
       const {
         _id,
         artist,
@@ -77,7 +75,7 @@ mongoose.connect(
         comment
       } = req.body
       console.log(req.file)
-      const coverImage = req.file
+      const coverImage = req.files[0].filename
       const newPost = new Record({
         _id,
         artist,
